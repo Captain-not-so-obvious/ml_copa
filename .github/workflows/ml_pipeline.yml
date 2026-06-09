@@ -3,9 +3,9 @@ name: Auto-Retrain ML Models & Update Dashboard
 on:
   # Permite rodar manualmente clicando em um botão no GitHub
   workflow_dispatch:
-  # Roda automaticamente todo dia à meia-noite (UTC)
+  # Roda automaticamente todo dia às 12:00 no Horário de Brasília (15:00 UTC)
   schedule:
-    - cron: '0 0 * * *'
+    - cron: '0 15 * * *'
 
 permissions:
   contents: write
