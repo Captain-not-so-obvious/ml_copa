@@ -1,0 +1,3249 @@
+{
+    "poisson_coefficients": [
+        0.1905096763114643,
+        0.018168764982930338,
+        -0.018966743041987873,
+        0.06933470358327709,
+        0.16417396862529693,
+        -0.00019499335336168564,
+        0.07948741123574847,
+        0.02400564062914223,
+        -0.07032648953860882,
+        0.22652298907686375
+    ],
+    "poisson_intercept": -0.3440655641636153,
+    "features_names": [
+        "elo_diff",
+        "rank_diff",
+        "points_diff",
+        "avg_gols_marcados_5j",
+        "avg_gols_sofridos_5j_opp",
+        "form_score",
+        "form_score_opp",
+        "win_rate_1ano",
+        "win_rate_1ano_opp",
+        "is_home"
+    ],
+    "elos": {
+        "Scotland": 1256.6560750027622,
+        "England": 1442.3128693507676,
+        "Wales": 1200.4270623038085,
+        "Northern Ireland": 1062.5704639963642,
+        "USA": 1310.7983494183072,
+        "Canada": 1297.7835206601806,
+        "Uruguay": 1349.3832462179344,
+        "Argentina": 1528.7290263728835,
+        "Austria": 1285.951181196604,
+        "Hungary": 1228.8984007641982,
+        "Czechoslovakia": 1185.4907781933314,
+        "Belgium": 1329.9100108921891,
+        "France": 1487.5175355642218,
+        "Switzerland": 1314.4623783564791,
+        "Guernsey": 1184.5972508641787,
+        "Alderney": 664.7639956347773,
+        "Jersey": 1240.544562992237,
+        "Netherlands": 1404.093137379574,
+        "Guyana": 984.2191534616472,
+        "Trinidad and Tobago": 1032.9291367289645,
+        "South Africa": 1145.7405169246601,
+        "Germany": 1414.968430858828,
+        "Sweden": 1208.7191798970875,
+        "Norway": 1318.9568926487236,
+        "Denmark": 1314.9467075315429,
+        "Italy": 1367.2888925207117,
+        "Chile": 1194.6901108626578,
+        "Russia": 1270.4321280926179,
+        "Finland": 1036.474668813644,
+        "Luxembourg": 935.3033374711208,
+        "Catalonia": 1105.0370252877758,
+        "Philippines": 880.9424686733706,
+        "China": 1053.4930122705832,
+        "Brazil": 1421.3265233930258,
+        "Basque Country": 1187.5414070004688,
+        "Japan": 1391.6074137578562,
+        "Paraguay": 1280.3141644549696,
+        "Romania": 1152.3086677752547,
+        "Greece": 1234.2262964221486,
+        "Yugoslavia": 1262.3263722326303,
+        "Spain": 1552.524432699638,
+        "Egypt": 1244.7487091064907,
+        "Estonia": 903.5128890691519,
+        "Suriname": 1048.9070235112363,
+        "Provence": 919.775264040526,
+        "Costa Rica": 1199.3684523784245,
+        "El Salvador": 989.2840142449953,
+        "Guatemala": 1106.498390157752,
+        "Poland": 1207.9461700201998,
+        "Portugal": 1431.5527180357747,
+        "Brittany": 1017.8842594410984,
+        "New Zealand": 1157.1440668515986,
+        "Australia": 1313.82086273072,
+        "Latvia": 839.4243243769927,
+        "Galicia": 1029.6729753696738,
+        "Central Spain": 1000.3132142149293,
+        "Mexico": 1375.9846533097927,
+        "Andalusia": 1065.5465126253548,
+        "Asturias": 1007.8201120703458,
+        "Lithuania": 823.3270956045151,
+        "Turkey": 1348.1921956085062,
+        "Aruba": 747.9211607783639,
+        "Curaçao": 1044.5912122085717,
+        "Bulgaria": 1002.8162639023147,
+        "Ireland": 1178.4425989646727,
+        "Haiti": 1124.9356111220752,
+        "Jamaica": 1131.9276193287021,
+        "Kenya": 974.5260642867197,
+        "Uganda": 1010.6046562078179,
+        "Bolivia": 1129.7167227394161,
+        "Peru": 1191.2496533229482,
+        "Honduras": 1154.459746309481,
+        "Belarus": 1005.1901221923325,
+        "Ukraine": 1242.0536357769063,
+        "Barbados": 723.2896387114064,
+        "Nicaragua": 989.2774361344831,
+        "Cuba": 921.930609043809,
+        "Martinique": 965.7865823985038,
+        "Dominica": 737.981816245503,
+        "Silesia": 1005.8826655154289,
+        "Guadeloupe": 1023.6098199796897,
+        "Israel": 1110.8460349581405,
+        "Indonesia": 996.0335596042862,
+        "French Guiana": 899.0016694715989,
+        "Saint Lucia": 826.6870420482036,
+        "Colombia": 1406.2165821122994,
+        "Panama": 1266.5034281941255,
+        "Venezuela": 1227.316265207087,
+        "Ecuador": 1372.9259841727671,
+        "Saint Kitts and Nevis": 850.3010327727368,
+        "Grenada": 842.0661456038322,
+        "India": 800.3957555980293,
+        "Slovakia": 1156.2767363161383,
+        "Manchukuo": 975.3737752843208,
+        "Croatia": 1364.5083739912805,
+        "Lebanon": 948.4348507573081,
+        "Puerto Rico": 904.8605811330826,
+        "Afghanistan": 746.715665468491,
+        "Iran": 1318.381026686681,
+        "Mongolia": 636.3979974016784,
+        "Tanzania": 928.3330961610077,
+        "Zimbabwe": 954.0918567376766,
+        "Zambia": 1040.5719156300906,
+        "Iceland": 1051.859105184726,
+        "Albania": 1105.1955898228393,
+        "Montenegro": 1009.9805770257087,
+        "Madagascar": 959.5377795686614,
+        "Mauritius": 753.4215726329753,
+        "Réunion": 1052.5734066766286,
+        "Zanzibar": 1019.6435431917496,
+        "Djibouti": 647.0472128384973,
+        "Ethiopia": 903.289987035539,
+        "DR Congo": 1183.2583027048436,
+        "South Korea": 1312.3135408093904,
+        "Vietnam": 1015.7758807122132,
+        "Macau": 515.310319790428,
+        "Dominican Republic": 982.1407893041227,
+        "Cyprus": 887.9869213360195,
+        "Sierra Leone": 953.2419384873567,
+        "Nigeria": 1274.6266307907513,
+        "Syria": 1057.2160109984184,
+        "Serbia": 1229.78929366478,
+        "Taiwan": 662.0144206693129,
+        "Ghana": 1065.6004335731104,
+        "Myanmar": 753.1744832981669,
+        "New Caledonia": 1057.9622886682603,
+        "Vanuatu": 982.5004194647166,
+        "Fiji": 979.1641208391626,
+        "Pakistan": 651.1920733550345,
+        "Sri Lanka": 638.2924620108959,
+        "German DR": 1159.2997840607895,
+        "Tahiti": 1025.9738658634128,
+        "Gambia": 996.9118015204209,
+        "Hong Kong": 875.4750037847238,
+        "Singapore": 883.1712956556136,
+        "Malaysia": 1020.2771198338697,
+        "Guinea-Bissau": 893.8690837066714,
+        "Saarland": 971.6922850011739,
+        "Burundi": 895.6635295411032,
+        "Cameroon": 1184.5153625208425,
+        "Kernow": 1056.6505832424893,
+        "Cambodia": 667.9290921615471,
+        "Thailand": 1046.8842654250932,
+        "Vietnam Republic": 905.092126835449,
+        "Kyrgyzstan": 960.8264240433414,
+        "Moldova": 854.5774024668598,
+        "North Vietnam": 974.8622073729322,
+        "Togo": 962.3767827221216,
+        "North Korea": 989.2735790398699,
+        "Sudan": 956.4611280474267,
+        "Malta": 842.3600557977226,
+        "Tunisia": 1165.3888431246776,
+        "Libya": 994.0767626203886,
+        "Malawi": 921.2651918471901,
+        "Morocco": 1400.4342597898722,
+        "Benin": 1021.5341211613653,
+        "Cape Verde": 1098.098580821766,
+        "Ivory Coast": 1238.9138605822945,
+        "Burkina Faso": 1113.8034931355314,
+        "Gabon": 1017.9861556509878,
+        "Congo": 868.6022750851884,
+        "Mali": 1146.8885439286728,
+        "Central African Republic": 865.8963479040501,
+        "Iraq": 1214.9001232871447,
+        "Saint Vincent and the Grenadines": 894.3900442013111,
+        "Senegal": 1327.2203018785415,
+        "Laos": 601.5737800543347,
+        "Mauritania": 959.2511859066457,
+        "Liberia": 905.09604262085,
+        "Chad": 798.4253200707149,
+        "Niger": 945.4753618326322,
+        "Guinea": 1023.5238114667972,
+        "Algeria": 1291.6190507782417,
+        "Kuwait": 994.9422337494427,
+        "Jordan": 1201.9535190634683,
+        "Papua New Guinea": 992.3393291485309,
+        "Solomon Islands": 940.3055076760864,
+        "Somalia": 636.6436025614906,
+        "Saudi Arabia": 1165.591664886477,
+        "Bermuda": 883.7292311646524,
+        "Palestine": 1038.305766851318,
+        "Bahrain": 1054.7718635391843,
+        "Yemen": 833.0428692962664,
+        "Oman": 1089.3277584534544,
+        "Wallis Islands and Futuna": 874.4448263490783,
+        "Corsica": 1042.7747551263108,
+        "Western Australia": 923.1391079530823,
+        "Eswatini": 817.3443665209181,
+        "Botswana": 917.0773964734201,
+        "Qatar": 1123.283662390118,
+        "Lesotho": 890.1620476424338,
+        "Bahamas": 627.0546025012586,
+        "Brunei": 578.4038967183009,
+        "Cook Islands": 789.6275758015419,
+        "Yemen DPR": 903.8681624879242,
+        "United Arab Emirates": 1132.0701678914743,
+        "Faroe Islands": 883.0854596474323,
+        "Nepal": 673.8400727463585,
+        "Antigua and Barbuda": 725.5250377703508,
+        "Bangladesh": 725.2665579375582,
+        "Seychelles": 597.3738406010348,
+        "Equatorial Guinea": 969.4470330399458,
+        "Mozambique": 1001.7866067058593,
+        "Guam": 613.3585154063427,
+        "Angola": 1051.687160761141,
+        "São Tomé and Príncipe": 723.5554184272659,
+        "Rwanda": 964.2604403497911,
+        "Northern Cyprus": 1122.577799726111,
+        "Armenia": 929.5317107582732,
+        "Georgia": 1134.858114621348,
+        "Azerbaijan": 900.0386848643775,
+        "Kazakhstan": 979.9248838090638,
+        "Comoros": 968.8972261894976,
+        "Maldives": 620.166002429627,
+        "Tonga": 741.4678384890757,
+        "Kiribati": 889.733862829369,
+        "Tuvalu": 842.7670189582801,
+        "Samoa": 853.4099757999905,
+        "Greenland": 960.0368806550571,
+        "Liechtenstein": 563.4583215567717,
+        "Bhutan": 504.6190858246753,
+        "South Yemen": 979.3745334239918,
+        "American Samoa": 667.836308282946,
+        "Niue": 980.3270434767581,
+        "Belize": 837.8728872828233,
+        "Cayman Islands": 695.2779941885283,
+        "Anguilla": 566.8634084695314,
+        "British Virgin Islands": 632.8933979470709,
+        "Palau": 979.8322695884391,
+        "Sint Maarten": 860.4733274587333,
+        "Namibia": 919.0856330017776,
+        "Ynys Môn": 1134.3785356806547,
+        "Shetland": 981.4436731104704,
+        "Åland Islands": 994.6976188300505,
+        "Saint Martin": 824.4914518257614,
+        "San Marino": 500.57284746694876,
+        "Montserrat": 806.1405736802584,
+        "Slovenia": 1189.401218301798,
+        "Isle of Wight": 1112.1027644542385,
+        "Turkmenistan": 909.4962762551364,
+        "Tajikistan": 960.7855975155057,
+        "Uzbekistan": 1260.896085547666,
+        "Eritrea": 781.2288167957453,
+        "Isle of Man": 1133.8998634890172,
+        "Gibraltar": 689.2569828212096,
+        "North Macedonia": 1099.0414918499378,
+        "Czech Republic": 1228.8207744722447,
+        "Bosnia and Herzegovina": 1097.369948537279,
+        "Canary Islands": 1009.3501704265998,
+        "Andorra": 668.1271634090948,
+        "Hitra": 904.2623845633827,
+        "Frøya": 810.9205574679262,
+        "United States Virgin Islands": 614.9206336110379,
+        "Northern Mariana Islands": 706.9493457315958,
+        "Turks and Caicos Islands": 694.8923964381625,
+        "Micronesia": 939.2490751855504,
+        "Saare County": 873.7607325381663,
+        "Rhodes": 1065.695700001544,
+        "Gotland": 951.76449732153,
+        "Monaco": 980.4161471122358,
+        "Western Sahara": 953.0361869929314,
+        "Tibet": 849.8524089423659,
+        "Orkney": 937.6522586544147,
+        "Falkland Islands": 824.2426671832545,
+        "Mayotte": 940.3018969216483,
+        "Vatican City": 965.3917594803621,
+        "Timor-Leste": 533.4774825625726,
+        "Sark": 950.9720054394529,
+        "Sealand": 982.170040947802,
+        "Occitania": 1118.7795953206708,
+        "Chechnya": 985.3330785464221,
+        "Ambazonia": 884.895064058624,
+        "Western Isles": 959.6330812491801,
+        "Kosovo": 1168.0563092063135,
+        "Republic of St. Pauli": 983.2891691787548,
+        "Găgăuzia": 964.6428327757172,
+        "Crimea": 1008.5277869031382,
+        "Sápmi": 975.089610201451,
+        "Romani people": 978.1595179665322,
+        "Menorca": 1025.111771631277,
+        "Iraqi Kurdistan": 1150.213363318944,
+        "Padania": 1179.3823539259247,
+        "Arameans Suryoye": 1034.3539393429883,
+        "Gozo": 939.9736495269148,
+        "Two Sicilies": 933.64218864138,
+        "Saint Barthélemy": 962.0136592221932,
+        "Saint Pierre and Miquelon": 916.3710740855937,
+        "Bonaire": 758.3858978440107,
+        "Chagos Islands": 924.4662159648868,
+        "Raetia": 912.7442380339435,
+        "Cilento": 992.7618346487111,
+        "Kurdistan": 1037.799635251888,
+        "Darfur": 875.0831510044721,
+        "Tamil Eelam": 1031.6313151989339,
+        "South Sudan": 798.5749608906609,
+        "Abkhazia": 1090.5414104097995,
+        "Artsakh": 1037.3255014127033,
+        "Madrid": 993.7681129635009,
+        "Quebec": 1006.9423085398995,
+        "Saugeais": 998.45218555996,
+        "South Ossetia": 985.9786235004275,
+        "Ellan Vannin": 1049.2565324194059,
+        "Somaliland": 991.9342589754738,
+        "Franconia": 995.2674856911251,
+        "County of Nice": 1062.3770613695287,
+        "Seborga": 991.9421996914147,
+        "Székely Land": 977.7555105541079,
+        "Luhansk PR": 992.5586042054009,
+        "Donetsk PR": 1003.002112098383,
+        "Felvidék": 1008.6648380420336,
+        "Panjab": 1028.9421166992306,
+        "United Koreans in Japan": 998.2942077583862,
+        "Western Armenia": 990.2146083046232,
+        "Kárpátalja": 1056.4012356992368,
+        "Délvidék": 997.5476726905304,
+        "Barawa": 946.4660646306766,
+        "Ryūkyū": 992.4546808821301,
+        "Yorkshire": 1033.7370791482954,
+        "Surrey": 1006.9145797814605,
+        "Kabylia": 977.3681082835287,
+        "Matabeleland": 1001.0810562996847,
+        "Cascadia": 1019.8667842385514,
+        "Parishes of Jersey": 1006.3378704730724,
+        "Chameria": 1013.0810748329596,
+        "Saint Helena": 917.705106905687,
+        "West Papua": 990.2482111178053,
+        "East Turkestan": 975.1754927242816,
+        "Yoruba Nation": 987.1111205859842,
+        "Biafra": 1013.4957840819915,
+        "Mapuche": 1000.4495297093191,
+        "Maule Sur": 1024.0860136495817,
+        "Aymara": 975.4644566410991,
+        "Elba Island": 1005.2036385191096,
+        "Ticino": 974.3783533711633,
+        "Hmong": 982.4106597700372,
+        "Marshall Islands": 955.7591159561116
+    },
+    "fifa": {
+        "Afghanistan": {
+            "rank": 145.0,
+            "points": 187.6
+        },
+        "Albania": {
+            "rank": 58.0,
+            "points": 537.79
+        },
+        "Algeria": {
+            "rank": 66.0,
+            "points": 473.83
+        },
+        "American Samoa": {
+            "rank": 192.0,
+            "points": 38.25
+        },
+        "Andorra": {
+            "rank": 130.0,
+            "points": 228.81
+        },
+        "Angola": {
+            "rank": 137.0,
+            "points": 209.08
+        },
+        "Anguilla": {
+            "rank": 206.0,
+            "points": 0.0
+        },
+        "Antigua and Barbuda": {
+            "rank": 126.0,
+            "points": 239.34
+        },
+        "Argentina": {
+            "rank": 5.0,
+            "points": 1241.45
+        },
+        "Armenia": {
+            "rank": 100.0,
+            "points": 338.21
+        },
+        "Aruba": {
+            "rank": 188.0,
+            "points": 48.45
+        },
+        "Australia": {
+            "rank": 36.0,
+            "points": 718.33
+        },
+        "Austria": {
+            "rank": 26.0,
+            "points": 844.7
+        },
+        "Azerbaijan": {
+            "rank": 105.0,
+            "points": 321.48
+        },
+        "Bahamas": {
+            "rank": 206.0,
+            "points": 0.0
+        },
+        "Bahrain": {
+            "rank": 113.0,
+            "points": 289.25
+        },
+        "Bangladesh": {
+            "rank": 194.0,
+            "points": 34.76
+        },
+        "Barbados": {
+            "rank": 160.0,
+            "points": 127.07
+        },
+        "Belarus": {
+            "rank": 78.0,
+            "points": 417.42
+        },
+        "Belgium": {
+            "rank": 3.0,
+            "points": 1298.32
+        },
+        "Belize": {
+            "rank": 163.0,
+            "points": 115.31
+        },
+        "Benin": {
+            "rank": 88.0,
+            "points": 378.77
+        },
+        "Bermuda": {
+            "rank": 178.0,
+            "points": 81.64
+        },
+        "Bhutan": {
+            "rank": 183.0,
+            "points": 68.0
+        },
+        "Bolivia": {
+            "rank": 59.0,
+            "points": 536.08
+        },
+        "Bosnia and Herzegovina": {
+            "rank": 40.0,
+            "points": 692.93
+        },
+        "Botswana": {
+            "rank": 139.0,
+            "points": 204.52
+        },
+        "Brazil": {
+            "rank": 2.0,
+            "points": 1430.57
+        },
+        "British Virgin Islands": {
+            "rank": 204.0,
+            "points": 4.25
+        },
+        "Brunei Darussalam": {
+            "rank": 195.0,
+            "points": 34.0
+        },
+        "Bulgaria": {
+            "rank": 49.0,
+            "points": 614.39
+        },
+        "Burkina Faso": {
+            "rank": 52.0,
+            "points": 604.15
+        },
+        "Burundi": {
+            "rank": 148.0,
+            "points": 174.16
+        },
+        "Cambodia": {
+            "rank": 166.0,
+            "points": 103.2
+        },
+        "Cameroon": {
+            "rank": 49.0,
+            "points": 613.88
+        },
+        "Canada": {
+            "rank": 79.0,
+            "points": 410.93
+        },
+        "Cape Verde Islands": {
+            "rank": 65.0,
+            "points": 477.77
+        },
+        "Cayman Islands": {
+            "rank": 202.0,
+            "points": 8.5
+        },
+        "Central African Republic": {
+            "rank": 108.0,
+            "points": 303.08
+        },
+        "Chad": {
+            "rank": 175.0,
+            "points": 87.98
+        },
+        "Chile": {
+            "rank": 9.0,
+            "points": 1134.66
+        },
+        "China PR": {
+            "rank": 75.0,
+            "points": 423.09
+        },
+        "Chinese Taipei": {
+            "rank": 123.0,
+            "points": 246.74
+        },
+        "Colombia": {
+            "rank": 16.0,
+            "points": 985.97
+        },
+        "Comoros": {
+            "rank": 149.0,
+            "points": 171.66
+        },
+        "Congo": {
+            "rank": 83.0,
+            "points": 393.04
+        },
+        "Cook Islands": {
+            "rank": 192.0,
+            "points": 38.25
+        },
+        "Costa Rica": {
+            "rank": 23.0,
+            "points": 884.04
+        },
+        "Croatia": {
+            "rank": 20.0,
+            "points": 945.18
+        },
+        "Cuba": {
+            "rank": 181.0,
+            "points": 74.88
+        },
+        "Curaçao": {
+            "rank": 81.0,
+            "points": 408.27
+        },
+        "Cyprus": {
+            "rank": 87.0,
+            "points": 383.53
+        },
+        "Czech Republic": {
+            "rank": 46.0,
+            "points": 640.7
+        },
+        "DR Congo": {
+            "rank": 38.0,
+            "points": 705.87
+        },
+        "Denmark": {
+            "rank": 12.0,
+            "points": 1051.44
+        },
+        "Djibouti": {
+            "rank": 197.0,
+            "points": 31.88
+        },
+        "Dominica": {
+            "rank": 177.0,
+            "points": 86.07
+        },
+        "Dominican Republic": {
+            "rank": 152.0,
+            "points": 162.4
+        },
+        "Ecuador": {
+            "rank": 60.0,
+            "points": 523.85
+        },
+        "Egypt": {
+            "rank": 45.0,
+            "points": 649.43
+        },
+        "El Salvador": {
+            "rank": 72.0,
+            "points": 441.53
+        },
+        "England": {
+            "rank": 12.0,
+            "points": 1050.84
+        },
+        "Equatorial Guinea": {
+            "rank": 143.0,
+            "points": 189.97
+        },
+        "Eritrea": {
+            "rank": 206.0,
+            "points": 0.0
+        },
+        "Estonia": {
+            "rank": 94.0,
+            "points": 359.41
+        },
+        "Ethiopia": {
+            "rank": 151.0,
+            "points": 165.84
+        },
+        "FYR Macedonia": {
+            "rank": 71.0,
+            "points": 451.3
+        },
+        "Faroe Islands": {
+            "rank": 90.0,
+            "points": 375.91
+        },
+        "Fiji": {
+            "rank": 165.0,
+            "points": 103.65
+        },
+        "Finland": {
+            "rank": 63.0,
+            "points": 486.43
+        },
+        "France": {
+            "rank": 7.0,
+            "points": 1198.13
+        },
+        "Gabon": {
+            "rank": 85.0,
+            "points": 389.96
+        },
+        "Gambia": {
+            "rank": 172.0,
+            "points": 91.94
+        },
+        "Georgia": {
+            "rank": 96.0,
+            "points": 351.51
+        },
+        "Germany": {
+            "rank": 1.0,
+            "points": 1558.49
+        },
+        "Ghana": {
+            "rank": 47.0,
+            "points": 623.69
+        },
+        "Gibraltar": {
+            "rank": 195.0,
+            "points": 34.16
+        },
+        "Greece": {
+            "rank": 44.0,
+            "points": 649.82
+        },
+        "Grenada": {
+            "rank": 168.0,
+            "points": 101.53
+        },
+        "Guam": {
+            "rank": 190.0,
+            "points": 44.96
+        },
+        "Guatemala": {
+            "rank": 146.0,
+            "points": 179.79
+        },
+        "Guinea": {
+            "rank": 68.0,
+            "points": 462.98
+        },
+        "Guinea-Bissau": {
+            "rank": 121.0,
+            "points": 255.11
+        },
+        "Guyana": {
+            "rank": 182.0,
+            "points": 73.41
+        },
+        "Haiti": {
+            "rank": 104.0,
+            "points": 321.93
+        },
+        "Honduras": {
+            "rank": 62.0,
+            "points": 503.3
+        },
+        "Hong Kong": {
+            "rank": 142.0,
+            "points": 195.06
+        },
+        "Hungary": {
+            "rank": 51.0,
+            "points": 611.82
+        },
+        "IR Iran": {
+            "rank": 37.0,
+            "points": 708.35
+        },
+        "Iceland": {
+            "rank": 22.0,
+            "points": 908.01
+        },
+        "India": {
+            "rank": 97.0,
+            "points": 349.92
+        },
+        "Indonesia": {
+            "rank": 164.0,
+            "points": 111.49
+        },
+        "Iraq": {
+            "rank": 89.0,
+            "points": 376.7
+        },
+        "Ireland": {
+            "rank": 31.0,
+            "points": 777.11
+        },
+        "Israel": {
+            "rank": 93.0,
+            "points": 361.87
+        },
+        "Italy": {
+            "rank": 19.0,
+            "points": 951.25
+        },
+        "Ivory Coast": {
+            "rank": 68.0,
+            "points": 463.4
+        },
+        "Jamaica": {
+            "rank": 54.0,
+            "points": 588.13
+        },
+        "Japan": {
+            "rank": 61.0,
+            "points": 520.75
+        },
+        "Jordan": {
+            "rank": 110.0,
+            "points": 296.18
+        },
+        "Kazakhstan": {
+            "rank": 117.0,
+            "points": 272.85
+        },
+        "Kenya": {
+            "rank": 112.0,
+            "points": 290.83
+        },
+        "Kosovo": {
+            "rank": 141.0,
+            "points": 197.2
+        },
+        "Kuwait": {
+            "rank": 159.0,
+            "points": 128.48
+        },
+        "Kyrgyz Republic": {
+            "rank": 92.0,
+            "points": 362.71
+        },
+        "Laos": {
+            "rank": 178.0,
+            "points": 81.58
+        },
+        "Latvia": {
+            "rank": 129.0,
+            "points": 230.04
+        },
+        "Lebanon": {
+            "rank": 79.0,
+            "points": 411.49
+        },
+        "Lesotho": {
+            "rank": 147.0,
+            "points": 175.48
+        },
+        "Liberia": {
+            "rank": 158.0,
+            "points": 129.08
+        },
+        "Libya": {
+            "rank": 101.0,
+            "points": 335.87
+        },
+        "Liechtenstein": {
+            "rank": 180.0,
+            "points": 79.76
+        },
+        "Lithuania": {
+            "rank": 126.0,
+            "points": 239.38
+        },
+        "Luxembourg": {
+            "rank": 85.0,
+            "points": 389.95
+        },
+        "Macau": {
+            "rank": 185.0,
+            "points": 60.11
+        },
+        "Madagascar": {
+            "rank": 106.0,
+            "points": 307.7
+        },
+        "Malawi": {
+            "rank": 123.0,
+            "points": 247.19
+        },
+        "Malaysia": {
+            "rank": 171.0,
+            "points": 93.04
+        },
+        "Maldives": {
+            "rank": 150.0,
+            "points": 171.42
+        },
+        "Mali": {
+            "rank": 64.0,
+            "points": 483.7
+        },
+        "Malta": {
+            "rank": 184.0,
+            "points": 65.11
+        },
+        "Mauritania": {
+            "rank": 107.0,
+            "points": 304.17
+        },
+        "Mauritius": {
+            "rank": 155.0,
+            "points": 140.37
+        },
+        "Mexico": {
+            "rank": 15.0,
+            "points": 989.44
+        },
+        "Moldova": {
+            "rank": 175.0,
+            "points": 87.81
+        },
+        "Mongolia": {
+            "rank": 186.0,
+            "points": 51.0
+        },
+        "Montenegro": {
+            "rank": 43.0,
+            "points": 651.58
+        },
+        "Montserrat": {
+            "rank": 204.0,
+            "points": 4.25
+        },
+        "Morocco": {
+            "rank": 41.0,
+            "points": 685.86
+        },
+        "Mozambique": {
+            "rank": 114.0,
+            "points": 281.55
+        },
+        "Myanmar": {
+            "rank": 138.0,
+            "points": 205.52
+        },
+        "Namibia": {
+            "rank": 116.0,
+            "points": 277.06
+        },
+        "Nepal": {
+            "rank": 161.0,
+            "points": 118.47
+        },
+        "Netherlands": {
+            "rank": 17.0,
+            "points": 980.98
+        },
+        "Netherlands Antilles": {
+            "rank": 151.0,
+            "points": 0.0
+        },
+        "New Caledonia": {
+            "rank": 154.0,
+            "points": 149.6
+        },
+        "New Zealand": {
+            "rank": 120.0,
+            "points": 255.78
+        },
+        "Nicaragua": {
+            "rank": 132.0,
+            "points": 227.69
+        },
+        "Niger": {
+            "rank": 103.0,
+            "points": 323.36
+        },
+        "Nigeria": {
+            "rank": 48.0,
+            "points": 617.79
+        },
+        "North Korea": {
+            "rank": 108.0,
+            "points": 303.11
+        },
+        "Northern Ireland": {
+            "rank": 29.0,
+            "points": 803.22
+        },
+        "Norway": {
+            "rank": 53.0,
+            "points": 595.99
+        },
+        "Oman": {
+            "rank": 84.0,
+            "points": 391.06
+        },
+        "Pakistan": {
+            "rank": 201.0,
+            "points": 10.17
+        },
+        "Palestine": {
+            "rank": 99.0,
+            "points": 347.07
+        },
+        "Panama": {
+            "rank": 55.0,
+            "points": 571.17
+        },
+        "Papua New Guinea": {
+            "rank": 166.0,
+            "points": 102.67
+        },
+        "Paraguay": {
+            "rank": 32.0,
+            "points": 773.18
+        },
+        "Peru": {
+            "rank": 11.0,
+            "points": 1125.39
+        },
+        "Philippines": {
+            "rank": 115.0,
+            "points": 280.02
+        },
+        "Poland": {
+            "rank": 8.0,
+            "points": 1182.61
+        },
+        "Portugal": {
+            "rank": 4.0,
+            "points": 1273.69
+        },
+        "Puerto Rico": {
+            "rank": 173.0,
+            "points": 88.59
+        },
+        "Qatar": {
+            "rank": 98.0,
+            "points": 347.59
+        },
+        "RCS": {
+            "rank": 19.0,
+            "points": 0.0
+        },
+        "Romania": {
+            "rank": 30.0,
+            "points": 781.66
+        },
+        "Russia": {
+            "rank": 70.0,
+            "points": 456.53
+        },
+        "Rwanda": {
+            "rank": 136.0,
+            "points": 216.13
+        },
+        "Samoa": {
+            "rank": 197.0,
+            "points": 31.88
+        },
+        "San Marino": {
+            "rank": 203.0,
+            "points": 7.92
+        },
+        "Saudi Arabia": {
+            "rank": 67.0,
+            "points": 465.28
+        },
+        "Scotland": {
+            "rank": 42.0,
+            "points": 659.61
+        },
+        "Senegal": {
+            "rank": 27.0,
+            "points": 837.98
+        },
+        "Serbia": {
+            "rank": 34.0,
+            "points": 750.75
+        },
+        "Serbia and Montenegro": {
+            "rank": 36.0,
+            "points": 0.0
+        },
+        "Seychelles": {
+            "rank": 188.0,
+            "points": 48.47
+        },
+        "Sierra Leone": {
+            "rank": 111.0,
+            "points": 292.16
+        },
+        "Singapore": {
+            "rank": 169.0,
+            "points": 98.85
+        },
+        "Slovakia": {
+            "rank": 28.0,
+            "points": 804.36
+        },
+        "Slovenia": {
+            "rank": 56.0,
+            "points": 558.05
+        },
+        "Solomon Islands": {
+            "rank": 143.0,
+            "points": 189.91
+        },
+        "Somalia": {
+            "rank": 206.0,
+            "points": 0.0
+        },
+        "South Africa": {
+            "rank": 74.0,
+            "points": 427.68
+        },
+        "South Korea": {
+            "rank": 57.0,
+            "points": 543.67
+        },
+        "South Sudan": {
+            "rank": 156.0,
+            "points": 131.82
+        },
+        "Spain": {
+            "rank": 10.0,
+            "points": 1125.5
+        },
+        "Sri Lanka": {
+            "rank": 200.0,
+            "points": 16.76
+        },
+        "St Kitts and Nevis": {
+            "rank": 135.0,
+            "points": 218.06
+        },
+        "St Lucia": {
+            "rank": 170.0,
+            "points": 94.94
+        },
+        "St Vincent and the Grenadines": {
+            "rank": 173.0,
+            "points": 88.6
+        },
+        "Sudan": {
+            "rank": 128.0,
+            "points": 232.17
+        },
+        "Suriname": {
+            "rank": 153.0,
+            "points": 154.19
+        },
+        "Swaziland": {
+            "rank": 134.0,
+            "points": 222.13
+        },
+        "Sweden": {
+            "rank": 24.0,
+            "points": 879.9
+        },
+        "Switzerland": {
+            "rank": 6.0,
+            "points": 1198.72
+        },
+        "Syria": {
+            "rank": 73.0,
+            "points": 439.65
+        },
+        "São Tomé e Príncipe": {
+            "rank": 186.0,
+            "points": 50.54
+        },
+        "Tahiti": {
+            "rank": 157.0,
+            "points": 129.62
+        },
+        "Tajikistan": {
+            "rank": 119.0,
+            "points": 263.65
+        },
+        "Tanzania": {
+            "rank": 140.0,
+            "points": 200.32
+        },
+        "Thailand": {
+            "rank": 122.0,
+            "points": 248.21
+        },
+        "Timor-Leste": {
+            "rank": 190.0,
+            "points": 44.86
+        },
+        "Togo": {
+            "rank": 125.0,
+            "points": 241.13
+        },
+        "Tonga": {
+            "rank": 206.0,
+            "points": 0.0
+        },
+        "Trinidad and Tobago": {
+            "rank": 91.0,
+            "points": 369.54
+        },
+        "Tunisia": {
+            "rank": 21.0,
+            "points": 909.91
+        },
+        "Turkey": {
+            "rank": 38.0,
+            "points": 706.39
+        },
+        "Turkmenistan": {
+            "rank": 130.0,
+            "points": 229.36
+        },
+        "Turks and Caicos Islands": {
+            "rank": 206.0,
+            "points": 0.0
+        },
+        "US Virgin Islands": {
+            "rank": 199.0,
+            "points": 17.6
+        },
+        "USA": {
+            "rank": 25.0,
+            "points": 872.68
+        },
+        "Uganda": {
+            "rank": 82.0,
+            "points": 402.91
+        },
+        "Ukraine": {
+            "rank": 35.0,
+            "points": 732.77
+        },
+        "United Arab Emirates": {
+            "rank": 77.0,
+            "points": 417.66
+        },
+        "Uruguay": {
+            "rank": 14.0,
+            "points": 1018.41
+        },
+        "Uzbekistan": {
+            "rank": 95.0,
+            "points": 353.91
+        },
+        "Vanuatu": {
+            "rank": 162.0,
+            "points": 116.83
+        },
+        "Venezuela": {
+            "rank": 33.0,
+            "points": 754.55
+        },
+        "Vietnam": {
+            "rank": 102.0,
+            "points": 334.37
+        },
+        "Wales": {
+            "rank": 18.0,
+            "points": 953.46
+        },
+        "Yemen": {
+            "rank": 133.0,
+            "points": 227.43
+        },
+        "Yugoslavia": {
+            "rank": 16.0,
+            "points": 0.0
+        },
+        "Zaire": {
+            "rank": 59.0,
+            "points": 0.0
+        },
+        "Zambia": {
+            "rank": 76.0,
+            "points": 420.31
+        },
+        "Zimbabwe": {
+            "rank": 118.0,
+            "points": 264.59
+        }
+    },
+    "features": {
+        "Abkhazia": {
+            "avg_gols_marcados_5j": 0.0,
+            "avg_gols_sofridos_5j": 0.0,
+            "form_score": 1.0,
+            "win_rate_1ano": 0.0
+        },
+        "Afghanistan": {
+            "avg_gols_marcados_5j": 0.0,
+            "avg_gols_sofridos_5j": 2.0,
+            "form_score": 0.0,
+            "win_rate_1ano": 0.0
+        },
+        "Albania": {
+            "avg_gols_marcados_5j": 0.0,
+            "avg_gols_sofridos_5j": 1.0,
+            "form_score": 0.0,
+            "win_rate_1ano": 0.0
+        },
+        "Alderney": {
+            "avg_gols_marcados_5j": 0.0,
+            "avg_gols_sofridos_5j": 2.0,
+            "form_score": 0.0,
+            "win_rate_1ano": 0.0
+        },
+        "Algeria": {
+            "avg_gols_marcados_5j": 1.0,
+            "avg_gols_sofridos_5j": 0.0,
+            "form_score": 3.0,
+            "win_rate_1ano": 1.0
+        },
+        "Ambazonia": {
+            "avg_gols_marcados_5j": 1.0,
+            "avg_gols_sofridos_5j": 3.0,
+            "form_score": 0.0,
+            "win_rate_1ano": 0.0
+        },
+        "American Samoa": {
+            "avg_gols_marcados_5j": 0.0,
+            "avg_gols_sofridos_5j": 6.0,
+            "form_score": 0.0,
+            "win_rate_1ano": 0.0
+        },
+        "Andalusia": {
+            "avg_gols_marcados_5j": 2.0,
+            "avg_gols_sofridos_5j": 1.0,
+            "form_score": 3.0,
+            "win_rate_1ano": 1.0
+        },
+        "Andorra": {
+            "avg_gols_marcados_5j": 0.0,
+            "avg_gols_sofridos_5j": 3.0,
+            "form_score": 0.0,
+            "win_rate_1ano": 0.0
+        },
+        "Angola": {
+            "avg_gols_marcados_5j": 1.0,
+            "avg_gols_sofridos_5j": 1.0,
+            "form_score": 1.0,
+            "win_rate_1ano": 0.0
+        },
+        "Anguilla": {
+            "avg_gols_marcados_5j": 0.0,
+            "avg_gols_sofridos_5j": 4.0,
+            "form_score": 0.0,
+            "win_rate_1ano": 0.0
+        },
+        "Antigua and Barbuda": {
+            "avg_gols_marcados_5j": 1.0,
+            "avg_gols_sofridos_5j": 4.0,
+            "form_score": 0.0,
+            "win_rate_1ano": 0.0
+        },
+        "Arameans Suryoye": {
+            "avg_gols_marcados_5j": 4.0,
+            "avg_gols_sofridos_5j": 1.0,
+            "form_score": 3.0,
+            "win_rate_1ano": 1.0
+        },
+        "Argentina": {
+            "avg_gols_marcados_5j": 2.0,
+            "avg_gols_sofridos_5j": 0.0,
+            "form_score": 3.0,
+            "win_rate_1ano": 1.0
+        },
+        "Armenia": {
+            "avg_gols_marcados_5j": 1.0,
+            "avg_gols_sofridos_5j": 1.0,
+            "form_score": 1.0,
+            "win_rate_1ano": 0.0
+        },
+        "Artsakh": {
+            "avg_gols_marcados_5j": 2.0,
+            "avg_gols_sofridos_5j": 0.0,
+            "form_score": 3.0,
+            "win_rate_1ano": 1.0
+        },
+        "Aruba": {
+            "avg_gols_marcados_5j": 0.0,
+            "avg_gols_sofridos_5j": 4.0,
+            "form_score": 0.0,
+            "win_rate_1ano": 0.0
+        },
+        "Asturias": {
+            "avg_gols_marcados_5j": 3.0,
+            "avg_gols_sofridos_5j": 1.0,
+            "form_score": 3.0,
+            "win_rate_1ano": 1.0
+        },
+        "Australia": {
+            "avg_gols_marcados_5j": 1.0,
+            "avg_gols_sofridos_5j": 1.0,
+            "form_score": 1.0,
+            "win_rate_1ano": 0.0
+        },
+        "Austria": {
+            "avg_gols_marcados_5j": 1.0,
+            "avg_gols_sofridos_5j": 0.0,
+            "form_score": 3.0,
+            "win_rate_1ano": 1.0
+        },
+        "Aymara": {
+            "avg_gols_marcados_5j": 0.0,
+            "avg_gols_sofridos_5j": 1.0,
+            "form_score": 0.0,
+            "win_rate_1ano": 0.0
+        },
+        "Azerbaijan": {
+            "avg_gols_marcados_5j": 0.0,
+            "avg_gols_sofridos_5j": 2.0,
+            "form_score": 0.0,
+            "win_rate_1ano": 0.0
+        },
+        "Bahamas": {
+            "avg_gols_marcados_5j": 0.0,
+            "avg_gols_sofridos_5j": 1.0,
+            "form_score": 0.0,
+            "win_rate_1ano": 0.0
+        },
+        "Bahrain": {
+            "avg_gols_marcados_5j": 0.0,
+            "avg_gols_sofridos_5j": 2.0,
+            "form_score": 0.0,
+            "win_rate_1ano": 0.0
+        },
+        "Bangladesh": {
+            "avg_gols_marcados_5j": 2.0,
+            "avg_gols_sofridos_5j": 1.0,
+            "form_score": 3.0,
+            "win_rate_1ano": 1.0
+        },
+        "Barawa": {
+            "avg_gols_marcados_5j": 0.0,
+            "avg_gols_sofridos_5j": 5.0,
+            "form_score": 0.0,
+            "win_rate_1ano": 0.0
+        },
+        "Barbados": {
+            "avg_gols_marcados_5j": 2.0,
+            "avg_gols_sofridos_5j": 3.0,
+            "form_score": 0.0,
+            "win_rate_1ano": 0.0
+        },
+        "Basque Country": {
+            "avg_gols_marcados_5j": 3.0,
+            "avg_gols_sofridos_5j": 0.0,
+            "form_score": 3.0,
+            "win_rate_1ano": 1.0
+        },
+        "Belarus": {
+            "avg_gols_marcados_5j": 4.0,
+            "avg_gols_sofridos_5j": 1.0,
+            "form_score": 3.0,
+            "win_rate_1ano": 1.0
+        },
+        "Belgium": {
+            "avg_gols_marcados_5j": 5.0,
+            "avg_gols_sofridos_5j": 0.0,
+            "form_score": 3.0,
+            "win_rate_1ano": 1.0
+        },
+        "Belize": {
+            "avg_gols_marcados_5j": 1.0,
+            "avg_gols_sofridos_5j": 3.0,
+            "form_score": 0.0,
+            "win_rate_1ano": 0.0
+        },
+        "Benin": {
+            "avg_gols_marcados_5j": 1.0,
+            "avg_gols_sofridos_5j": 1.0,
+            "form_score": 1.0,
+            "win_rate_1ano": 0.0
+        },
+        "Bermuda": {
+            "avg_gols_marcados_5j": 3.0,
+            "avg_gols_sofridos_5j": 0.0,
+            "form_score": 3.0,
+            "win_rate_1ano": 1.0
+        },
+        "Bhutan": {
+            "avg_gols_marcados_5j": 0.0,
+            "avg_gols_sofridos_5j": 4.0,
+            "form_score": 0.0,
+            "win_rate_1ano": 0.0
+        },
+        "Biafra": {
+            "avg_gols_marcados_5j": 1.0,
+            "avg_gols_sofridos_5j": 0.0,
+            "form_score": 3.0,
+            "win_rate_1ano": 1.0
+        },
+        "Bolivia": {
+            "avg_gols_marcados_5j": 0.0,
+            "avg_gols_sofridos_5j": 4.0,
+            "form_score": 0.0,
+            "win_rate_1ano": 0.0
+        },
+        "Bonaire": {
+            "avg_gols_marcados_5j": 0.0,
+            "avg_gols_sofridos_5j": 2.0,
+            "form_score": 0.0,
+            "win_rate_1ano": 0.0
+        },
+        "Bosnia and Herzegovina": {
+            "avg_gols_marcados_5j": 1.0,
+            "avg_gols_sofridos_5j": 1.0,
+            "form_score": 1.0,
+            "win_rate_1ano": 0.0
+        },
+        "Botswana": {
+            "avg_gols_marcados_5j": 1.0,
+            "avg_gols_sofridos_5j": 0.0,
+            "form_score": 3.0,
+            "win_rate_1ano": 1.0
+        },
+        "Brazil": {
+            "avg_gols_marcados_5j": 2.0,
+            "avg_gols_sofridos_5j": 1.0,
+            "form_score": 3.0,
+            "win_rate_1ano": 1.0
+        },
+        "British Virgin Islands": {
+            "avg_gols_marcados_5j": 2.0,
+            "avg_gols_sofridos_5j": 0.0,
+            "form_score": 3.0,
+            "win_rate_1ano": 1.0
+        },
+        "Brittany": {
+            "avg_gols_marcados_5j": 1.0,
+            "avg_gols_sofridos_5j": 0.0,
+            "form_score": 3.0,
+            "win_rate_1ano": 1.0
+        },
+        "Brunei": {
+            "avg_gols_marcados_5j": 0.0,
+            "avg_gols_sofridos_5j": 3.0,
+            "form_score": 0.0,
+            "win_rate_1ano": 0.0
+        },
+        "Bulgaria": {
+            "avg_gols_marcados_5j": 2.0,
+            "avg_gols_sofridos_5j": 2.0,
+            "form_score": 1.0,
+            "win_rate_1ano": 0.0
+        },
+        "Burkina Faso": {
+            "avg_gols_marcados_5j": 0.0,
+            "avg_gols_sofridos_5j": 3.0,
+            "form_score": 0.0,
+            "win_rate_1ano": 0.0
+        },
+        "Burundi": {
+            "avg_gols_marcados_5j": 0.0,
+            "avg_gols_sofridos_5j": 5.0,
+            "form_score": 0.0,
+            "win_rate_1ano": 0.0
+        },
+        "Cambodia": {
+            "avg_gols_marcados_5j": 4.0,
+            "avg_gols_sofridos_5j": 0.0,
+            "form_score": 3.0,
+            "win_rate_1ano": 1.0
+        },
+        "Cameroon": {
+            "avg_gols_marcados_5j": 2.0,
+            "avg_gols_sofridos_5j": 0.0,
+            "form_score": 3.0,
+            "win_rate_1ano": 1.0
+        },
+        "Canada": {
+            "avg_gols_marcados_5j": 1.0,
+            "avg_gols_sofridos_5j": 1.0,
+            "form_score": 1.0,
+            "win_rate_1ano": 0.0
+        },
+        "Canary Islands": {
+            "avg_gols_marcados_5j": 2.0,
+            "avg_gols_sofridos_5j": 0.0,
+            "form_score": 3.0,
+            "win_rate_1ano": 1.0
+        },
+        "Cape Verde": {
+            "avg_gols_marcados_5j": 0.0,
+            "avg_gols_sofridos_5j": 3.0,
+            "form_score": 0.0,
+            "win_rate_1ano": 0.0
+        },
+        "Cascadia": {
+            "avg_gols_marcados_5j": 6.0,
+            "avg_gols_sofridos_5j": 3.0,
+            "form_score": 3.0,
+            "win_rate_1ano": 1.0
+        },
+        "Catalonia": {
+            "avg_gols_marcados_5j": 2.0,
+            "avg_gols_sofridos_5j": 1.0,
+            "form_score": 3.0,
+            "win_rate_1ano": 1.0
+        },
+        "Cayman Islands": {
+            "avg_gols_marcados_5j": 1.0,
+            "avg_gols_sofridos_5j": 4.0,
+            "form_score": 0.0,
+            "win_rate_1ano": 0.0
+        },
+        "Central African Republic": {
+            "avg_gols_marcados_5j": 1.0,
+            "avg_gols_sofridos_5j": 1.0,
+            "form_score": 1.0,
+            "win_rate_1ano": 0.0
+        },
+        "Central Spain": {
+            "avg_gols_marcados_5j": 1.0,
+            "avg_gols_sofridos_5j": 0.0,
+            "form_score": 3.0,
+            "win_rate_1ano": 1.0
+        },
+        "Chad": {
+            "avg_gols_marcados_5j": 2.0,
+            "avg_gols_sofridos_5j": 2.0,
+            "form_score": 1.0,
+            "win_rate_1ano": 0.0
+        },
+        "Chagos Islands": {
+            "avg_gols_marcados_5j": 0.0,
+            "avg_gols_sofridos_5j": 6.0,
+            "form_score": 0.0,
+            "win_rate_1ano": 0.0
+        },
+        "Chameria": {
+            "avg_gols_marcados_5j": 3.0,
+            "avg_gols_sofridos_5j": 1.0,
+            "form_score": 3.0,
+            "win_rate_1ano": 1.0
+        },
+        "Chechnya": {
+            "avg_gols_marcados_5j": 1.0,
+            "avg_gols_sofridos_5j": 13.0,
+            "form_score": 0.0,
+            "win_rate_1ano": 0.0
+        },
+        "Chile": {
+            "avg_gols_marcados_5j": 1.0,
+            "avg_gols_sofridos_5j": 2.0,
+            "form_score": 0.0,
+            "win_rate_1ano": 0.0
+        },
+        "China": {
+            "avg_gols_marcados_5j": 2.0,
+            "avg_gols_sofridos_5j": 1.0,
+            "form_score": 3.0,
+            "win_rate_1ano": 1.0
+        },
+        "Cilento": {
+            "avg_gols_marcados_5j": 0.0,
+            "avg_gols_sofridos_5j": 2.0,
+            "form_score": 0.0,
+            "win_rate_1ano": 0.0
+        },
+        "Colombia": {
+            "avg_gols_marcados_5j": 2.0,
+            "avg_gols_sofridos_5j": 0.0,
+            "form_score": 3.0,
+            "win_rate_1ano": 1.0
+        },
+        "Comoros": {
+            "avg_gols_marcados_5j": 0.0,
+            "avg_gols_sofridos_5j": 1.0,
+            "form_score": 0.0,
+            "win_rate_1ano": 0.0
+        },
+        "Congo": {
+            "avg_gols_marcados_5j": 0.0,
+            "avg_gols_sofridos_5j": 1.0,
+            "form_score": 0.0,
+            "win_rate_1ano": 0.0
+        },
+        "Cook Islands": {
+            "avg_gols_marcados_5j": 1.0,
+            "avg_gols_sofridos_5j": 3.0,
+            "form_score": 0.0,
+            "win_rate_1ano": 0.0
+        },
+        "Corsica": {
+            "avg_gols_marcados_5j": 1.0,
+            "avg_gols_sofridos_5j": 1.0,
+            "form_score": 1.0,
+            "win_rate_1ano": 0.0
+        },
+        "Costa Rica": {
+            "avg_gols_marcados_5j": 1.0,
+            "avg_gols_sofridos_5j": 3.0,
+            "form_score": 0.0,
+            "win_rate_1ano": 0.0
+        },
+        "County of Nice": {
+            "avg_gols_marcados_5j": 1.0,
+            "avg_gols_sofridos_5j": 4.0,
+            "form_score": 0.0,
+            "win_rate_1ano": 0.0
+        },
+        "Crimea": {
+            "avg_gols_marcados_5j": 1.0,
+            "avg_gols_sofridos_5j": 3.0,
+            "form_score": 0.0,
+            "win_rate_1ano": 0.0
+        },
+        "Croatia": {
+            "avg_gols_marcados_5j": 2.0,
+            "avg_gols_sofridos_5j": 1.0,
+            "form_score": 3.0,
+            "win_rate_1ano": 1.0
+        },
+        "Cuba": {
+            "avg_gols_marcados_5j": 1.0,
+            "avg_gols_sofridos_5j": 1.0,
+            "form_score": 1.0,
+            "win_rate_1ano": 0.0
+        },
+        "Curaçao": {
+            "avg_gols_marcados_5j": 4.0,
+            "avg_gols_sofridos_5j": 0.0,
+            "form_score": 3.0,
+            "win_rate_1ano": 1.0
+        },
+        "Cyprus": {
+            "avg_gols_marcados_5j": 2.0,
+            "avg_gols_sofridos_5j": 0.0,
+            "form_score": 3.0,
+            "win_rate_1ano": 1.0
+        },
+        "Czech Republic": {
+            "avg_gols_marcados_5j": 5.0,
+            "avg_gols_sofridos_5j": 1.0,
+            "form_score": 3.0,
+            "win_rate_1ano": 1.0
+        },
+        "Czechoslovakia": {
+            "avg_gols_marcados_5j": 0.0,
+            "avg_gols_sofridos_5j": 0.0,
+            "form_score": 1.0,
+            "win_rate_1ano": 0.0
+        },
+        "DR Congo": {
+            "avg_gols_marcados_5j": 0.0,
+            "avg_gols_sofridos_5j": 0.0,
+            "form_score": 1.0,
+            "win_rate_1ano": 0.0
+        },
+        "Darfur": {
+            "avg_gols_marcados_5j": 0.0,
+            "avg_gols_sofridos_5j": 10.0,
+            "form_score": 0.0,
+            "win_rate_1ano": 0.0
+        },
+        "Denmark": {
+            "avg_gols_marcados_5j": 2.0,
+            "avg_gols_sofridos_5j": 1.0,
+            "form_score": 3.0,
+            "win_rate_1ano": 1.0
+        },
+        "Djibouti": {
+            "avg_gols_marcados_5j": 0.0,
+            "avg_gols_sofridos_5j": 1.0,
+            "form_score": 0.0,
+            "win_rate_1ano": 0.0
+        },
+        "Dominica": {
+            "avg_gols_marcados_5j": 0.0,
+            "avg_gols_sofridos_5j": 0.0,
+            "form_score": 1.0,
+            "win_rate_1ano": 0.0
+        },
+        "Dominican Republic": {
+            "avg_gols_marcados_5j": 2.0,
+            "avg_gols_sofridos_5j": 4.0,
+            "form_score": 0.0,
+            "win_rate_1ano": 0.0
+        },
+        "Donetsk PR": {
+            "avg_gols_marcados_5j": 2.0,
+            "avg_gols_sofridos_5j": 1.0,
+            "form_score": 3.0,
+            "win_rate_1ano": 1.0
+        },
+        "Délvidék": {
+            "avg_gols_marcados_5j": 1.0,
+            "avg_gols_sofridos_5j": 2.0,
+            "form_score": 0.0,
+            "win_rate_1ano": 0.0
+        },
+        "East Turkestan": {
+            "avg_gols_marcados_5j": 0.0,
+            "avg_gols_sofridos_5j": 5.0,
+            "form_score": 0.0,
+            "win_rate_1ano": 0.0
+        },
+        "Ecuador": {
+            "avg_gols_marcados_5j": 3.0,
+            "avg_gols_sofridos_5j": 0.0,
+            "form_score": 3.0,
+            "win_rate_1ano": 1.0
+        },
+        "Egypt": {
+            "avg_gols_marcados_5j": 1.0,
+            "avg_gols_sofridos_5j": 2.0,
+            "form_score": 0.0,
+            "win_rate_1ano": 0.0
+        },
+        "El Salvador": {
+            "avg_gols_marcados_5j": 0.0,
+            "avg_gols_sofridos_5j": 0.0,
+            "form_score": 1.0,
+            "win_rate_1ano": 0.0
+        },
+        "Elba Island": {
+            "avg_gols_marcados_5j": 5.0,
+            "avg_gols_sofridos_5j": 0.0,
+            "form_score": 3.0,
+            "win_rate_1ano": 1.0
+        },
+        "Ellan Vannin": {
+            "avg_gols_marcados_5j": 0.0,
+            "avg_gols_sofridos_5j": 2.0,
+            "form_score": 0.0,
+            "win_rate_1ano": 0.0
+        },
+        "England": {
+            "avg_gols_marcados_5j": 1.0,
+            "avg_gols_sofridos_5j": 0.0,
+            "form_score": 3.0,
+            "win_rate_1ano": 1.0
+        },
+        "Equatorial Guinea": {
+            "avg_gols_marcados_5j": 1.0,
+            "avg_gols_sofridos_5j": 1.0,
+            "form_score": 1.0,
+            "win_rate_1ano": 0.0
+        },
+        "Eritrea": {
+            "avg_gols_marcados_5j": 0.0,
+            "avg_gols_sofridos_5j": 2.0,
+            "form_score": 0.0,
+            "win_rate_1ano": 0.0
+        },
+        "Estonia": {
+            "avg_gols_marcados_5j": 1.0,
+            "avg_gols_sofridos_5j": 0.0,
+            "form_score": 3.0,
+            "win_rate_1ano": 1.0
+        },
+        "Eswatini": {
+            "avg_gols_marcados_5j": 0.0,
+            "avg_gols_sofridos_5j": 3.0,
+            "form_score": 0.0,
+            "win_rate_1ano": 0.0
+        },
+        "Ethiopia": {
+            "avg_gols_marcados_5j": 1.0,
+            "avg_gols_sofridos_5j": 0.0,
+            "form_score": 3.0,
+            "win_rate_1ano": 1.0
+        },
+        "Falkland Islands": {
+            "avg_gols_marcados_5j": 1.0,
+            "avg_gols_sofridos_5j": 1.0,
+            "form_score": 1.0,
+            "win_rate_1ano": 0.0
+        },
+        "Faroe Islands": {
+            "avg_gols_marcados_5j": 0.0,
+            "avg_gols_sofridos_5j": 1.0,
+            "form_score": 0.0,
+            "win_rate_1ano": 0.0
+        },
+        "Felvidék": {
+            "avg_gols_marcados_5j": 2.0,
+            "avg_gols_sofridos_5j": 0.0,
+            "form_score": 3.0,
+            "win_rate_1ano": 1.0
+        },
+        "Fiji": {
+            "avg_gols_marcados_5j": 1.0,
+            "avg_gols_sofridos_5j": 2.0,
+            "form_score": 0.0,
+            "win_rate_1ano": 0.0
+        },
+        "Finland": {
+            "avg_gols_marcados_5j": 1.0,
+            "avg_gols_sofridos_5j": 2.0,
+            "form_score": 0.0,
+            "win_rate_1ano": 0.0
+        },
+        "France": {
+            "avg_gols_marcados_5j": 3.0,
+            "avg_gols_sofridos_5j": 1.0,
+            "form_score": 3.0,
+            "win_rate_1ano": 1.0
+        },
+        "Franconia": {
+            "avg_gols_marcados_5j": 4.0,
+            "avg_gols_sofridos_5j": 3.0,
+            "form_score": 3.0,
+            "win_rate_1ano": 1.0
+        },
+        "French Guiana": {
+            "avg_gols_marcados_5j": 2.0,
+            "avg_gols_sofridos_5j": 2.0,
+            "form_score": 1.0,
+            "win_rate_1ano": 0.0
+        },
+        "Frøya": {
+            "avg_gols_marcados_5j": 0.0,
+            "avg_gols_sofridos_5j": 3.0,
+            "form_score": 0.0,
+            "win_rate_1ano": 0.0
+        },
+        "Gabon": {
+            "avg_gols_marcados_5j": 2.0,
+            "avg_gols_sofridos_5j": 2.0,
+            "form_score": 1.0,
+            "win_rate_1ano": 0.0
+        },
+        "Galicia": {
+            "avg_gols_marcados_5j": 0.0,
+            "avg_gols_sofridos_5j": 2.0,
+            "form_score": 0.0,
+            "win_rate_1ano": 0.0
+        },
+        "Gambia": {
+            "avg_gols_marcados_5j": 1.0,
+            "avg_gols_sofridos_5j": 3.0,
+            "form_score": 0.0,
+            "win_rate_1ano": 0.0
+        },
+        "Georgia": {
+            "avg_gols_marcados_5j": 2.0,
+            "avg_gols_sofridos_5j": 0.0,
+            "form_score": 3.0,
+            "win_rate_1ano": 1.0
+        },
+        "German DR": {
+            "avg_gols_marcados_5j": 2.0,
+            "avg_gols_sofridos_5j": 0.0,
+            "form_score": 3.0,
+            "win_rate_1ano": 1.0
+        },
+        "Germany": {
+            "avg_gols_marcados_5j": 2.0,
+            "avg_gols_sofridos_5j": 1.0,
+            "form_score": 3.0,
+            "win_rate_1ano": 1.0
+        },
+        "Ghana": {
+            "avg_gols_marcados_5j": 1.0,
+            "avg_gols_sofridos_5j": 1.0,
+            "form_score": 1.0,
+            "win_rate_1ano": 0.0
+        },
+        "Gibraltar": {
+            "avg_gols_marcados_5j": 4.0,
+            "avg_gols_sofridos_5j": 1.0,
+            "form_score": 3.0,
+            "win_rate_1ano": 1.0
+        },
+        "Gotland": {
+            "avg_gols_marcados_5j": 2.0,
+            "avg_gols_sofridos_5j": 3.0,
+            "form_score": 0.0,
+            "win_rate_1ano": 0.0
+        },
+        "Gozo": {
+            "avg_gols_marcados_5j": 3.0,
+            "avg_gols_sofridos_5j": 3.0,
+            "form_score": 1.0,
+            "win_rate_1ano": 0.0
+        },
+        "Greece": {
+            "avg_gols_marcados_5j": 0.0,
+            "avg_gols_sofridos_5j": 1.0,
+            "form_score": 0.0,
+            "win_rate_1ano": 0.0
+        },
+        "Greenland": {
+            "avg_gols_marcados_5j": 0.0,
+            "avg_gols_sofridos_5j": 5.0,
+            "form_score": 0.0,
+            "win_rate_1ano": 0.0
+        },
+        "Grenada": {
+            "avg_gols_marcados_5j": 0.0,
+            "avg_gols_sofridos_5j": 5.0,
+            "form_score": 0.0,
+            "win_rate_1ano": 0.0
+        },
+        "Guadeloupe": {
+            "avg_gols_marcados_5j": 2.0,
+            "avg_gols_sofridos_5j": 3.0,
+            "form_score": 0.0,
+            "win_rate_1ano": 0.0
+        },
+        "Guam": {
+            "avg_gols_marcados_5j": 1.0,
+            "avg_gols_sofridos_5j": 6.0,
+            "form_score": 0.0,
+            "win_rate_1ano": 0.0
+        },
+        "Guatemala": {
+            "avg_gols_marcados_5j": 0.0,
+            "avg_gols_sofridos_5j": 3.0,
+            "form_score": 0.0,
+            "win_rate_1ano": 0.0
+        },
+        "Guernsey": {
+            "avg_gols_marcados_5j": 1.0,
+            "avg_gols_sofridos_5j": 0.0,
+            "form_score": 3.0,
+            "win_rate_1ano": 1.0
+        },
+        "Guinea": {
+            "avg_gols_marcados_5j": 0.0,
+            "avg_gols_sofridos_5j": 1.0,
+            "form_score": 0.0,
+            "win_rate_1ano": 0.0
+        },
+        "Guinea-Bissau": {
+            "avg_gols_marcados_5j": 1.0,
+            "avg_gols_sofridos_5j": 1.0,
+            "form_score": 1.0,
+            "win_rate_1ano": 0.0
+        },
+        "Guyana": {
+            "avg_gols_marcados_5j": 3.0,
+            "avg_gols_sofridos_5j": 1.0,
+            "form_score": 3.0,
+            "win_rate_1ano": 1.0
+        },
+        "Găgăuzia": {
+            "avg_gols_marcados_5j": 1.0,
+            "avg_gols_sofridos_5j": 1.0,
+            "form_score": 1.0,
+            "win_rate_1ano": 0.0
+        },
+        "Haiti": {
+            "avg_gols_marcados_5j": 1.0,
+            "avg_gols_sofridos_5j": 2.0,
+            "form_score": 0.0,
+            "win_rate_1ano": 0.0
+        },
+        "Hitra": {
+            "avg_gols_marcados_5j": 3.0,
+            "avg_gols_sofridos_5j": 0.0,
+            "form_score": 3.0,
+            "win_rate_1ano": 1.0
+        },
+        "Hmong": {
+            "avg_gols_marcados_5j": 1.0,
+            "avg_gols_sofridos_5j": 3.0,
+            "form_score": 0.0,
+            "win_rate_1ano": 0.0
+        },
+        "Honduras": {
+            "avg_gols_marcados_5j": 0.0,
+            "avg_gols_sofridos_5j": 2.0,
+            "form_score": 0.0,
+            "win_rate_1ano": 0.0
+        },
+        "Hong Kong": {
+            "avg_gols_marcados_5j": 2.0,
+            "avg_gols_sofridos_5j": 0.0,
+            "form_score": 3.0,
+            "win_rate_1ano": 1.0
+        },
+        "Hungary": {
+            "avg_gols_marcados_5j": 2.0,
+            "avg_gols_sofridos_5j": 1.0,
+            "form_score": 3.0,
+            "win_rate_1ano": 1.0
+        },
+        "Iceland": {
+            "avg_gols_marcados_5j": 0.0,
+            "avg_gols_sofridos_5j": 1.0,
+            "form_score": 0.0,
+            "win_rate_1ano": 0.0
+        },
+        "India": {
+            "avg_gols_marcados_5j": 1.0,
+            "avg_gols_sofridos_5j": 3.0,
+            "form_score": 0.0,
+            "win_rate_1ano": 0.0
+        },
+        "Indonesia": {
+            "avg_gols_marcados_5j": 3.0,
+            "avg_gols_sofridos_5j": 0.0,
+            "form_score": 3.0,
+            "win_rate_1ano": 1.0
+        },
+        "Iran": {
+            "avg_gols_marcados_5j": 2.0,
+            "avg_gols_sofridos_5j": 0.0,
+            "form_score": 3.0,
+            "win_rate_1ano": 1.0
+        },
+        "Iraq": {
+            "avg_gols_marcados_5j": 1.0,
+            "avg_gols_sofridos_5j": 1.0,
+            "form_score": 1.0,
+            "win_rate_1ano": 0.0
+        },
+        "Iraqi Kurdistan": {
+            "avg_gols_marcados_5j": 1.0,
+            "avg_gols_sofridos_5j": 1.0,
+            "form_score": 1.0,
+            "win_rate_1ano": 0.0
+        },
+        "Ireland": {
+            "avg_gols_marcados_5j": 1.0,
+            "avg_gols_sofridos_5j": 1.0,
+            "form_score": 1.0,
+            "win_rate_1ano": 0.0
+        },
+        "Isle of Man": {
+            "avg_gols_marcados_5j": 3.0,
+            "avg_gols_sofridos_5j": 2.0,
+            "form_score": 3.0,
+            "win_rate_1ano": 1.0
+        },
+        "Isle of Wight": {
+            "avg_gols_marcados_5j": 2.0,
+            "avg_gols_sofridos_5j": 3.0,
+            "form_score": 0.0,
+            "win_rate_1ano": 0.0
+        },
+        "Israel": {
+            "avg_gols_marcados_5j": 1.0,
+            "avg_gols_sofridos_5j": 0.0,
+            "form_score": 3.0,
+            "win_rate_1ano": 1.0
+        },
+        "Italy": {
+            "avg_gols_marcados_5j": 1.0,
+            "avg_gols_sofridos_5j": 0.0,
+            "form_score": 3.0,
+            "win_rate_1ano": 1.0
+        },
+        "Ivory Coast": {
+            "avg_gols_marcados_5j": 2.0,
+            "avg_gols_sofridos_5j": 1.0,
+            "form_score": 3.0,
+            "win_rate_1ano": 1.0
+        },
+        "Jamaica": {
+            "avg_gols_marcados_5j": 0.0,
+            "avg_gols_sofridos_5j": 1.0,
+            "form_score": 0.0,
+            "win_rate_1ano": 0.0
+        },
+        "Japan": {
+            "avg_gols_marcados_5j": 1.0,
+            "avg_gols_sofridos_5j": 0.0,
+            "form_score": 3.0,
+            "win_rate_1ano": 1.0
+        },
+        "Jersey": {
+            "avg_gols_marcados_5j": 2.0,
+            "avg_gols_sofridos_5j": 3.0,
+            "form_score": 0.0,
+            "win_rate_1ano": 0.0
+        },
+        "Jordan": {
+            "avg_gols_marcados_5j": 0.0,
+            "avg_gols_sofridos_5j": 2.0,
+            "form_score": 0.0,
+            "win_rate_1ano": 0.0
+        },
+        "Kabylia": {
+            "avg_gols_marcados_5j": 0.0,
+            "avg_gols_sofridos_5j": 2.0,
+            "form_score": 0.0,
+            "win_rate_1ano": 0.0
+        },
+        "Kazakhstan": {
+            "avg_gols_marcados_5j": 1.0,
+            "avg_gols_sofridos_5j": 1.0,
+            "form_score": 1.0,
+            "win_rate_1ano": 0.0
+        },
+        "Kenya": {
+            "avg_gols_marcados_5j": 1.0,
+            "avg_gols_sofridos_5j": 1.0,
+            "form_score": 1.0,
+            "win_rate_1ano": 0.0
+        },
+        "Kernow": {
+            "avg_gols_marcados_5j": 2.0,
+            "avg_gols_sofridos_5j": 1.0,
+            "form_score": 3.0,
+            "win_rate_1ano": 1.0
+        },
+        "Kiribati": {
+            "avg_gols_marcados_5j": 1.0,
+            "avg_gols_sofridos_5j": 17.0,
+            "form_score": 0.0,
+            "win_rate_1ano": 0.0
+        },
+        "Kosovo": {
+            "avg_gols_marcados_5j": 3.0,
+            "avg_gols_sofridos_5j": 0.0,
+            "form_score": 3.0,
+            "win_rate_1ano": 1.0
+        },
+        "Kurdistan": {
+            "avg_gols_marcados_5j": 1.0,
+            "avg_gols_sofridos_5j": 0.0,
+            "form_score": 3.0,
+            "win_rate_1ano": 1.0
+        },
+        "Kuwait": {
+            "avg_gols_marcados_5j": 2.0,
+            "avg_gols_sofridos_5j": 2.0,
+            "form_score": 1.0,
+            "win_rate_1ano": 0.0
+        },
+        "Kyrgyzstan": {
+            "avg_gols_marcados_5j": 0.0,
+            "avg_gols_sofridos_5j": 0.0,
+            "form_score": 1.0,
+            "win_rate_1ano": 0.0
+        },
+        "Kárpátalja": {
+            "avg_gols_marcados_5j": 0.0,
+            "avg_gols_sofridos_5j": 0.0,
+            "form_score": 1.0,
+            "win_rate_1ano": 0.0
+        },
+        "Laos": {
+            "avg_gols_marcados_5j": 0.0,
+            "avg_gols_sofridos_5j": 2.0,
+            "form_score": 0.0,
+            "win_rate_1ano": 0.0
+        },
+        "Latvia": {
+            "avg_gols_marcados_5j": 1.0,
+            "avg_gols_sofridos_5j": 1.0,
+            "form_score": 1.0,
+            "win_rate_1ano": 0.0
+        },
+        "Lebanon": {
+            "avg_gols_marcados_5j": 1.0,
+            "avg_gols_sofridos_5j": 2.0,
+            "form_score": 0.0,
+            "win_rate_1ano": 0.0
+        },
+        "Lesotho": {
+            "avg_gols_marcados_5j": 1.0,
+            "avg_gols_sofridos_5j": 1.0,
+            "form_score": 1.0,
+            "win_rate_1ano": 0.0
+        },
+        "Liberia": {
+            "avg_gols_marcados_5j": 0.0,
+            "avg_gols_sofridos_5j": 1.0,
+            "form_score": 0.0,
+            "win_rate_1ano": 0.0
+        },
+        "Libya": {
+            "avg_gols_marcados_5j": 2.0,
+            "avg_gols_sofridos_5j": 2.0,
+            "form_score": 1.0,
+            "win_rate_1ano": 0.0
+        },
+        "Liechtenstein": {
+            "avg_gols_marcados_5j": 0.0,
+            "avg_gols_sofridos_5j": 2.0,
+            "form_score": 0.0,
+            "win_rate_1ano": 0.0
+        },
+        "Lithuania": {
+            "avg_gols_marcados_5j": 1.0,
+            "avg_gols_sofridos_5j": 1.0,
+            "form_score": 1.0,
+            "win_rate_1ano": 0.0
+        },
+        "Luhansk PR": {
+            "avg_gols_marcados_5j": 4.0,
+            "avg_gols_sofridos_5j": 3.0,
+            "form_score": 3.0,
+            "win_rate_1ano": 1.0
+        },
+        "Luxembourg": {
+            "avg_gols_marcados_5j": 1.0,
+            "avg_gols_sofridos_5j": 0.0,
+            "form_score": 3.0,
+            "win_rate_1ano": 1.0
+        },
+        "Macau": {
+            "avg_gols_marcados_5j": 0.0,
+            "avg_gols_sofridos_5j": 6.0,
+            "form_score": 0.0,
+            "win_rate_1ano": 0.0
+        },
+        "Madagascar": {
+            "avg_gols_marcados_5j": 0.0,
+            "avg_gols_sofridos_5j": 4.0,
+            "form_score": 0.0,
+            "win_rate_1ano": 0.0
+        },
+        "Madrid": {
+            "avg_gols_marcados_5j": 1.0,
+            "avg_gols_sofridos_5j": 2.0,
+            "form_score": 0.0,
+            "win_rate_1ano": 0.0
+        },
+        "Malawi": {
+            "avg_gols_marcados_5j": 0.0,
+            "avg_gols_sofridos_5j": 1.0,
+            "form_score": 0.0,
+            "win_rate_1ano": 0.0
+        },
+        "Malaysia": {
+            "avg_gols_marcados_5j": 1.0,
+            "avg_gols_sofridos_5j": 0.0,
+            "form_score": 3.0,
+            "win_rate_1ano": 1.0
+        },
+        "Maldives": {
+            "avg_gols_marcados_5j": 0.0,
+            "avg_gols_sofridos_5j": 3.0,
+            "form_score": 0.0,
+            "win_rate_1ano": 0.0
+        },
+        "Mali": {
+            "avg_gols_marcados_5j": 0.0,
+            "avg_gols_sofridos_5j": 2.0,
+            "form_score": 0.0,
+            "win_rate_1ano": 0.0
+        },
+        "Malta": {
+            "avg_gols_marcados_5j": 2.0,
+            "avg_gols_sofridos_5j": 0.0,
+            "form_score": 3.0,
+            "win_rate_1ano": 1.0
+        },
+        "Manchukuo": {
+            "avg_gols_marcados_5j": 0.0,
+            "avg_gols_sofridos_5j": 3.0,
+            "form_score": 0.0,
+            "win_rate_1ano": 0.0
+        },
+        "Mapuche": {
+            "avg_gols_marcados_5j": 3.0,
+            "avg_gols_sofridos_5j": 1.0,
+            "form_score": 3.0,
+            "win_rate_1ano": 1.0
+        },
+        "Marshall Islands": {
+            "avg_gols_marcados_5j": 2.0,
+            "avg_gols_sofridos_5j": 3.0,
+            "form_score": 0.0,
+            "win_rate_1ano": 0.0
+        },
+        "Martinique": {
+            "avg_gols_marcados_5j": 0.0,
+            "avg_gols_sofridos_5j": 1.0,
+            "form_score": 0.0,
+            "win_rate_1ano": 0.0
+        },
+        "Matabeleland": {
+            "avg_gols_marcados_5j": 0.0,
+            "avg_gols_sofridos_5j": 1.0,
+            "form_score": 0.0,
+            "win_rate_1ano": 0.0
+        },
+        "Maule Sur": {
+            "avg_gols_marcados_5j": 1.0,
+            "avg_gols_sofridos_5j": 0.0,
+            "form_score": 3.0,
+            "win_rate_1ano": 1.0
+        },
+        "Mauritania": {
+            "avg_gols_marcados_5j": 1.0,
+            "avg_gols_sofridos_5j": 0.0,
+            "form_score": 3.0,
+            "win_rate_1ano": 1.0
+        },
+        "Mauritius": {
+            "avg_gols_marcados_5j": 0.0,
+            "avg_gols_sofridos_5j": 0.0,
+            "form_score": 1.0,
+            "win_rate_1ano": 0.0
+        },
+        "Mayotte": {
+            "avg_gols_marcados_5j": 0.0,
+            "avg_gols_sofridos_5j": 0.0,
+            "form_score": 1.0,
+            "win_rate_1ano": 0.0
+        },
+        "Menorca": {
+            "avg_gols_marcados_5j": 1.0,
+            "avg_gols_sofridos_5j": 2.0,
+            "form_score": 0.0,
+            "win_rate_1ano": 0.0
+        },
+        "Mexico": {
+            "avg_gols_marcados_5j": 5.0,
+            "avg_gols_sofridos_5j": 1.0,
+            "form_score": 3.0,
+            "win_rate_1ano": 1.0
+        },
+        "Micronesia": {
+            "avg_gols_marcados_5j": 0.0,
+            "avg_gols_sofridos_5j": 10.0,
+            "form_score": 0.0,
+            "win_rate_1ano": 0.0
+        },
+        "Moldova": {
+            "avg_gols_marcados_5j": 2.0,
+            "avg_gols_sofridos_5j": 2.0,
+            "form_score": 1.0,
+            "win_rate_1ano": 0.0
+        },
+        "Monaco": {
+            "avg_gols_marcados_5j": 0.0,
+            "avg_gols_sofridos_5j": 0.0,
+            "form_score": 1.0,
+            "win_rate_1ano": 0.0
+        },
+        "Mongolia": {
+            "avg_gols_marcados_5j": 0.0,
+            "avg_gols_sofridos_5j": 2.0,
+            "form_score": 0.0,
+            "win_rate_1ano": 0.0
+        },
+        "Montenegro": {
+            "avg_gols_marcados_5j": 2.0,
+            "avg_gols_sofridos_5j": 2.0,
+            "form_score": 1.0,
+            "win_rate_1ano": 0.0
+        },
+        "Montserrat": {
+            "avg_gols_marcados_5j": 0.0,
+            "avg_gols_sofridos_5j": 3.0,
+            "form_score": 0.0,
+            "win_rate_1ano": 0.0
+        },
+        "Morocco": {
+            "avg_gols_marcados_5j": 1.0,
+            "avg_gols_sofridos_5j": 1.0,
+            "form_score": 1.0,
+            "win_rate_1ano": 0.0
+        },
+        "Mozambique": {
+            "avg_gols_marcados_5j": 0.0,
+            "avg_gols_sofridos_5j": 4.0,
+            "form_score": 0.0,
+            "win_rate_1ano": 0.0
+        },
+        "Myanmar": {
+            "avg_gols_marcados_5j": 6.0,
+            "avg_gols_sofridos_5j": 1.0,
+            "form_score": 3.0,
+            "win_rate_1ano": 1.0
+        },
+        "Namibia": {
+            "avg_gols_marcados_5j": 0.0,
+            "avg_gols_sofridos_5j": 0.0,
+            "form_score": 1.0,
+            "win_rate_1ano": 0.0
+        },
+        "Nepal": {
+            "avg_gols_marcados_5j": 0.0,
+            "avg_gols_sofridos_5j": 1.0,
+            "form_score": 0.0,
+            "win_rate_1ano": 0.0
+        },
+        "Netherlands": {
+            "avg_gols_marcados_5j": 2.0,
+            "avg_gols_sofridos_5j": 1.0,
+            "form_score": 3.0,
+            "win_rate_1ano": 1.0
+        },
+        "New Caledonia": {
+            "avg_gols_marcados_5j": 0.0,
+            "avg_gols_sofridos_5j": 1.0,
+            "form_score": 0.0,
+            "win_rate_1ano": 0.0
+        },
+        "New Zealand": {
+            "avg_gols_marcados_5j": 0.0,
+            "avg_gols_sofridos_5j": 1.0,
+            "form_score": 0.0,
+            "win_rate_1ano": 0.0
+        },
+        "Nicaragua": {
+            "avg_gols_marcados_5j": 0.0,
+            "avg_gols_sofridos_5j": 4.0,
+            "form_score": 0.0,
+            "win_rate_1ano": 0.0
+        },
+        "Niger": {
+            "avg_gols_marcados_5j": 0.0,
+            "avg_gols_sofridos_5j": 1.0,
+            "form_score": 0.0,
+            "win_rate_1ano": 0.0
+        },
+        "Nigeria": {
+            "avg_gols_marcados_5j": 2.0,
+            "avg_gols_sofridos_5j": 2.0,
+            "form_score": 1.0,
+            "win_rate_1ano": 0.0
+        },
+        "Niue": {
+            "avg_gols_marcados_5j": 0.0,
+            "avg_gols_sofridos_5j": 19.0,
+            "form_score": 0.0,
+            "win_rate_1ano": 0.0
+        },
+        "North Korea": {
+            "avg_gols_marcados_5j": 0.0,
+            "avg_gols_sofridos_5j": 3.0,
+            "form_score": 0.0,
+            "win_rate_1ano": 0.0
+        },
+        "North Macedonia": {
+            "avg_gols_marcados_5j": 0.0,
+            "avg_gols_sofridos_5j": 4.0,
+            "form_score": 0.0,
+            "win_rate_1ano": 0.0
+        },
+        "North Vietnam": {
+            "avg_gols_marcados_5j": 2.0,
+            "avg_gols_sofridos_5j": 1.0,
+            "form_score": 3.0,
+            "win_rate_1ano": 1.0
+        },
+        "Northern Cyprus": {
+            "avg_gols_marcados_5j": 0.0,
+            "avg_gols_sofridos_5j": 0.0,
+            "form_score": 1.0,
+            "win_rate_1ano": 0.0
+        },
+        "Northern Ireland": {
+            "avg_gols_marcados_5j": 1.0,
+            "avg_gols_sofridos_5j": 3.0,
+            "form_score": 0.0,
+            "win_rate_1ano": 0.0
+        },
+        "Northern Mariana Islands": {
+            "avg_gols_marcados_5j": 2.0,
+            "avg_gols_sofridos_5j": 1.0,
+            "form_score": 3.0,
+            "win_rate_1ano": 1.0
+        },
+        "Norway": {
+            "avg_gols_marcados_5j": 1.0,
+            "avg_gols_sofridos_5j": 1.0,
+            "form_score": 1.0,
+            "win_rate_1ano": 0.0
+        },
+        "Occitania": {
+            "avg_gols_marcados_5j": 5.0,
+            "avg_gols_sofridos_5j": 1.0,
+            "form_score": 3.0,
+            "win_rate_1ano": 1.0
+        },
+        "Oman": {
+            "avg_gols_marcados_5j": 0.0,
+            "avg_gols_sofridos_5j": 3.0,
+            "form_score": 0.0,
+            "win_rate_1ano": 0.0
+        },
+        "Orkney": {
+            "avg_gols_marcados_5j": 3.0,
+            "avg_gols_sofridos_5j": 2.0,
+            "form_score": 3.0,
+            "win_rate_1ano": 1.0
+        },
+        "Padania": {
+            "avg_gols_marcados_5j": 0.0,
+            "avg_gols_sofridos_5j": 2.0,
+            "form_score": 0.0,
+            "win_rate_1ano": 0.0
+        },
+        "Pakistan": {
+            "avg_gols_marcados_5j": 2.0,
+            "avg_gols_sofridos_5j": 0.0,
+            "form_score": 3.0,
+            "win_rate_1ano": 1.0
+        },
+        "Palau": {
+            "avg_gols_marcados_5j": 2.0,
+            "avg_gols_sofridos_5j": 15.0,
+            "form_score": 0.0,
+            "win_rate_1ano": 0.0
+        },
+        "Palestine": {
+            "avg_gols_marcados_5j": 0.0,
+            "avg_gols_sofridos_5j": 0.0,
+            "form_score": 1.0,
+            "win_rate_1ano": 0.0
+        },
+        "Panama": {
+            "avg_gols_marcados_5j": 1.0,
+            "avg_gols_sofridos_5j": 1.0,
+            "form_score": 1.0,
+            "win_rate_1ano": 0.0
+        },
+        "Panjab": {
+            "avg_gols_marcados_5j": 6.0,
+            "avg_gols_sofridos_5j": 0.0,
+            "form_score": 3.0,
+            "win_rate_1ano": 1.0
+        },
+        "Papua New Guinea": {
+            "avg_gols_marcados_5j": 2.0,
+            "avg_gols_sofridos_5j": 2.0,
+            "form_score": 1.0,
+            "win_rate_1ano": 0.0
+        },
+        "Paraguay": {
+            "avg_gols_marcados_5j": 4.0,
+            "avg_gols_sofridos_5j": 0.0,
+            "form_score": 3.0,
+            "win_rate_1ano": 1.0
+        },
+        "Parishes of Jersey": {
+            "avg_gols_marcados_5j": 9.0,
+            "avg_gols_sofridos_5j": 2.0,
+            "form_score": 3.0,
+            "win_rate_1ano": 1.0
+        },
+        "Peru": {
+            "avg_gols_marcados_5j": 1.0,
+            "avg_gols_sofridos_5j": 3.0,
+            "form_score": 0.0,
+            "win_rate_1ano": 0.0
+        },
+        "Philippines": {
+            "avg_gols_marcados_5j": 5.0,
+            "avg_gols_sofridos_5j": 1.0,
+            "form_score": 3.0,
+            "win_rate_1ano": 1.0
+        },
+        "Poland": {
+            "avg_gols_marcados_5j": 2.0,
+            "avg_gols_sofridos_5j": 2.0,
+            "form_score": 1.0,
+            "win_rate_1ano": 0.0
+        },
+        "Portugal": {
+            "avg_gols_marcados_5j": 2.0,
+            "avg_gols_sofridos_5j": 1.0,
+            "form_score": 3.0,
+            "win_rate_1ano": 1.0
+        },
+        "Provence": {
+            "avg_gols_marcados_5j": 0.0,
+            "avg_gols_sofridos_5j": 1.0,
+            "form_score": 0.0,
+            "win_rate_1ano": 0.0
+        },
+        "Puerto Rico": {
+            "avg_gols_marcados_5j": 0.0,
+            "avg_gols_sofridos_5j": 3.0,
+            "form_score": 0.0,
+            "win_rate_1ano": 0.0
+        },
+        "Qatar": {
+            "avg_gols_marcados_5j": 0.0,
+            "avg_gols_sofridos_5j": 0.0,
+            "form_score": 1.0,
+            "win_rate_1ano": 0.0
+        },
+        "Quebec": {
+            "avg_gols_marcados_5j": 0.0,
+            "avg_gols_sofridos_5j": 1.0,
+            "form_score": 0.0,
+            "win_rate_1ano": 0.0
+        },
+        "Raetia": {
+            "avg_gols_marcados_5j": 5.0,
+            "avg_gols_sofridos_5j": 1.0,
+            "form_score": 3.0,
+            "win_rate_1ano": 1.0
+        },
+        "Republic of St. Pauli": {
+            "avg_gols_marcados_5j": 1.0,
+            "avg_gols_sofridos_5j": 2.0,
+            "form_score": 0.0,
+            "win_rate_1ano": 0.0
+        },
+        "Rhodes": {
+            "avg_gols_marcados_5j": 0.0,
+            "avg_gols_sofridos_5j": 2.0,
+            "form_score": 0.0,
+            "win_rate_1ano": 0.0
+        },
+        "Romani people": {
+            "avg_gols_marcados_5j": 0.0,
+            "avg_gols_sofridos_5j": 2.0,
+            "form_score": 0.0,
+            "win_rate_1ano": 0.0
+        },
+        "Romania": {
+            "avg_gols_marcados_5j": 2.0,
+            "avg_gols_sofridos_5j": 1.0,
+            "form_score": 3.0,
+            "win_rate_1ano": 1.0
+        },
+        "Russia": {
+            "avg_gols_marcados_5j": 3.0,
+            "avg_gols_sofridos_5j": 0.0,
+            "form_score": 3.0,
+            "win_rate_1ano": 1.0
+        },
+        "Rwanda": {
+            "avg_gols_marcados_5j": 2.0,
+            "avg_gols_sofridos_5j": 0.0,
+            "form_score": 3.0,
+            "win_rate_1ano": 1.0
+        },
+        "Ryūkyū": {
+            "avg_gols_marcados_5j": 0.0,
+            "avg_gols_sofridos_5j": 9.0,
+            "form_score": 0.0,
+            "win_rate_1ano": 0.0
+        },
+        "Réunion": {
+            "avg_gols_marcados_5j": 0.0,
+            "avg_gols_sofridos_5j": 1.0,
+            "form_score": 0.0,
+            "win_rate_1ano": 0.0
+        },
+        "Saare County": {
+            "avg_gols_marcados_5j": 4.0,
+            "avg_gols_sofridos_5j": 2.0,
+            "form_score": 3.0,
+            "win_rate_1ano": 1.0
+        },
+        "Saarland": {
+            "avg_gols_marcados_5j": 2.0,
+            "avg_gols_sofridos_5j": 3.0,
+            "form_score": 0.0,
+            "win_rate_1ano": 0.0
+        },
+        "Saint Barthélemy": {
+            "avg_gols_marcados_5j": 2.0,
+            "avg_gols_sofridos_5j": 3.0,
+            "form_score": 0.0,
+            "win_rate_1ano": 0.0
+        },
+        "Saint Helena": {
+            "avg_gols_marcados_5j": 2.0,
+            "avg_gols_sofridos_5j": 4.0,
+            "form_score": 0.0,
+            "win_rate_1ano": 0.0
+        },
+        "Saint Kitts and Nevis": {
+            "avg_gols_marcados_5j": 4.0,
+            "avg_gols_sofridos_5j": 2.0,
+            "form_score": 3.0,
+            "win_rate_1ano": 1.0
+        },
+        "Saint Lucia": {
+            "avg_gols_marcados_5j": 1.0,
+            "avg_gols_sofridos_5j": 6.0,
+            "form_score": 0.0,
+            "win_rate_1ano": 0.0
+        },
+        "Saint Martin": {
+            "avg_gols_marcados_5j": 3.0,
+            "avg_gols_sofridos_5j": 0.0,
+            "form_score": 3.0,
+            "win_rate_1ano": 1.0
+        },
+        "Saint Pierre and Miquelon": {
+            "avg_gols_marcados_5j": 1.0,
+            "avg_gols_sofridos_5j": 16.0,
+            "form_score": 0.0,
+            "win_rate_1ano": 0.0
+        },
+        "Saint Vincent and the Grenadines": {
+            "avg_gols_marcados_5j": 3.0,
+            "avg_gols_sofridos_5j": 2.0,
+            "form_score": 3.0,
+            "win_rate_1ano": 1.0
+        },
+        "Samoa": {
+            "avg_gols_marcados_5j": 0.0,
+            "avg_gols_sofridos_5j": 8.0,
+            "form_score": 0.0,
+            "win_rate_1ano": 0.0
+        },
+        "San Marino": {
+            "avg_gols_marcados_5j": 1.0,
+            "avg_gols_sofridos_5j": 2.0,
+            "form_score": 0.0,
+            "win_rate_1ano": 0.0
+        },
+        "Sark": {
+            "avg_gols_marcados_5j": 0.0,
+            "avg_gols_sofridos_5j": 15.0,
+            "form_score": 0.0,
+            "win_rate_1ano": 0.0
+        },
+        "Saudi Arabia": {
+            "avg_gols_marcados_5j": 3.0,
+            "avg_gols_sofridos_5j": 0.0,
+            "form_score": 3.0,
+            "win_rate_1ano": 1.0
+        },
+        "Saugeais": {
+            "avg_gols_marcados_5j": 1.0,
+            "avg_gols_sofridos_5j": 1.0,
+            "form_score": 1.0,
+            "win_rate_1ano": 0.0
+        },
+        "Scotland": {
+            "avg_gols_marcados_5j": 4.0,
+            "avg_gols_sofridos_5j": 0.0,
+            "form_score": 3.0,
+            "win_rate_1ano": 1.0
+        },
+        "Sealand": {
+            "avg_gols_marcados_5j": 3.0,
+            "avg_gols_sofridos_5j": 2.0,
+            "form_score": 3.0,
+            "win_rate_1ano": 1.0
+        },
+        "Seborga": {
+            "avg_gols_marcados_5j": 2.0,
+            "avg_gols_sofridos_5j": 3.0,
+            "form_score": 0.0,
+            "win_rate_1ano": 0.0
+        },
+        "Senegal": {
+            "avg_gols_marcados_5j": 2.0,
+            "avg_gols_sofridos_5j": 3.0,
+            "form_score": 0.0,
+            "win_rate_1ano": 0.0
+        },
+        "Serbia": {
+            "avg_gols_marcados_5j": 1.0,
+            "avg_gols_sofridos_5j": 5.0,
+            "form_score": 0.0,
+            "win_rate_1ano": 0.0
+        },
+        "Seychelles": {
+            "avg_gols_marcados_5j": 0.0,
+            "avg_gols_sofridos_5j": 7.0,
+            "form_score": 0.0,
+            "win_rate_1ano": 0.0
+        },
+        "Shetland": {
+            "avg_gols_marcados_5j": 2.0,
+            "avg_gols_sofridos_5j": 3.0,
+            "form_score": 0.0,
+            "win_rate_1ano": 0.0
+        },
+        "Sierra Leone": {
+            "avg_gols_marcados_5j": 1.0,
+            "avg_gols_sofridos_5j": 0.0,
+            "form_score": 3.0,
+            "win_rate_1ano": 1.0
+        },
+        "Silesia": {
+            "avg_gols_marcados_5j": 1.0,
+            "avg_gols_sofridos_5j": 1.0,
+            "form_score": 1.0,
+            "win_rate_1ano": 0.0
+        },
+        "Singapore": {
+            "avg_gols_marcados_5j": 1.0,
+            "avg_gols_sofridos_5j": 2.0,
+            "form_score": 0.0,
+            "win_rate_1ano": 0.0
+        },
+        "Sint Maarten": {
+            "avg_gols_marcados_5j": 0.0,
+            "avg_gols_sofridos_5j": 0.0,
+            "form_score": 1.0,
+            "win_rate_1ano": 0.0
+        },
+        "Slovakia": {
+            "avg_gols_marcados_5j": 2.0,
+            "avg_gols_sofridos_5j": 2.0,
+            "form_score": 1.0,
+            "win_rate_1ano": 0.0
+        },
+        "Slovenia": {
+            "avg_gols_marcados_5j": 1.0,
+            "avg_gols_sofridos_5j": 2.0,
+            "form_score": 0.0,
+            "win_rate_1ano": 0.0
+        },
+        "Solomon Islands": {
+            "avg_gols_marcados_5j": 2.0,
+            "avg_gols_sofridos_5j": 4.0,
+            "form_score": 0.0,
+            "win_rate_1ano": 0.0
+        },
+        "Somalia": {
+            "avg_gols_marcados_5j": 0.0,
+            "avg_gols_sofridos_5j": 0.0,
+            "form_score": 1.0,
+            "win_rate_1ano": 0.0
+        },
+        "Somaliland": {
+            "avg_gols_marcados_5j": 2.0,
+            "avg_gols_sofridos_5j": 6.0,
+            "form_score": 0.0,
+            "win_rate_1ano": 0.0
+        },
+        "South Africa": {
+            "avg_gols_marcados_5j": 1.0,
+            "avg_gols_sofridos_5j": 0.0,
+            "form_score": 3.0,
+            "win_rate_1ano": 1.0
+        },
+        "South Korea": {
+            "avg_gols_marcados_5j": 1.0,
+            "avg_gols_sofridos_5j": 0.0,
+            "form_score": 3.0,
+            "win_rate_1ano": 1.0
+        },
+        "South Ossetia": {
+            "avg_gols_marcados_5j": 3.0,
+            "avg_gols_sofridos_5j": 4.0,
+            "form_score": 0.0,
+            "win_rate_1ano": 0.0
+        },
+        "South Sudan": {
+            "avg_gols_marcados_5j": 0.0,
+            "avg_gols_sofridos_5j": 2.0,
+            "form_score": 0.0,
+            "win_rate_1ano": 0.0
+        },
+        "South Yemen": {
+            "avg_gols_marcados_5j": 0.0,
+            "avg_gols_sofridos_5j": 2.0,
+            "form_score": 0.0,
+            "win_rate_1ano": 0.0
+        },
+        "Spain": {
+            "avg_gols_marcados_5j": 3.0,
+            "avg_gols_sofridos_5j": 1.0,
+            "form_score": 3.0,
+            "win_rate_1ano": 1.0
+        },
+        "Sri Lanka": {
+            "avg_gols_marcados_5j": 0.0,
+            "avg_gols_sofridos_5j": 4.0,
+            "form_score": 0.0,
+            "win_rate_1ano": 0.0
+        },
+        "Sudan": {
+            "avg_gols_marcados_5j": 1.0,
+            "avg_gols_sofridos_5j": 3.0,
+            "form_score": 0.0,
+            "win_rate_1ano": 0.0
+        },
+        "Suriname": {
+            "avg_gols_marcados_5j": 1.0,
+            "avg_gols_sofridos_5j": 2.0,
+            "form_score": 0.0,
+            "win_rate_1ano": 0.0
+        },
+        "Surrey": {
+            "avg_gols_marcados_5j": 3.0,
+            "avg_gols_sofridos_5j": 1.0,
+            "form_score": 3.0,
+            "win_rate_1ano": 1.0
+        },
+        "Sweden": {
+            "avg_gols_marcados_5j": 2.0,
+            "avg_gols_sofridos_5j": 2.0,
+            "form_score": 1.0,
+            "win_rate_1ano": 0.0
+        },
+        "Switzerland": {
+            "avg_gols_marcados_5j": 1.0,
+            "avg_gols_sofridos_5j": 1.0,
+            "form_score": 1.0,
+            "win_rate_1ano": 0.0
+        },
+        "Syria": {
+            "avg_gols_marcados_5j": 1.0,
+            "avg_gols_sofridos_5j": 4.0,
+            "form_score": 0.0,
+            "win_rate_1ano": 0.0
+        },
+        "Székely Land": {
+            "avg_gols_marcados_5j": 7.0,
+            "avg_gols_sofridos_5j": 0.0,
+            "form_score": 3.0,
+            "win_rate_1ano": 1.0
+        },
+        "Sápmi": {
+            "avg_gols_marcados_5j": 1.0,
+            "avg_gols_sofridos_5j": 2.0,
+            "form_score": 0.0,
+            "win_rate_1ano": 0.0
+        },
+        "São Tomé and Príncipe": {
+            "avg_gols_marcados_5j": 1.0,
+            "avg_gols_sofridos_5j": 0.0,
+            "form_score": 3.0,
+            "win_rate_1ano": 1.0
+        },
+        "Tahiti": {
+            "avg_gols_marcados_5j": 0.0,
+            "avg_gols_sofridos_5j": 3.0,
+            "form_score": 0.0,
+            "win_rate_1ano": 0.0
+        },
+        "Taiwan": {
+            "avg_gols_marcados_5j": 1.0,
+            "avg_gols_sofridos_5j": 3.0,
+            "form_score": 0.0,
+            "win_rate_1ano": 0.0
+        },
+        "Tajikistan": {
+            "avg_gols_marcados_5j": 3.0,
+            "avg_gols_sofridos_5j": 1.0,
+            "form_score": 3.0,
+            "win_rate_1ano": 1.0
+        },
+        "Tamil Eelam": {
+            "avg_gols_marcados_5j": 5.0,
+            "avg_gols_sofridos_5j": 0.0,
+            "form_score": 3.0,
+            "win_rate_1ano": 1.0
+        },
+        "Tanzania": {
+            "avg_gols_marcados_5j": 6.0,
+            "avg_gols_sofridos_5j": 0.0,
+            "form_score": 3.0,
+            "win_rate_1ano": 1.0
+        },
+        "Thailand": {
+            "avg_gols_marcados_5j": 2.0,
+            "avg_gols_sofridos_5j": 2.0,
+            "form_score": 1.0,
+            "win_rate_1ano": 0.0
+        },
+        "Tibet": {
+            "avg_gols_marcados_5j": 4.0,
+            "avg_gols_sofridos_5j": 6.0,
+            "form_score": 0.0,
+            "win_rate_1ano": 0.0
+        },
+        "Ticino": {
+            "avg_gols_marcados_5j": 1.0,
+            "avg_gols_sofridos_5j": 5.0,
+            "form_score": 0.0,
+            "win_rate_1ano": 0.0
+        },
+        "Timor-Leste": {
+            "avg_gols_marcados_5j": 0.0,
+            "avg_gols_sofridos_5j": 5.0,
+            "form_score": 0.0,
+            "win_rate_1ano": 0.0
+        },
+        "Togo": {
+            "avg_gols_marcados_5j": 1.0,
+            "avg_gols_sofridos_5j": 1.0,
+            "form_score": 1.0,
+            "win_rate_1ano": 0.0
+        },
+        "Tonga": {
+            "avg_gols_marcados_5j": 1.0,
+            "avg_gols_sofridos_5j": 2.0,
+            "form_score": 0.0,
+            "win_rate_1ano": 0.0
+        },
+        "Trinidad and Tobago": {
+            "avg_gols_marcados_5j": 0.0,
+            "avg_gols_sofridos_5j": 5.0,
+            "form_score": 0.0,
+            "win_rate_1ano": 0.0
+        },
+        "Tunisia": {
+            "avg_gols_marcados_5j": 0.0,
+            "avg_gols_sofridos_5j": 5.0,
+            "form_score": 0.0,
+            "win_rate_1ano": 0.0
+        },
+        "Turkey": {
+            "avg_gols_marcados_5j": 2.0,
+            "avg_gols_sofridos_5j": 1.0,
+            "form_score": 3.0,
+            "win_rate_1ano": 1.0
+        },
+        "Turkmenistan": {
+            "avg_gols_marcados_5j": 3.0,
+            "avg_gols_sofridos_5j": 1.0,
+            "form_score": 3.0,
+            "win_rate_1ano": 1.0
+        },
+        "Turks and Caicos Islands": {
+            "avg_gols_marcados_5j": 3.0,
+            "avg_gols_sofridos_5j": 2.0,
+            "form_score": 3.0,
+            "win_rate_1ano": 1.0
+        },
+        "Tuvalu": {
+            "avg_gols_marcados_5j": 4.0,
+            "avg_gols_sofridos_5j": 1.0,
+            "form_score": 3.0,
+            "win_rate_1ano": 1.0
+        },
+        "Two Sicilies": {
+            "avg_gols_marcados_5j": 0.0,
+            "avg_gols_sofridos_5j": 7.0,
+            "form_score": 0.0,
+            "win_rate_1ano": 0.0
+        },
+        "USA": {
+            "avg_gols_marcados_5j": 1.0,
+            "avg_gols_sofridos_5j": 2.0,
+            "form_score": 0.0,
+            "win_rate_1ano": 0.0
+        },
+        "Uganda": {
+            "avg_gols_marcados_5j": 1.0,
+            "avg_gols_sofridos_5j": 3.0,
+            "form_score": 0.0,
+            "win_rate_1ano": 0.0
+        },
+        "Ukraine": {
+            "avg_gols_marcados_5j": 1.0,
+            "avg_gols_sofridos_5j": 2.0,
+            "form_score": 0.0,
+            "win_rate_1ano": 0.0
+        },
+        "United Arab Emirates": {
+            "avg_gols_marcados_5j": 0.0,
+            "avg_gols_sofridos_5j": 3.0,
+            "form_score": 0.0,
+            "win_rate_1ano": 0.0
+        },
+        "United Koreans in Japan": {
+            "avg_gols_marcados_5j": 1.0,
+            "avg_gols_sofridos_5j": 1.0,
+            "form_score": 1.0,
+            "win_rate_1ano": 0.0
+        },
+        "United States Virgin Islands": {
+            "avg_gols_marcados_5j": 0.0,
+            "avg_gols_sofridos_5j": 2.0,
+            "form_score": 0.0,
+            "win_rate_1ano": 0.0
+        },
+        "Uruguay": {
+            "avg_gols_marcados_5j": 0.0,
+            "avg_gols_sofridos_5j": 0.0,
+            "form_score": 1.0,
+            "win_rate_1ano": 0.0
+        },
+        "Uzbekistan": {
+            "avg_gols_marcados_5j": 1.0,
+            "avg_gols_sofridos_5j": 2.0,
+            "form_score": 0.0,
+            "win_rate_1ano": 0.0
+        },
+        "Vanuatu": {
+            "avg_gols_marcados_5j": 2.0,
+            "avg_gols_sofridos_5j": 1.0,
+            "form_score": 3.0,
+            "win_rate_1ano": 1.0
+        },
+        "Vatican City": {
+            "avg_gols_marcados_5j": 2.0,
+            "avg_gols_sofridos_5j": 2.0,
+            "form_score": 1.0,
+            "win_rate_1ano": 0.0
+        },
+        "Venezuela": {
+            "avg_gols_marcados_5j": 1.0,
+            "avg_gols_sofridos_5j": 2.0,
+            "form_score": 0.0,
+            "win_rate_1ano": 0.0
+        },
+        "Vietnam": {
+            "avg_gols_marcados_5j": 3.0,
+            "avg_gols_sofridos_5j": 0.0,
+            "form_score": 3.0,
+            "win_rate_1ano": 1.0
+        },
+        "Vietnam Republic": {
+            "avg_gols_marcados_5j": 0.0,
+            "avg_gols_sofridos_5j": 3.0,
+            "form_score": 0.0,
+            "win_rate_1ano": 0.0
+        },
+        "Wales": {
+            "avg_gols_marcados_5j": 1.0,
+            "avg_gols_sofridos_5j": 2.0,
+            "form_score": 0.0,
+            "win_rate_1ano": 0.0
+        },
+        "Wallis Islands and Futuna": {
+            "avg_gols_marcados_5j": 0.0,
+            "avg_gols_sofridos_5j": 10.0,
+            "form_score": 0.0,
+            "win_rate_1ano": 0.0
+        },
+        "West Papua": {
+            "avg_gols_marcados_5j": 1.0,
+            "avg_gols_sofridos_5j": 1.0,
+            "form_score": 1.0,
+            "win_rate_1ano": 0.0
+        },
+        "Western Armenia": {
+            "avg_gols_marcados_5j": 0.0,
+            "avg_gols_sofridos_5j": 1.0,
+            "form_score": 0.0,
+            "win_rate_1ano": 0.0
+        },
+        "Western Australia": {
+            "avg_gols_marcados_5j": 1.0,
+            "avg_gols_sofridos_5j": 1.0,
+            "form_score": 1.0,
+            "win_rate_1ano": 0.0
+        },
+        "Western Isles": {
+            "avg_gols_marcados_5j": 3.0,
+            "avg_gols_sofridos_5j": 3.0,
+            "form_score": 1.0,
+            "win_rate_1ano": 0.0
+        },
+        "Western Sahara": {
+            "avg_gols_marcados_5j": 2.0,
+            "avg_gols_sofridos_5j": 12.0,
+            "form_score": 0.0,
+            "win_rate_1ano": 0.0
+        },
+        "Yemen": {
+            "avg_gols_marcados_5j": 4.0,
+            "avg_gols_sofridos_5j": 4.0,
+            "form_score": 1.0,
+            "win_rate_1ano": 0.0
+        },
+        "Yemen DPR": {
+            "avg_gols_marcados_5j": 1.0,
+            "avg_gols_sofridos_5j": 0.0,
+            "form_score": 3.0,
+            "win_rate_1ano": 1.0
+        },
+        "Ynys Môn": {
+            "avg_gols_marcados_5j": 1.0,
+            "avg_gols_sofridos_5j": 0.0,
+            "form_score": 3.0,
+            "win_rate_1ano": 1.0
+        },
+        "Yorkshire": {
+            "avg_gols_marcados_5j": 1.0,
+            "avg_gols_sofridos_5j": 0.0,
+            "form_score": 3.0,
+            "win_rate_1ano": 1.0
+        },
+        "Yoruba Nation": {
+            "avg_gols_marcados_5j": 0.0,
+            "avg_gols_sofridos_5j": 1.0,
+            "form_score": 0.0,
+            "win_rate_1ano": 0.0
+        },
+        "Yugoslavia": {
+            "avg_gols_marcados_5j": 0.0,
+            "avg_gols_sofridos_5j": 2.0,
+            "form_score": 0.0,
+            "win_rate_1ano": 0.0
+        },
+        "Zambia": {
+            "avg_gols_marcados_5j": 0.0,
+            "avg_gols_sofridos_5j": 5.0,
+            "form_score": 0.0,
+            "win_rate_1ano": 0.0
+        },
+        "Zanzibar": {
+            "avg_gols_marcados_5j": 2.0,
+            "avg_gols_sofridos_5j": 1.0,
+            "form_score": 3.0,
+            "win_rate_1ano": 1.0
+        },
+        "Zimbabwe": {
+            "avg_gols_marcados_5j": 1.0,
+            "avg_gols_sofridos_5j": 0.0,
+            "form_score": 3.0,
+            "win_rate_1ano": 1.0
+        },
+        "Åland Islands": {
+            "avg_gols_marcados_5j": 1.0,
+            "avg_gols_sofridos_5j": 1.0,
+            "form_score": 1.0,
+            "win_rate_1ano": 0.0
+        }
+    }
+}

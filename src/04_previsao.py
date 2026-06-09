@@ -242,30 +242,5 @@ def main():
         json.dump(model_export, f, indent=4, ensure_ascii=False)
     print(f"Export do modelo salvo com sucesso em {export_path}!")
 
-    # 6. Generate the interactive dashboard.html in root directory
-    print("Gerando painel interativo (dashboard.html)...")
-    template_path = "src/dashboard_template.html"
-    if not os.path.exists(template_path):
-        print(f"Erro: template de dashboard não encontrado em {template_path}!")
-        return
-        
-    with open(template_path, "r", encoding="utf-8") as f:
-        html_content = f.read()
-        
-    # Replace placeholders with inlined JSON data
-    html_content = html_content.replace(
-        "const PREDICTIONS = // PREDICTIONS_JSON_PLACEHOLDER //;",
-        f"const PREDICTIONS = {json.dumps(serialized_predictions, ensure_ascii=False)};"
-    )
-    html_content = html_content.replace(
-        "const MODEL_DATA = // MODEL_EXPORT_JSON_PLACEHOLDER //;",
-        f"const MODEL_DATA = {json.dumps(model_export, ensure_ascii=False)};"
-    )
-    
-    output_html_path = "dashboard.html"
-    with open(output_html_path, "w", encoding="utf-8") as f:
-        f.write(html_content)
-    print(f"Painel interativo gerado com sucesso em {output_html_path}!")
-
 if __name__ == "__main__":
     main()

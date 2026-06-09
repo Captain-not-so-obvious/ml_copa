@@ -1,0 +1,2234 @@
+[
+    {
+        "round": "Matchday 1",
+        "group": "Group A",
+        "date": "2026-06-11",
+        "time": "13:00 UTC-6",
+        "ground": "Mexico City",
+        "team1": "Mexico",
+        "team2": "South Africa",
+        "prob_team1": 0.7518868087896893,
+        "prob_draw": 0.1556578472825193,
+        "prob_team2": 0.09245534392779135,
+        "expected_goals_team1": 1.8840992498056153,
+        "expected_goals_team2": 0.6988731799766635,
+        "top_scores": [
+            [
+                1,
+                0,
+                0.14419095827381226
+            ],
+            [
+                2,
+                0,
+                0.13583503815622125
+            ],
+            [
+                1,
+                1,
+                0.10077119353270161
+            ]
+        ]
+    },
+    {
+        "round": "Matchday 1",
+        "group": "Group A",
+        "date": "2026-06-11",
+        "time": "20:00 UTC-6",
+        "ground": "Guadalajara (Zapopan)",
+        "team1": "South Korea",
+        "team2": "Czech Republic",
+        "prob_team1": 0.2508684556355742,
+        "prob_draw": 0.5025888099839101,
+        "prob_team2": 0.24654273438051574,
+        "expected_goals_team1": 1.2693171782581851,
+        "expected_goals_team2": 1.0373659607366188,
+        "top_scores": [
+            [
+                1,
+                1,
+                0.13149105078493228
+            ],
+            [
+                1,
+                0,
+                0.12675473821366026
+            ],
+            [
+                0,
+                1,
+                0.10359195718549266
+            ]
+        ]
+    },
+    {
+        "round": "Matchday 8",
+        "group": "Group A",
+        "date": "2026-06-18",
+        "time": "12:00 UTC-4",
+        "ground": "Atlanta",
+        "team1": "Czech Republic",
+        "team2": "South Africa",
+        "prob_team1": 0.6982707102850463,
+        "prob_draw": 0.1725368240273839,
+        "prob_team2": 0.12919246568756948,
+        "expected_goals_team1": 1.4375062969220118,
+        "expected_goals_team2": 0.9159935068964317,
+        "top_scores": [
+            [
+                1,
+                0,
+                0.13716502783862608
+            ],
+            [
+                1,
+                1,
+                0.1256422748734498
+            ],
+            [
+                2,
+                0,
+                0.09858779561775402
+            ]
+        ]
+    },
+    {
+        "round": "Matchday 8",
+        "group": "Group A",
+        "date": "2026-06-18",
+        "time": "19:00 UTC-6",
+        "ground": "Guadalajara (Zapopan)",
+        "team1": "Mexico",
+        "team2": "South Korea",
+        "prob_team1": 0.47633137996566227,
+        "prob_draw": 0.3400323099530098,
+        "prob_team2": 0.18363631008132764,
+        "expected_goals_team1": 1.3596465160415094,
+        "expected_goals_team2": 0.9684476211779566,
+        "top_scores": [
+            [
+                1,
+                0,
+                0.1329763211558598
+            ],
+            [
+                1,
+                1,
+                0.1287806018963884
+            ],
+            [
+                0,
+                0,
+                0.09780212694032317
+            ]
+        ]
+    },
+    {
+        "round": "Matchday 14",
+        "group": "Group A",
+        "date": "2026-06-24",
+        "time": "19:00 UTC-6",
+        "ground": "Mexico City",
+        "team1": "Czech Republic",
+        "team2": "Mexico",
+        "prob_team1": 0.3268874699600141,
+        "prob_draw": 0.22852770660983698,
+        "prob_team2": 0.44458482343014877,
+        "expected_goals_team1": 1.0917679406010874,
+        "expected_goals_team2": 1.8755056594408557,
+        "top_scores": [
+            [
+                1,
+                1,
+                0.10676681165976958
+            ],
+            [
+                1,
+                2,
+                0.1001208797541769
+            ],
+            [
+                0,
+                1,
+                0.09779258731575109
+            ]
+        ]
+    },
+    {
+        "round": "Matchday 14",
+        "group": "Group A",
+        "date": "2026-06-24",
+        "time": "19:00 UTC-6",
+        "ground": "Monterrey (Guadalupe)",
+        "team1": "South Africa",
+        "team2": "South Korea",
+        "prob_team1": 0.3355499598716406,
+        "prob_draw": 0.3432860395623778,
+        "prob_team2": 0.32116400056598154,
+        "expected_goals_team1": 0.6640488521584506,
+        "expected_goals_team2": 1.2751332054282423,
+        "top_scores": [
+            [
+                0,
+                1,
+                0.18377676666892342
+            ],
+            [
+                0,
+                0,
+                0.14412358323552843
+            ],
+            [
+                1,
+                1,
+                0.12203675095989003
+            ]
+        ]
+    },
+    {
+        "round": "Matchday 2",
+        "group": "Group B",
+        "date": "2026-06-12",
+        "time": "15:00 UTC-4",
+        "ground": "Toronto",
+        "team1": "Canada",
+        "team2": "Bosnia & Herzegovina",
+        "prob_team1": 0.7772290179088134,
+        "prob_draw": 0.16396499733769396,
+        "prob_team2": 0.05880598475349249,
+        "expected_goals_team1": 1.9151833660238629,
+        "expected_goals_team2": 0.48148959465348107,
+        "top_scores": [
+            [
+                1,
+                0,
+                0.1767427672062006
+            ],
+            [
+                2,
+                0,
+                0.16924740390917165
+            ],
+            [
+                3,
+                0,
+                0.10804660423652253
+            ]
+        ]
+    },
+    {
+        "round": "Matchday 3",
+        "group": "Group B",
+        "date": "2026-06-13",
+        "time": "12:00 UTC-7",
+        "ground": "San Francisco Bay Area (Santa Clara)",
+        "team1": "Qatar",
+        "team2": "Switzerland",
+        "prob_team1": 0.08971200544942792,
+        "prob_draw": 0.2601133623192743,
+        "prob_team2": 0.6501746322312978,
+        "expected_goals_team1": 0.6246685259537436,
+        "expected_goals_team2": 1.1906465847061583,
+        "top_scores": [
+            [
+                0,
+                1,
+                0.1941107447095831
+            ],
+            [
+                0,
+                0,
+                0.1630296909283858
+            ],
+            [
+                1,
+                1,
+                0.1212548727695187
+            ]
+        ]
+    },
+    {
+        "round": "Matchday 8",
+        "group": "Group B",
+        "date": "2026-06-18",
+        "time": "12:00 UTC-7",
+        "ground": "Los Angeles (Inglewood)",
+        "team1": "Switzerland",
+        "team2": "Bosnia & Herzegovina",
+        "prob_team1": 0.7750765489799634,
+        "prob_draw": 0.12363659036113188,
+        "prob_team2": 0.10128686065890488,
+        "expected_goals_team1": 1.9441057208563468,
+        "expected_goals_team2": 0.4743265002006842,
+        "top_scores": [
+            [
+                1,
+                0,
+                0.17571681340515233
+            ],
+            [
+                2,
+                0,
+                0.17080603109580195
+            ],
+            [
+                3,
+                0,
+                0.11068832740337187
+            ]
+        ]
+    },
+    {
+        "round": "Matchday 8",
+        "group": "Group B",
+        "date": "2026-06-18",
+        "time": "15:00 UTC-7",
+        "ground": "Vancouver",
+        "team1": "Canada",
+        "team2": "Qatar",
+        "prob_team1": 0.5991738565689749,
+        "prob_draw": 0.2169956156878131,
+        "prob_team2": 0.18383052774321204,
+        "expected_goals_team1": 1.1729334003697693,
+        "expected_goals_team2": 0.6341020272470572,
+        "top_scores": [
+            [
+                1,
+                0,
+                0.1927934532616243
+            ],
+            [
+                0,
+                0,
+                0.16436862758008752
+            ],
+            [
+                1,
+                1,
+                0.12225071955315675
+            ]
+        ]
+    },
+    {
+        "round": "Matchday 14",
+        "group": "Group B",
+        "date": "2026-06-24",
+        "time": "12:00 UTC-7",
+        "ground": "Vancouver",
+        "team1": "Switzerland",
+        "team2": "Canada",
+        "prob_team1": 0.5114492942173067,
+        "prob_draw": 0.2621306895642705,
+        "prob_team2": 0.22642001621842303,
+        "expected_goals_team1": 0.9838559775721998,
+        "expected_goals_team2": 0.9548001845344279,
+        "top_scores": [
+            [
+                0,
+                0,
+                0.14404320295919731
+            ],
+            [
+                1,
+                0,
+                0.14171776626005184
+            ],
+            [
+                0,
+                1,
+                0.13753247676637165
+            ]
+        ]
+    },
+    {
+        "round": "Matchday 14",
+        "group": "Group B",
+        "date": "2026-06-24",
+        "time": "12:00 UTC-7",
+        "ground": "Seattle",
+        "team1": "Bosnia & Herzegovina",
+        "team2": "Qatar",
+        "prob_team1": 0.21680903454882736,
+        "prob_draw": 0.29625403226898483,
+        "prob_team2": 0.4869369331821877,
+        "expected_goals_team1": 0.5826909166729636,
+        "expected_goals_team2": 1.2529896721465468,
+        "top_scores": [
+            [
+                0,
+                1,
+                0.20023704739354853
+            ],
+            [
+                0,
+                0,
+                0.1598074204797829
+            ],
+            [
+                0,
+                2,
+                0.12544747618261748
+            ]
+        ]
+    },
+    {
+        "round": "Matchday 3",
+        "group": "Group C",
+        "date": "2026-06-13",
+        "time": "18:00 UTC-4",
+        "ground": "New York/New Jersey (East Rutherford)",
+        "team1": "Brazil",
+        "team2": "Morocco",
+        "prob_team1": 0.3695138030824298,
+        "prob_draw": 0.33348196188107443,
+        "prob_team2": 0.2970042350364957,
+        "expected_goals_team1": 1.0315872324794788,
+        "expected_goals_team2": 1.0919565899836077,
+        "top_scores": [
+            [
+                1,
+                1,
+                0.13495098361288113
+            ],
+            [
+                0,
+                1,
+                0.13081878038420341
+            ],
+            [
+                1,
+                0,
+                0.1235863997257501
+            ]
+        ]
+    },
+    {
+        "round": "Matchday 3",
+        "group": "Group C",
+        "date": "2026-06-13",
+        "time": "21:00 UTC-4",
+        "ground": "Boston (Foxborough)",
+        "team1": "Haiti",
+        "team2": "Scotland",
+        "prob_team1": 0.26208122715085663,
+        "prob_draw": 0.22967566352226737,
+        "prob_team2": 0.5082431093268759,
+        "expected_goals_team1": 0.6662203610125427,
+        "expected_goals_team2": 1.7942399791886339,
+        "top_scores": [
+            [
+                0,
+                1,
+                0.15481438222980778
+            ],
+            [
+                0,
+                2,
+                0.13888707697505573
+            ],
+            [
+                1,
+                1,
+                0.1031404936190763
+            ]
+        ]
+    },
+    {
+        "round": "Matchday 9",
+        "group": "Group C",
+        "date": "2026-06-19",
+        "time": "18:00 UTC-4",
+        "ground": "Boston (Foxborough)",
+        "team1": "Scotland",
+        "team2": "Morocco",
+        "prob_team1": 0.2829182218447721,
+        "prob_draw": 0.32684028893245737,
+        "prob_team2": 0.3902414892227705,
+        "expected_goals_team1": 0.9320263703828758,
+        "expected_goals_team2": 1.1781664229845574,
+        "top_scores": [
+            [
+                0,
+                1,
+                0.1430656717801794
+            ],
+            [
+                1,
+                1,
+                0.13334097879566842
+            ],
+            [
+                0,
+                0,
+                0.12143078345227513
+            ]
+        ]
+    },
+    {
+        "round": "Matchday 9",
+        "group": "Group C",
+        "date": "2026-06-19",
+        "time": "20:30 UTC-4",
+        "ground": "Philadelphia",
+        "team1": "Brazil",
+        "team2": "Haiti",
+        "prob_team1": 0.8468010901062577,
+        "prob_draw": 0.1274478542183946,
+        "prob_team2": 0.025751055675347613,
+        "expected_goals_team1": 1.985904168972049,
+        "expected_goals_team2": 0.6174710969491273,
+        "top_scores": [
+            [
+                1,
+                0,
+                0.14940943576406415
+            ],
+            [
+                2,
+                0,
+                0.14835641068380825
+            ],
+            [
+                3,
+                0,
+                0.0982072048235681
+            ]
+        ]
+    },
+    {
+        "round": "Matchday 14",
+        "group": "Group C",
+        "date": "2026-06-24",
+        "time": "18:00 UTC-4",
+        "ground": "Miami (Miami Gardens)",
+        "team1": "Scotland",
+        "team2": "Brazil",
+        "prob_team1": 0.31527138699104656,
+        "prob_draw": 0.17524625328174157,
+        "prob_team2": 0.5094823597272117,
+        "expected_goals_team1": 1.0500538279275466,
+        "expected_goals_team2": 1.2539799380590912,
+        "top_scores": [
+            [
+                1,
+                1,
+                0.131830682293463
+            ],
+            [
+                0,
+                1,
+                0.1255465946480596
+            ],
+            [
+                1,
+                0,
+                0.10512981770466792
+            ]
+        ]
+    },
+    {
+        "round": "Matchday 14",
+        "group": "Group C",
+        "date": "2026-06-24",
+        "time": "18:00 UTC-4",
+        "ground": "Atlanta",
+        "team1": "Morocco",
+        "team2": "Haiti",
+        "prob_team1": 0.4381164094503427,
+        "prob_draw": 0.48433397957433927,
+        "prob_team2": 0.07754961097531776,
+        "expected_goals_team1": 1.865839747619363,
+        "expected_goals_team2": 0.5480665181152381,
+        "top_scores": [
+            [
+                1,
+                0,
+                0.16899224203761384
+            ],
+            [
+                2,
+                0,
+                0.1576562211165459
+            ],
+            [
+                3,
+                0,
+                0.09805374793957285
+            ]
+        ]
+    },
+    {
+        "round": "Matchday 2",
+        "group": "Group D",
+        "date": "2026-06-12",
+        "time": "18:00 UTC-7",
+        "ground": "Los Angeles (Inglewood)",
+        "team1": "USA",
+        "team2": "Paraguay",
+        "prob_team1": 0.3406276069462869,
+        "prob_draw": 0.39771184066549836,
+        "prob_team2": 0.26166055238821473,
+        "expected_goals_team1": 0.9467941612839259,
+        "expected_goals_team2": 1.2625333526108666,
+        "top_scores": [
+            [
+                0,
+                1,
+                0.13892424260123512
+            ],
+            [
+                1,
+                1,
+                0.13153266175564104
+            ],
+            [
+                0,
+                0,
+                0.11003609711691618
+            ]
+        ]
+    },
+    {
+        "round": "Matchday 3",
+        "group": "Group D",
+        "date": "2026-06-13",
+        "time": "21:00 UTC-7",
+        "ground": "Vancouver",
+        "team1": "Australia",
+        "team2": "Turkey",
+        "prob_team1": 0.33293461705780864,
+        "prob_draw": 0.37176012447147344,
+        "prob_team2": 0.295305258470718,
+        "expected_goals_team1": 0.99329484825201,
+        "expected_goals_team2": 1.1340524705541675,
+        "top_scores": [
+            [
+                0,
+                1,
+                0.13535616448058738
+            ],
+            [
+                1,
+                1,
+                0.13444858085771916
+            ],
+            [
+                0,
+                0,
+                0.1193561744232558
+            ]
+        ]
+    },
+    {
+        "round": "Matchday 9",
+        "group": "Group D",
+        "date": "2026-06-19",
+        "time": "12:00 UTC-7",
+        "ground": "Seattle",
+        "team1": "USA",
+        "team2": "Australia",
+        "prob_team1": 0.40650287791835743,
+        "prob_draw": 0.3790223237437506,
+        "prob_team2": 0.21447479833789235,
+        "expected_goals_team1": 0.9549300498147473,
+        "expected_goals_team2": 1.0708682735841648,
+        "top_scores": [
+            [
+                0,
+                1,
+                0.14142074524280993
+            ],
+            [
+                1,
+                1,
+                0.13504691929955517
+            ],
+            [
+                0,
+                0,
+                0.13206175654964433
+            ]
+        ]
+    },
+    {
+        "round": "Matchday 9",
+        "group": "Group D",
+        "date": "2026-06-19",
+        "time": "20:00 UTC-7",
+        "ground": "San Francisco Bay Area (Santa Clara)",
+        "team1": "Turkey",
+        "team2": "Paraguay",
+        "prob_team1": 0.3838957789307317,
+        "prob_draw": 0.3422605543095419,
+        "prob_team2": 0.2738436667597265,
+        "expected_goals_team1": 1.1243904806625296,
+        "expected_goals_team2": 1.1710757577095672,
+        "top_scores": [
+            [
+                1,
+                1,
+                0.13293545230639517
+            ],
+            [
+                0,
+                1,
+                0.1182289023187612
+            ],
+            [
+                1,
+                0,
+                0.11351567260379054
+            ]
+        ]
+    },
+    {
+        "round": "Matchday 15",
+        "group": "Group D",
+        "date": "2026-06-25",
+        "time": "19:00 UTC-7",
+        "ground": "Los Angeles (Inglewood)",
+        "team1": "Turkey",
+        "team2": "USA",
+        "prob_team1": 0.3684709968552112,
+        "prob_draw": 0.3880061679218837,
+        "prob_team2": 0.2435228352229051,
+        "expected_goals_team1": 1.2529888017042663,
+        "expected_goals_team2": 0.978650746106537,
+        "top_scores": [
+            [
+                1,
+                0,
+                0.13483351278938194
+            ],
+            [
+                1,
+                1,
+                0.1319549178914939
+            ],
+            [
+                0,
+                0,
+                0.10760951143855929
+            ]
+        ]
+    },
+    {
+        "round": "Matchday 15",
+        "group": "Group D",
+        "date": "2026-06-25",
+        "time": "19:00 UTC-7",
+        "ground": "San Francisco Bay Area (Santa Clara)",
+        "team1": "Paraguay",
+        "team2": "Australia",
+        "prob_team1": 0.3789569112170508,
+        "prob_draw": 0.36913428902774065,
+        "prob_team2": 0.2519087997552086,
+        "expected_goals_team1": 1.142691032623707,
+        "expected_goals_team2": 0.9609615754137771,
+        "top_scores": [
+            [
+                1,
+                0,
+                0.13965101183325443
+            ],
+            [
+                1,
+                1,
+                0.1341992563394122
+            ],
+            [
+                0,
+                0,
+                0.12221239849288475
+            ]
+        ]
+    },
+    {
+        "round": "Matchday 4",
+        "group": "Group E",
+        "date": "2026-06-14",
+        "time": "12:00 UTC-5",
+        "ground": "Houston",
+        "team1": "Germany",
+        "team2": "Curaçao",
+        "prob_team1": 0.6747087493040991,
+        "prob_draw": 0.20859442951955756,
+        "prob_team2": 0.11669682117634322,
+        "expected_goals_team1": 1.8569874723450714,
+        "expected_goals_team2": 0.7090766382179526,
+        "top_scores": [
+            [
+                1,
+                0,
+                0.14442391398351312
+            ],
+            [
+                2,
+                0,
+                0.13409669948721303
+            ],
+            [
+                1,
+                1,
+                0.10240762340570823
+            ]
+        ]
+    },
+    {
+        "round": "Matchday 4",
+        "group": "Group E",
+        "date": "2026-06-14",
+        "time": "19:00 UTC-4",
+        "ground": "Philadelphia",
+        "team1": "Ivory Coast",
+        "team2": "Ecuador",
+        "prob_team1": 0.4363813079856566,
+        "prob_draw": 0.2627063196011505,
+        "prob_team2": 0.300912372413193,
+        "expected_goals_team1": 0.7616901517825205,
+        "expected_goals_team2": 1.6129174156979,
+        "top_scores": [
+            [
+                0,
+                1,
+                0.15105216390952547
+            ],
+            [
+                0,
+                2,
+                0.12181733292426374
+            ],
+            [
+                1,
+                1,
+                0.11505494565532463
+            ]
+        ]
+    },
+    {
+        "round": "Matchday 10",
+        "group": "Group E",
+        "date": "2026-06-20",
+        "time": "16:00 UTC-4",
+        "ground": "Toronto",
+        "team1": "Germany",
+        "team2": "Ivory Coast",
+        "prob_team1": 0.5685662185474721,
+        "prob_draw": 0.2941161587956593,
+        "prob_team2": 0.13731762265686853,
+        "expected_goals_team1": 1.4914712178562384,
+        "expected_goals_team2": 0.905657033700665,
+        "top_scores": [
+            [
+                1,
+                0,
+                0.13633175036709827
+            ],
+            [
+                1,
+                1,
+                0.12346980863668576
+            ],
+            [
+                2,
+                0,
+                0.10166744087624437
+            ]
+        ]
+    },
+    {
+        "round": "Matchday 10",
+        "group": "Group E",
+        "date": "2026-06-20",
+        "time": "19:00 UTC-5",
+        "ground": "Kansas City",
+        "team1": "Ecuador",
+        "team2": "Curaçao",
+        "prob_team1": 0.6821386003271144,
+        "prob_draw": 0.16847710868165616,
+        "prob_team2": 0.14938429099122952,
+        "expected_goals_team1": 2.0081966041445196,
+        "expected_goals_team2": 0.5963589660235367,
+        "top_scores": [
+            [
+                2,
+                0,
+                0.15164910498154338
+            ],
+            [
+                1,
+                0,
+                0.1510301378546002
+            ],
+            [
+                3,
+                0,
+                0.10151373921516375
+            ]
+        ]
+    },
+    {
+        "round": "Matchday 15",
+        "group": "Group E",
+        "date": "2026-06-25",
+        "time": "16:00 UTC-4",
+        "ground": "Philadelphia",
+        "team1": "Curaçao",
+        "team2": "Ivory Coast",
+        "prob_team1": 0.23280956835258254,
+        "prob_draw": 0.2795424775124566,
+        "prob_team2": 0.48764795413496087,
+        "expected_goals_team1": 0.909952522487538,
+        "expected_goals_team2": 1.4470496004601492,
+        "top_scores": [
+            [
+                0,
+                1,
+                0.13760733859775665
+            ],
+            [
+                1,
+                1,
+                0.12521614486982538
+            ],
+            [
+                0,
+                2,
+                0.09956232216913412
+            ]
+        ]
+    },
+    {
+        "round": "Matchday 15",
+        "group": "Group E",
+        "date": "2026-06-25",
+        "time": "16:00 UTC-4",
+        "ground": "New York/New Jersey (East Rutherford)",
+        "team1": "Ecuador",
+        "team2": "Germany",
+        "prob_team1": 0.3978726171913776,
+        "prob_draw": 0.20762280531701538,
+        "prob_team2": 0.3945045774916069,
+        "expected_goals_team1": 1.2568590454804944,
+        "expected_goals_team2": 0.9774710343162902,
+        "top_scores": [
+            [
+                1,
+                0,
+                0.13489000344703087
+            ],
+            [
+                1,
+                1,
+                0.13185107118829723
+            ],
+            [
+                0,
+                0,
+                0.1073230955627667
+            ]
+        ]
+    },
+    {
+        "round": "Matchday 4",
+        "group": "Group F",
+        "date": "2026-06-14",
+        "time": "15:00 UTC-5",
+        "ground": "Dallas (Arlington)",
+        "team1": "Netherlands",
+        "team2": "Japan",
+        "prob_team1": 0.4540033992017385,
+        "prob_draw": 0.3284224786064669,
+        "prob_team2": 0.2175741221917945,
+        "expected_goals_team1": 1.002602063325851,
+        "expected_goals_team2": 1.0666907262078171,
+        "top_scores": [
+            [
+                1,
+                1,
+                0.1352402174016926
+            ],
+            [
+                0,
+                1,
+                0.13488922709082715
+            ],
+            [
+                1,
+                0,
+                0.1267848440779868
+            ]
+        ]
+    },
+    {
+        "round": "Matchday 4",
+        "group": "Group F",
+        "date": "2026-06-14",
+        "time": "20:00 UTC-6",
+        "ground": "Monterrey (Guadalupe)",
+        "team1": "Sweden",
+        "team2": "Tunisia",
+        "prob_team1": 0.4800422429371725,
+        "prob_draw": 0.26545016900611956,
+        "prob_team2": 0.2545075880567079,
+        "expected_goals_team1": 2.009866832116598,
+        "expected_goals_team2": 0.9811597485661798,
+        "top_scores": [
+            [
+                2,
+                0,
+                0.10326766631328752
+            ],
+            [
+                1,
+                0,
+                0.10276070500107308
+            ],
+            [
+                2,
+                1,
+                0.10132207751496135
+            ]
+        ]
+    },
+    {
+        "round": "Matchday 10",
+        "group": "Group F",
+        "date": "2026-06-20",
+        "time": "12:00 UTC-5",
+        "ground": "Houston",
+        "team1": "Netherlands",
+        "team2": "Sweden",
+        "prob_team1": 0.6741302287382392,
+        "prob_draw": 0.25440015420666456,
+        "prob_team2": 0.07146961705509636,
+        "expected_goals_team1": 1.806900050486021,
+        "expected_goals_team2": 0.787387887753619,
+        "top_scores": [
+            [
+                1,
+                0,
+                0.1364371819832513
+            ],
+            [
+                2,
+                0,
+                0.1232641755068536
+            ],
+            [
+                1,
+                1,
+                0.10742898453284835
+            ]
+        ]
+    },
+    {
+        "round": "Matchday 10",
+        "group": "Group F",
+        "date": "2026-06-20",
+        "time": "22:00 UTC-6",
+        "ground": "Monterrey (Guadalupe)",
+        "team1": "Tunisia",
+        "team2": "Japan",
+        "prob_team1": 0.36989973553889216,
+        "prob_draw": 0.1461006327003154,
+        "prob_team2": 0.4839996317607924,
+        "expected_goals_team1": 0.5444201454862573,
+        "expected_goals_team2": 2.7228083439890383,
+        "top_scores": [
+            [
+                0,
+                2,
+                0.15006948415102508
+            ],
+            [
+                0,
+                3,
+                0.13620348120818063
+            ],
+            [
+                0,
+                1,
+                0.11023139728679286
+            ]
+        ]
+    },
+    {
+        "round": "Matchday 15",
+        "group": "Group F",
+        "date": "2026-06-25",
+        "time": "18:00 UTC-5",
+        "ground": "Dallas (Arlington)",
+        "team1": "Japan",
+        "team2": "Sweden",
+        "prob_team1": 0.5784436730285554,
+        "prob_draw": 0.3038277819347018,
+        "prob_team2": 0.11772854503674277,
+        "expected_goals_team1": 1.6583772400656054,
+        "expected_goals_team2": 0.6792474290134111,
+        "top_scores": [
+            [
+                1,
+                0,
+                0.16129061366551672
+            ],
+            [
+                2,
+                0,
+                0.1337403413695537
+            ],
+            [
+                1,
+                1,
+                0.10955623465629757
+            ]
+        ]
+    },
+    {
+        "round": "Matchday 15",
+        "group": "Group F",
+        "date": "2026-06-25",
+        "time": "18:00 UTC-5",
+        "ground": "Kansas City",
+        "team1": "Tunisia",
+        "team2": "Netherlands",
+        "prob_team1": 0.18307599672578817,
+        "prob_draw": 0.18680540204309817,
+        "prob_team2": 0.6301186012311135,
+        "expected_goals_team1": 0.6310952535036808,
+        "expected_goals_team2": 2.9666606700553397,
+        "top_scores": [
+            [
+                0,
+                2,
+                0.13107962592091088
+            ],
+            [
+                0,
+                3,
+                0.12962292362171096
+            ],
+            [
+                0,
+                4,
+                0.09613680736152928
+            ]
+        ]
+    },
+    {
+        "round": "Matchday 5",
+        "group": "Group G",
+        "date": "2026-06-15",
+        "time": "12:00 UTC-7",
+        "ground": "Seattle",
+        "team1": "Belgium",
+        "team2": "Egypt",
+        "prob_team1": 0.42684189583899435,
+        "prob_draw": 0.3789062483478174,
+        "prob_team2": 0.19425185581318832,
+        "expected_goals_team1": 1.599758348977385,
+        "expected_goals_team2": 0.8008583806014732,
+        "top_scores": [
+            [
+                1,
+                0,
+                0.1459451505717484
+            ],
+            [
+                1,
+                1,
+                0.1168813969435286
+            ],
+            [
+                2,
+                0,
+                0.116738486559958
+            ]
+        ]
+    },
+    {
+        "round": "Matchday 5",
+        "group": "Group G",
+        "date": "2026-06-15",
+        "time": "18:00 UTC-7",
+        "ground": "Los Angeles (Inglewood)",
+        "team1": "Iran",
+        "team2": "New Zealand",
+        "prob_team1": 0.7694029644051339,
+        "prob_draw": 0.12120795916933458,
+        "prob_team2": 0.10938907642553175,
+        "expected_goals_team1": 1.212317113180963,
+        "expected_goals_team2": 0.6795905151769797,
+        "top_scores": [
+            [
+                1,
+                0,
+                0.1831009717352299
+            ],
+            [
+                0,
+                0,
+                0.15103389182950383
+            ],
+            [
+                1,
+                1,
+                0.12443368371095048
+            ]
+        ]
+    },
+    {
+        "round": "Matchday 11",
+        "group": "Group G",
+        "date": "2026-06-21",
+        "time": "12:00 UTC-7",
+        "ground": "Los Angeles (Inglewood)",
+        "team1": "Belgium",
+        "team2": "Iran",
+        "prob_team1": 0.5832678330089088,
+        "prob_draw": 0.3640111734154343,
+        "prob_team2": 0.05272099357565684,
+        "expected_goals_team1": 1.387916693072788,
+        "expected_goals_team2": 0.8628803561459834,
+        "top_scores": [
+            [
+                1,
+                0,
+                0.14665923408974377
+            ],
+            [
+                1,
+                1,
+                0.12654937214345527
+            ],
+            [
+                0,
+                0,
+                0.10566861456579685
+            ]
+        ]
+    },
+    {
+        "round": "Matchday 11",
+        "group": "Group G",
+        "date": "2026-06-21",
+        "time": "18:00 UTC-7",
+        "ground": "Vancouver",
+        "team1": "New Zealand",
+        "team2": "Egypt",
+        "prob_team1": 0.2622949434600786,
+        "prob_draw": 0.26373040874469106,
+        "prob_team2": 0.4739746477952302,
+        "expected_goals_team1": 0.7833183403344217,
+        "expected_goals_team2": 1.1251783785807976,
+        "top_scores": [
+            [
+                0,
+                1,
+                0.16707636110008423
+            ],
+            [
+                0,
+                0,
+                0.14848877678472622
+            ],
+            [
+                1,
+                1,
+                0.1308739778860325
+            ]
+        ]
+    },
+    {
+        "round": "Matchday 16",
+        "group": "Group G",
+        "date": "2026-06-26",
+        "time": "20:00 UTC-7",
+        "ground": "Seattle",
+        "team1": "Egypt",
+        "team2": "Iran",
+        "prob_team1": 0.1744113210348233,
+        "prob_draw": 0.43887910405616526,
+        "prob_team2": 0.38670957490901164,
+        "expected_goals_team1": 0.9153656570021496,
+        "expected_goals_team2": 1.1367905589227614,
+        "top_scores": [
+            [
+                0,
+                1,
+                0.14625144446479252
+            ],
+            [
+                1,
+                1,
+                0.1338735495500282
+            ],
+            [
+                0,
+                0,
+                0.1286529372687458
+            ]
+        ]
+    },
+    {
+        "round": "Matchday 16",
+        "group": "Group G",
+        "date": "2026-06-26",
+        "time": "20:00 UTC-7",
+        "ground": "Vancouver",
+        "team1": "New Zealand",
+        "team2": "Belgium",
+        "prob_team1": 0.07456456983025783,
+        "prob_draw": 0.19369619894450898,
+        "prob_team2": 0.7317392312252332,
+        "expected_goals_team1": 0.5945774295697426,
+        "expected_goals_team2": 1.7060437458745468,
+        "top_scores": [
+            [
+                0,
+                1,
+                0.17234740481257418
+            ],
+            [
+                0,
+                2,
+                0.14701610604910045
+            ],
+            [
+                1,
+                1,
+                0.10247387694647625
+            ]
+        ]
+    },
+    {
+        "round": "Matchday 5",
+        "group": "Group H",
+        "date": "2026-06-15",
+        "time": "12:00 UTC-4",
+        "ground": "Atlanta",
+        "team1": "Spain",
+        "team2": "Cape Verde",
+        "prob_team1": 0.9476990883285498,
+        "prob_draw": 0.04751381128565632,
+        "prob_team2": 0.0047871003857939635,
+        "expected_goals_team1": 3.964351058622524,
+        "expected_goals_team2": 0.36450430657015653,
+        "top_scores": [
+            [
+                3,
+                0,
+                0.17312868145880358
+            ],
+            [
+                4,
+                0,
+                0.17158571790478247
+            ],
+            [
+                5,
+                0,
+                0.13604520448406612
+            ]
+        ]
+    },
+    {
+        "round": "Matchday 5",
+        "group": "Group H",
+        "date": "2026-06-15",
+        "time": "18:00 UTC-4",
+        "ground": "Miami (Miami Gardens)",
+        "team1": "Saudi Arabia",
+        "team2": "Uruguay",
+        "prob_team1": 0.33330340983228235,
+        "prob_draw": 0.19703196528113232,
+        "prob_team2": 0.4696646248865853,
+        "expected_goals_team1": 0.687510733697318,
+        "expected_goals_team2": 1.1798645478786105,
+        "top_scores": [
+            [
+                0,
+                1,
+                0.18258953988687862
+            ],
+            [
+                0,
+                0,
+                0.15475466248661637
+            ],
+            [
+                1,
+                1,
+                0.12553226853308364
+            ]
+        ]
+    },
+    {
+        "round": "Matchday 11",
+        "group": "Group H",
+        "date": "2026-06-21",
+        "time": "12:00 UTC-4",
+        "ground": "Atlanta",
+        "team1": "Spain",
+        "team2": "Saudi Arabia",
+        "prob_team1": 0.5109935112100675,
+        "prob_draw": 0.3602358387949151,
+        "prob_team2": 0.12877064999501717,
+        "expected_goals_team1": 2.161881796101139,
+        "expected_goals_team2": 0.6090742040004186,
+        "top_scores": [
+            [
+                2,
+                0,
+                0.14976447265085374
+            ],
+            [
+                1,
+                0,
+                0.1385501028973439
+            ],
+            [
+                3,
+                0,
+                0.10792436237552254
+            ]
+        ]
+    },
+    {
+        "round": "Matchday 11",
+        "group": "Group H",
+        "date": "2026-06-21",
+        "time": "18:00 UTC-4",
+        "ground": "Miami (Miami Gardens)",
+        "team1": "Uruguay",
+        "team2": "Cape Verde",
+        "prob_team1": 0.8669726131131955,
+        "prob_draw": 0.10383460098851158,
+        "prob_team2": 0.029192785898292842,
+        "expected_goals_team1": 2.16357678659825,
+        "expected_goals_team2": 0.4114451434651601,
+        "top_scores": [
+            [
+                2,
+                0,
+                0.1824738074238144
+            ],
+            [
+                1,
+                0,
+                0.16867791201505208
+            ],
+            [
+                3,
+                0,
+                0.13159869796812138
+            ]
+        ]
+    },
+    {
+        "round": "Matchday 16",
+        "group": "Group H",
+        "date": "2026-06-26",
+        "time": "19:00 UTC-5",
+        "ground": "Houston",
+        "team1": "Cape Verde",
+        "team2": "Saudi Arabia",
+        "prob_team1": 0.18317767203836738,
+        "prob_draw": 0.19462201975071305,
+        "prob_team2": 0.6222003082109195,
+        "expected_goals_team1": 0.632606439827455,
+        "expected_goals_team2": 1.938390677757684,
+        "top_scores": [
+            [
+                0,
+                1,
+                0.15038744563204118
+            ],
+            [
+                0,
+                2,
+                0.1457548113324696
+            ],
+            [
+                1,
+                1,
+                0.09513606657603049
+            ]
+        ]
+    },
+    {
+        "round": "Matchday 16",
+        "group": "Group H",
+        "date": "2026-06-26",
+        "time": "18:00 UTC-6",
+        "ground": "Guadalajara (Zapopan)",
+        "team1": "Uruguay",
+        "team2": "Spain",
+        "prob_team1": 0.14701630621600664,
+        "prob_draw": 0.30274534620214155,
+        "prob_team2": 0.5502383475818517,
+        "expected_goals_team1": 0.6798313798204546,
+        "expected_goals_team2": 1.4060807948685494,
+        "top_scores": [
+            [
+                0,
+                1,
+                0.17521266101606664
+            ],
+            [
+                0,
+                0,
+                0.1246106636656301
+            ],
+            [
+                0,
+                2,
+                0.12318157883625235
+            ]
+        ]
+    },
+    {
+        "round": "Matchday 6",
+        "group": "Group I",
+        "date": "2026-06-16",
+        "time": "15:00 UTC-4",
+        "ground": "New York/New Jersey (East Rutherford)",
+        "team1": "France",
+        "team2": "Senegal",
+        "prob_team1": 0.5491375065452073,
+        "prob_draw": 0.3271205618662261,
+        "prob_team2": 0.12374193158856645,
+        "expected_goals_team1": 1.921856525007142,
+        "expected_goals_team2": 0.863728332037312,
+        "top_scores": [
+            [
+                1,
+                0,
+                0.12027036143678657
+            ],
+            [
+                2,
+                0,
+                0.11557118944612782
+            ],
+            [
+                1,
+                1,
+                0.10388091867732033
+            ]
+        ]
+    },
+    {
+        "round": "Matchday 6",
+        "group": "Group I",
+        "date": "2026-06-16",
+        "time": "18:00 UTC-4",
+        "ground": "Boston (Foxborough)",
+        "team1": "Iraq",
+        "team2": "Norway",
+        "prob_team1": 0.17842665484894485,
+        "prob_draw": 0.36068051509864385,
+        "prob_team2": 0.4608928300524113,
+        "expected_goals_team1": 0.7762209486492615,
+        "expected_goals_team2": 1.2102042215891053,
+        "top_scores": [
+            [
+                0,
+                1,
+                0.16630815079157363
+            ],
+            [
+                0,
+                0,
+                0.1374215589606821
+            ],
+            [
+                1,
+                1,
+                0.12909187057553975
+            ]
+        ]
+    },
+    {
+        "round": "Matchday 12",
+        "group": "Group I",
+        "date": "2026-06-22",
+        "time": "17:00 UTC-4",
+        "ground": "Philadelphia",
+        "team1": "France",
+        "team2": "Iraq",
+        "prob_team1": 0.8587958778491331,
+        "prob_draw": 0.1264231307076485,
+        "prob_team2": 0.01478099144321817,
+        "expected_goals_team1": 1.9032605459376797,
+        "expected_goals_team2": 0.6343438976253521,
+        "top_scores": [
+            [
+                1,
+                0,
+                0.1525025956341389
+            ],
+            [
+                2,
+                0,
+                0.1451260867117722
+            ],
+            [
+                1,
+                1,
+                0.0967390909125427
+            ]
+        ]
+    },
+    {
+        "round": "Matchday 12",
+        "group": "Group I",
+        "date": "2026-06-22",
+        "time": "20:00 UTC-4",
+        "ground": "New York/New Jersey (East Rutherford)",
+        "team1": "Norway",
+        "team2": "Senegal",
+        "prob_team1": 0.4692377844209767,
+        "prob_draw": 0.3030611212869038,
+        "prob_team2": 0.2277010942921196,
+        "expected_goals_team1": 1.222028631243622,
+        "expected_goals_team2": 1.0569093953280455,
+        "top_scores": [
+            [
+                1,
+                1,
+                0.1325702149842554
+            ],
+            [
+                1,
+                0,
+                0.12543195809429628
+            ],
+            [
+                0,
+                1,
+                0.10848372255349095
+            ]
+        ]
+    },
+    {
+        "round": "Matchday 16",
+        "group": "Group I",
+        "date": "2026-06-26",
+        "time": "15:00 UTC-4",
+        "ground": "Boston (Foxborough)",
+        "team1": "Norway",
+        "team2": "France",
+        "prob_team1": 0.15880191527907583,
+        "prob_draw": 0.2520868226168282,
+        "prob_team2": 0.5891112621040958,
+        "expected_goals_team1": 0.7920660860115196,
+        "expected_goals_team2": 1.5242689142091412,
+        "top_scores": [
+            [
+                0,
+                1,
+                0.15109821603786872
+            ],
+            [
+                1,
+                1,
+                0.1196797725804377
+            ],
+            [
+                0,
+                2,
+                0.11515715684949024
+            ]
+        ]
+    },
+    {
+        "round": "Matchday 16",
+        "group": "Group I",
+        "date": "2026-06-26",
+        "time": "15:00 UTC-4",
+        "ground": "Toronto",
+        "team1": "Senegal",
+        "team2": "Iraq",
+        "prob_team1": 0.5014917871554381,
+        "prob_draw": 0.2898213693004118,
+        "prob_team2": 0.2086868435441502,
+        "expected_goals_team1": 1.3196975507451143,
+        "expected_goals_team2": 0.9786890496174827,
+        "top_scores": [
+            [
+                1,
+                0,
+                0.13291466258986487
+            ],
+            [
+                1,
+                1,
+                0.13008212481030323
+            ],
+            [
+                0,
+                0,
+                0.10071600308329731
+            ]
+        ]
+    },
+    {
+        "round": "Matchday 6",
+        "group": "Group J",
+        "date": "2026-06-16",
+        "time": "20:00 UTC-5",
+        "ground": "Kansas City",
+        "team1": "Argentina",
+        "team2": "Algeria",
+        "prob_team1": 0.48028237510907573,
+        "prob_draw": 0.3633811027033621,
+        "prob_team2": 0.1563365221875621,
+        "expected_goals_team1": 1.4964784503973199,
+        "expected_goals_team2": 0.6064525094468313,
+        "top_scores": [
+            [
+                1,
+                0,
+                0.18353334572879354
+            ],
+            [
+                2,
+                0,
+                0.13732684840623027
+            ],
+            [
+                0,
+                0,
+                0.12264349391737973
+            ]
+        ]
+    },
+    {
+        "round": "Matchday 6",
+        "group": "Group J",
+        "date": "2026-06-16",
+        "time": "21:00 UTC-7",
+        "ground": "San Francisco Bay Area (Santa Clara)",
+        "team1": "Austria",
+        "team2": "Jordan",
+        "prob_team1": 0.6339196194169332,
+        "prob_draw": 0.2032035574241332,
+        "prob_team2": 0.1628768231589338,
+        "expected_goals_team1": 1.3306168855214662,
+        "expected_goals_team2": 0.6807672955390658,
+        "top_scores": [
+            [
+                1,
+                0,
+                0.17850106080925665
+            ],
+            [
+                0,
+                0,
+                0.134149102383668
+            ],
+            [
+                1,
+                1,
+                0.12151768441797198
+            ]
+        ]
+    },
+    {
+        "round": "Matchday 12",
+        "group": "Group J",
+        "date": "2026-06-22",
+        "time": "12:00 UTC-5",
+        "ground": "Dallas (Arlington)",
+        "team1": "Argentina",
+        "team2": "Austria",
+        "prob_team1": 0.5085809412498902,
+        "prob_draw": 0.32437240995866445,
+        "prob_team2": 0.16704664879144537,
+        "expected_goals_team1": 1.509199515666043,
+        "expected_goals_team2": 0.6013407121828033,
+        "top_scores": [
+            [
+                1,
+                0,
+                0.18372344428437173
+            ],
+            [
+                2,
+                0,
+                0.13863766656523552
+            ],
+            [
+                0,
+                0,
+                0.1217356899318183
+            ]
+        ]
+    },
+    {
+        "round": "Matchday 12",
+        "group": "Group J",
+        "date": "2026-06-22",
+        "time": "20:00 UTC-7",
+        "ground": "San Francisco Bay Area (Santa Clara)",
+        "team1": "Jordan",
+        "team2": "Algeria",
+        "prob_team1": 0.2731492062248568,
+        "prob_draw": 0.28324966673543395,
+        "prob_team2": 0.4436011270397092,
+        "expected_goals_team1": 0.6750290978326197,
+        "expected_goals_team2": 1.3419280168270253,
+        "top_scores": [
+            [
+                0,
+                1,
+                0.1790363215436805
+            ],
+            [
+                0,
+                0,
+                0.13341723199654928
+            ],
+            [
+                1,
+                1,
+                0.12085472661090145
+            ]
+        ]
+    },
+    {
+        "round": "Matchday 17",
+        "group": "Group J",
+        "date": "2026-06-27",
+        "time": "21:00 UTC-5",
+        "ground": "Kansas City",
+        "team1": "Algeria",
+        "team2": "Austria",
+        "prob_team1": 0.4601079371600188,
+        "prob_draw": 0.2927198356967219,
+        "prob_team2": 0.24717222714325915,
+        "expected_goals_team1": 0.9280128346397495,
+        "expected_goals_team2": 0.9124343002674687,
+        "top_scores": [
+            [
+                0,
+                0,
+                0.15886910131790893
+            ],
+            [
+                1,
+                0,
+                0.1474325650507022
+            ],
+            [
+                0,
+                1,
+                0.14495761729512782
+            ]
+        ]
+    },
+    {
+        "round": "Matchday 17",
+        "group": "Group J",
+        "date": "2026-06-27",
+        "time": "21:00 UTC-5",
+        "ground": "Dallas (Arlington)",
+        "team1": "Jordan",
+        "team2": "Argentina",
+        "prob_team1": 0.1536723264137502,
+        "prob_draw": 0.11549918710826577,
+        "prob_team2": 0.7308284864779842,
+        "expected_goals_team1": 0.44487858283691395,
+        "expected_goals_team2": 2.1823373960557646,
+        "top_scores": [
+            [
+                0,
+                2,
+                0.17636677737341952
+            ],
+            [
+                0,
+                1,
+                0.16163108206107366
+            ],
+            [
+                0,
+                3,
+                0.1282972712279517
+            ]
+        ]
+    },
+    {
+        "round": "Matchday 7",
+        "group": "Group K",
+        "date": "2026-06-17",
+        "time": "12:00 UTC-5",
+        "ground": "Houston",
+        "team1": "Portugal",
+        "team2": "DR Congo",
+        "prob_team1": 0.5396285135413343,
+        "prob_draw": 0.4072055988763747,
+        "prob_team2": 0.05316588758229075,
+        "expected_goals_team1": 1.3834960184452576,
+        "expected_goals_team2": 0.6446468881884218,
+        "top_scores": [
+            [
+                1,
+                0,
+                0.18260232974814855
+            ],
+            [
+                0,
+                0,
+                0.13198616209488845
+            ],
+            [
+                2,
+                0,
+                0.12631479808269575
+            ]
+        ]
+    },
+    {
+        "round": "Matchday 7",
+        "group": "Group K",
+        "date": "2026-06-17",
+        "time": "20:00 UTC-6",
+        "ground": "Mexico City",
+        "team1": "Uzbekistan",
+        "team2": "Colombia",
+        "prob_team1": 0.1548950162687025,
+        "prob_draw": 0.26821320518633796,
+        "prob_team2": 0.5768917785449595,
+        "expected_goals_team1": 0.6655797781478167,
+        "expected_goals_team2": 1.5634174459715557,
+        "top_scores": [
+            [
+                0,
+                1,
+                0.16920906158697546
+            ],
+            [
+                0,
+                2,
+                0.13227219945077642
+            ],
+            [
+                1,
+                1,
+                0.11262212967165937
+            ]
+        ]
+    },
+    {
+        "round": "Matchday 13",
+        "group": "Group K",
+        "date": "2026-06-23",
+        "time": "12:00 UTC-5",
+        "ground": "Houston",
+        "team1": "Portugal",
+        "team2": "Uzbekistan",
+        "prob_team1": 0.7953143682507195,
+        "prob_draw": 0.16305026201756342,
+        "prob_team2": 0.04163536973171707,
+        "expected_goals_team1": 1.5878379184885016,
+        "expected_goals_team2": 0.772269267141762,
+        "top_scores": [
+            [
+                1,
+                0,
+                0.15080983084116356
+            ],
+            [
+                2,
+                0,
+                0.11973078394521808
+            ],
+            [
+                1,
+                1,
+                0.11646579754147848
+            ]
+        ]
+    },
+    {
+        "round": "Matchday 13",
+        "group": "Group K",
+        "date": "2026-06-23",
+        "time": "20:00 UTC-6",
+        "ground": "Guadalajara (Zapopan)",
+        "team1": "Colombia",
+        "team2": "DR Congo",
+        "prob_team1": 0.568488174971299,
+        "prob_draw": 0.3537925365037956,
+        "prob_team2": 0.07771928852490538,
+        "expected_goals_team1": 1.3622182632648625,
+        "expected_goals_team2": 0.5555885117792325,
+        "top_scores": [
+            [
+                1,
+                0,
+                0.20071696558530008
+            ],
+            [
+                0,
+                0,
+                0.14734567212763447
+            ],
+            [
+                2,
+                0,
+                0.13671015813370035
+            ]
+        ]
+    },
+    {
+        "round": "Matchday 17",
+        "group": "Group K",
+        "date": "2026-06-27",
+        "time": "19:30 UTC-4",
+        "ground": "Miami (Miami Gardens)",
+        "team1": "Colombia",
+        "team2": "Portugal",
+        "prob_team1": 0.3688247639517332,
+        "prob_draw": 0.32236818727350197,
+        "prob_team2": 0.30880704877476495,
+        "expected_goals_team1": 1.1443479753113057,
+        "expected_goals_team2": 1.001660820815148,
+        "top_scores": [
+            [
+                1,
+                1,
+                0.13429289909135084
+            ],
+            [
+                1,
+                0,
+                0.1340702324585919
+            ],
+            [
+                0,
+                1,
+                0.11735320198807371
+            ]
+        ]
+    },
+    {
+        "round": "Matchday 17",
+        "group": "Group K",
+        "date": "2026-06-27",
+        "time": "19:30 UTC-4",
+        "ground": "Atlanta",
+        "team1": "DR Congo",
+        "team2": "Uzbekistan",
+        "prob_team1": 0.40982209772723005,
+        "prob_draw": 0.3176755525912129,
+        "prob_team2": 0.27250234968155707,
+        "expected_goals_team1": 0.8807217850067673,
+        "expected_goals_team2": 0.9193001801506187,
+        "top_scores": [
+            [
+                0,
+                0,
+                0.1654094408768944
+            ],
+            [
+                0,
+                1,
+                0.15206092879674216
+            ],
+            [
+                1,
+                0,
+                0.14567969802606978
+            ]
+        ]
+    },
+    {
+        "round": "Matchday 7",
+        "group": "Group L",
+        "date": "2026-06-17",
+        "time": "15:00 UTC-5",
+        "ground": "Dallas (Arlington)",
+        "team1": "England",
+        "team2": "Croatia",
+        "prob_team1": 0.3801991580989151,
+        "prob_draw": 0.260384581204675,
+        "prob_team2": 0.3594162606964099,
+        "expected_goals_team1": 1.250719963536605,
+        "expected_goals_team2": 0.8550805569637071,
+        "top_scores": [
+            [
+                1,
+                0,
+                0.15259411869465847
+            ],
+            [
+                1,
+                1,
+                0.1304802640028146
+            ],
+            [
+                0,
+                0,
+                0.12200502362109489
+            ]
+        ]
+    },
+    {
+        "round": "Matchday 7",
+        "group": "Group L",
+        "date": "2026-06-17",
+        "time": "19:00 UTC-4",
+        "ground": "Toronto",
+        "team1": "Ghana",
+        "team2": "Panama",
+        "prob_team1": 0.25660465315336317,
+        "prob_draw": 0.3015644675239737,
+        "prob_team2": 0.44183087932266324,
+        "expected_goals_team1": 0.6640283462479165,
+        "expected_goals_team2": 1.4146773616656938,
+        "top_scores": [
+            [
+                0,
+                1,
+                0.17757460350368742
+            ],
+            [
+                0,
+                2,
+                0.12560538579171407
+            ],
+            [
+                0,
+                0,
+                0.12552304031684258
+            ]
+        ]
+    },
+    {
+        "round": "Matchday 13",
+        "group": "Group L",
+        "date": "2026-06-23",
+        "time": "16:00 UTC-4",
+        "ground": "Boston (Foxborough)",
+        "team1": "England",
+        "team2": "Ghana",
+        "prob_team1": 0.6009691035952174,
+        "prob_draw": 0.3307547197323595,
+        "prob_team2": 0.06827617667242326,
+        "expected_goals_team1": 1.9989040520877406,
+        "expected_goals_team2": 0.4461776953127407,
+        "top_scores": [
+            [
+                1,
+                0,
+                0.17625683293553027
+            ],
+            [
+                2,
+                0,
+                0.17616024878149172
+            ],
+            [
+                3,
+                0,
+                0.11737581170203609
+            ]
+        ]
+    },
+    {
+        "round": "Matchday 13",
+        "group": "Group L",
+        "date": "2026-06-23",
+        "time": "19:00 UTC-4",
+        "ground": "Toronto",
+        "team1": "Panama",
+        "team2": "Croatia",
+        "prob_team1": 0.30557017260990393,
+        "prob_draw": 0.26741790395001264,
+        "prob_team2": 0.42701192344008326,
+        "expected_goals_team1": 0.8851676579226387,
+        "expected_goals_team2": 1.2725820544466473,
+        "top_scores": [
+            [
+                0,
+                1,
+                0.14743371291529278
+            ],
+            [
+                1,
+                1,
+                0.1305035543600684
+            ],
+            [
+                0,
+                0,
+                0.11585399338308358
+            ]
+        ]
+    },
+    {
+        "round": "Matchday 17",
+        "group": "Group L",
+        "date": "2026-06-27",
+        "time": "17:00 UTC-4",
+        "ground": "New York/New Jersey (East Rutherford)",
+        "team1": "Panama",
+        "team2": "England",
+        "prob_team1": 0.14306667766749556,
+        "prob_draw": 0.25972610831749593,
+        "prob_team2": 0.5972072140150084,
+        "expected_goals_team1": 0.6512432698869514,
+        "expected_goals_team2": 1.3694827176741875,
+        "top_scores": [
+            [
+                0,
+                1,
+                0.18207237170682256
+            ],
+            [
+                0,
+                0,
+                0.13294974033410129
+            ],
+            [
+                0,
+                2,
+                0.1246724832092221
+            ]
+        ]
+    },
+    {
+        "round": "Matchday 17",
+        "group": "Group L",
+        "date": "2026-06-27",
+        "time": "17:00 UTC-4",
+        "ground": "Philadelphia",
+        "team1": "Croatia",
+        "team2": "Ghana",
+        "prob_team1": 0.6164710863544729,
+        "prob_draw": 0.31528212762129415,
+        "prob_team2": 0.06824678602423288,
+        "expected_goals_team1": 1.8574673432664162,
+        "expected_goals_team2": 0.6064432199750133,
+        "top_scores": [
+            [
+                1,
+                0,
+                0.1599919323338597
+            ],
+            [
+                2,
+                0,
+                0.14858989474811726
+            ],
+            [
+                1,
+                1,
+                0.09702602261457031
+            ]
+        ]
+    }
+]

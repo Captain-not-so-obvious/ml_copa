@@ -36,14 +36,14 @@ jobs:
           python src/03_treinamento.py
           python src/04_previsao.py
 
-      - name: Commit and Push Updated Dashboard
+      - name: Commit and Push Updated Predictions
         run: |
           # Configura o usuário do bot do GitHub
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
           
-          # Adiciona apenas o dashboard gerado (pois dados brutos e modelos são ignorados)
-          git add dashboard.html
+          # Adiciona apenas os arquivos JSON de dados gerados
+          git add reports/previsoes_copa2026.json reports/model_export.json
           
           # Tenta comitar. Se não houver mudanças nos dados/modelos, ele não fará nada.
-          git diff --quiet && git diff --staged --quiet || (git commit -m "chore: auto-update ML predictions and dashboard" && git push)
+          git diff --quiet && git diff --staged --quiet || (git commit -m "chore: auto-update ML predictions JSON data" && git push)

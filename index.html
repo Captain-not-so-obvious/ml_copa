@@ -52,6 +52,36 @@
             padding: 20px;
         }
 
+        /* Loading Overlay */
+        #loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--color-bg);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease;
+        }
+
+        .spinner {
+            width: 60px;
+            height: 60px;
+            border: 5px solid rgba(42, 157, 143, 0.2);
+            border-top-color: var(--color-teal);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-bottom: 20px;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
         /* Header / Hero */
         header {
             text-align: center;
@@ -192,6 +222,9 @@
         .filter-groups {
             display: flex;
             gap: 10px;
+            overflow-x: auto;
+            padding-bottom: 5px;
+            max-width: 100%;
         }
 
         .filter-btn {
@@ -205,6 +238,7 @@
             cursor: pointer;
             font-family: var(--font-family);
             transition: all var(--transition-speed);
+            white-space: nowrap;
         }
 
         .filter-btn:hover, .filter-btn.active {
@@ -475,7 +509,7 @@
 
         .select-wrapper::after {
             content: '\f0d7';
-            font-family: 'Font Awesome 5 Free';
+            font-family: 'Font Awesome 6 Free';
             font-weight: 900;
             position: absolute;
             right: 20px;
@@ -532,7 +566,24 @@
             transform: translateY(-1px);
         }
 
-        /* Simulation Results */
+        /* Simulation Results & Placeholders */
+        .sim-placeholder {
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--color-text-muted);
+            border: 2px dashed rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            font-size: 1rem;
+            font-weight: 500;
+        }
+
+        .sim-placeholder i {
+            font-size: 2.5rem;
+            color: var(--color-gold);
+            margin-bottom: 15px;
+            display: block;
+        }
+
         .sim-results {
             display: none;
             animation: fadeIn 0.5s ease;
@@ -672,6 +723,7 @@
         .prob-detail-fill {
             height: 100%;
             border-radius: 10px;
+            width: 0%;
             transition: width 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
@@ -730,7 +782,7 @@
             background-color: rgba(38, 70, 83, 0.15);
             border: 1px solid var(--color-card-border);
             border-radius: 15px;
-            overflow: hidden;
+            overflow-x: auto;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
         }
 
@@ -738,6 +790,7 @@
             width: 100%;
             border-collapse: collapse;
             text-align: left;
+            min-width: 700px;
         }
 
         .stats-table th, .stats-table td {
@@ -796,6 +849,13 @@
     </style>
 </head>
 <body>
+
+<!-- Loading Overlay -->
+<div id="loading-overlay">
+    <div class="spinner"></div>
+    <h3 style="font-weight:600; color:var(--color-text)">Carregando Inteligência da Copa...</h3>
+    <p style="color:var(--color-text-muted); font-size:0.9rem; margin-top:5px">Consumindo modelos de predição e estatísticas</p>
+</div>
 
 <div class="container">
     <header>
@@ -877,28 +937,34 @@
                 </button>
             </div>
 
+            <!-- Pre-simulation Placeholder -->
+            <div id="sim-placeholder-container" class="sim-placeholder">
+                <i class="fa-solid fa-circle-question"></i>
+                Aguardando Simulação. Escolha duas seleções e clique em "Simular Confronto" para rodar a inferência do modelo em tempo real.
+            </div>
+
             <!-- Results container -->
             <div id="sim-results-container" class="sim-results">
                 <div class="sim-outcome-header">
                     <div class="sim-team-result">
-                        <span id="sim-flag-1" class="sim-flag">🇧🇷</span>
+                        <span id="sim-flag-1" class="sim-flag">🏳️</span>
                         <div class="sim-name-wrap">
-                            <span id="sim-name-1" class="sim-team-name-big">Brasil</span>
-                            <span id="sim-elo-1" class="sim-team-elo">ELO: 1850</span>
+                            <span id="sim-name-1" class="sim-team-name-big">Mandante</span>
+                            <span id="sim-elo-1" class="sim-team-elo">ELO: -</span>
                         </div>
                     </div>
                     
                     <div class="sim-score-center">
-                        <div id="sim-goals-display" class="sim-expected-goals">1.45 vs 1.10</div>
+                        <div id="sim-goals-display" class="sim-expected-goals">0.00 vs 0.00</div>
                         <div class="sim-expected-label">Gols Esperados</div>
                     </div>
                     
                     <div class="sim-team-result away">
                         <div class="sim-name-wrap">
-                            <span id="sim-name-2" class="sim-team-name-big" style="text-align: right;">França</span>
-                            <span id="sim-elo-2" class="sim-team-elo" style="text-align: right;">ELO: 1845</span>
+                            <span id="sim-name-2" class="sim-team-name-big" style="text-align: right;">Visitante</span>
+                            <span id="sim-elo-2" class="sim-team-elo" style="text-align: right;">ELO: -</span>
                         </div>
-                        <span id="sim-flag-2" class="sim-flag">🇫🇷</span>
+                        <span id="sim-flag-2" class="sim-flag">🏳️</span>
                     </div>
                 </div>
 
@@ -909,30 +975,30 @@
                             <div class="prob-detail-item">
                                 <div class="prob-detail-info">
                                     <span id="label-prob-1">Vitória Mandante</span>
-                                    <span id="pct-prob-1">45.0%</span>
+                                    <span id="pct-prob-1">0.0%</span>
                                 </div>
                                 <div class="prob-detail-bar">
-                                    <div id="bar-prob-1" class="prob-detail-fill home" style="width: 45%;"></div>
+                                    <div id="bar-prob-1" class="prob-detail-fill home"></div>
                                 </div>
                             </div>
                             
                             <div class="prob-detail-item">
                                 <div class="prob-detail-info">
                                     <span>Empate</span>
-                                    <span id="pct-prob-draw">30.0%</span>
+                                    <span id="pct-prob-draw">0.0%</span>
                                 </div>
                                 <div class="prob-detail-bar">
-                                    <div id="bar-prob-draw" class="prob-detail-fill draw" style="width: 30%;"></div>
+                                    <div id="bar-prob-draw" class="prob-detail-fill draw"></div>
                                 </div>
                             </div>
                             
                             <div class="prob-detail-item">
                                 <div class="prob-detail-info">
                                     <span id="label-prob-2">Vitória Visitante</span>
-                                    <span id="pct-prob-2">25.0%</span>
+                                    <span id="pct-prob-2">0.0%</span>
                                 </div>
                                 <div class="prob-detail-bar">
-                                    <div id="bar-prob-2" class="prob-detail-fill away" style="width: 25%;"></div>
+                                    <div id="bar-prob-2" class="prob-detail-fill away"></div>
                                 </div>
                             </div>
                         </div>
@@ -941,7 +1007,7 @@
                     <div class="sim-placares-card">
                         <h3 class="sim-placares-title"><i class="fa-solid fa-list-ol"></i> Placares Mais Prováveis</h3>
                         <div id="sim-scores-list">
-                            <!-- Placares do simulador -->
+                            <!-- Injected dynamically -->
                         </div>
                     </div>
                 </div>
@@ -976,9 +1042,9 @@
 </div>
 
 <script>
-    // Inline data placeholders replaced by prediction script
-    const PREDICTIONS = // PREDICTIONS_JSON_PLACEHOLDER //;
-    const MODEL_DATA = // MODEL_EXPORT_JSON_PLACEHOLDER //;
+    // Global data variables loaded dynamically from model JSONs
+    let PREDICTIONS = [];
+    let MODEL_DATA = {};
 
     const flagEmojis = {
         "Argentina": "🇦🇷", "France": "🇫🇷", "Brazil": "🇧🇷", "Portugal": "🇵🇹", "England": "🏴󠁧󠁢󠁥󠁮󠁧󠁿", "Spain": "🇪🇸",
@@ -997,7 +1063,53 @@
     let activeFilterGroup = 'ALL';
 
     function getFlag(team) {
-        return flagEmojis[team] || "🏳️";
+        return flagEmojis[team] || "⚽";
+    }
+
+    // Dynamic Fetch
+    async function loadModelData() {
+        try {
+            const [predRes, modelRes] = await Promise.all([
+                fetch('reports/previsoes_copa2026.json'),
+                fetch('reports/model_export.json')
+            ]);
+            
+            if (!predRes.ok || !modelRes.ok) {
+                throw new Error("Erro na rede ao carregar os JSONs do modelo.");
+            }
+            
+            PREDICTIONS = await predRes.json();
+            MODEL_DATA = await modelRes.json();
+            
+            // Render UI elements
+            renderTimeline();
+            renderStatsTable();
+            initSimulatorDropdowns();
+            
+            // Fade out overlay
+            const overlay = document.getElementById('loading-overlay');
+            overlay.style.opacity = '0';
+            setTimeout(() => {
+                overlay.style.display = 'none';
+            }, 500);
+            
+        } catch (error) {
+            console.error("Erro ao carregar dados do modelo:", error);
+            const overlay = document.getElementById('loading-overlay');
+            overlay.innerHTML = `
+                <div style="text-align:center; padding: 20px; color: var(--color-coral)">
+                    <i class="fa-solid fa-triangle-exclamation" style="font-size:3rem; margin-bottom:15px"></i>
+                    <h3 style="font-size:1.4rem; font-weight:700">Falha ao Carregar Dados</h3>
+                    <p style="margin-top:10px; max-width:500px; color:var(--color-text-muted)">
+                        A página precisa carregar os arquivos JSON gerados pelo modelo. 
+                        <strong>Se você está abrindo o arquivo localmente pelo explorador de arquivos, os navegadores bloqueiam isso por segurança (CORS).</strong>
+                    </p>
+                    <p style="margin-top:15px; font-size:0.95rem; color:var(--color-gold)">
+                        Por favor, rode um servidor local com: <code style="background:rgba(0,0,0,0.3); padding:3px 8px; border-radius:4px">python3 -m http.server</code> ou acesse via GitHub Pages.
+                    </p>
+                </div>
+            `;
+        }
     }
 
     // Tab switcher
@@ -1008,10 +1120,6 @@
         const index = tabId === 'timeline' ? 0 : (tabId === 'simulator' ? 1 : 2);
         document.querySelectorAll('.tab-btn')[index].classList.add('active');
         document.getElementById(tabId + '-sec').classList.add('active');
-        
-        if (tabId === 'simulator') {
-            initSimulatorDropdowns();
-        }
     }
 
     // Formatting date
@@ -1144,10 +1252,9 @@
         renderTimeline();
     }
 
-    // Simulator logic
-    let simDropdownsInitialized = false;
+    // Simulator Dropdowns Init
     function initSimulatorDropdowns() {
-        if (simDropdownsInitialized) return;
+        if (!MODEL_DATA.elos) return;
         
         const teams = Object.keys(MODEL_DATA.elos).sort();
         const sel1 = document.getElementById('sim-team1');
@@ -1174,13 +1281,12 @@
         
         updateSimFlag(1);
         updateSimFlag(2);
-        simDropdownsInitialized = true;
     }
 
     function updateSimFlag(num) {
         const sel = document.getElementById(`sim-team${num}`);
         const flag = document.getElementById(`sim-flag-${num}`);
-        flag.innerText = getFlag(sel.value);
+        if(flag) flag.innerText = getFlag(sel.value);
     }
 
     // Factorial helper
@@ -1215,7 +1321,6 @@
         const t2Fifa = MODEL_DATA.fifa[team2] || { rank: 200, points: 0 };
         
         // Calculate mu1 and mu2 using coefficients
-        // Features: ["elo_diff", "rank_diff", "points_diff", "avg_gols_marcados_5j", "avg_gols_sofridos_5j_opp", "form_score", "form_score_opp", "win_rate_1ano", "win_rate_1ano_opp", "is_home"]
         const x1 = {
             elo_diff: (t1Elo - t2Elo) / 100.0,
             rank_diff: (t2Fifa.rank - t1Fifa.rank) / 10.0,
@@ -1301,6 +1406,9 @@
         document.getElementById('sim-elo-2').innerText = `ELO: ${Math.round(t2Elo)}`;
         document.getElementById('sim-goals-display').innerText = `${mu1.toFixed(2)} vs ${mu2.toFixed(2)}`;
         
+        document.getElementById('sim-flag-1').innerText = getFlag(team1);
+        document.getElementById('sim-flag-2').innerText = getFlag(team2);
+        
         document.getElementById('label-prob-1').innerText = `Vitória ${team1}`;
         document.getElementById('label-prob-2').innerText = `Vitória ${team2}`;
         
@@ -1324,7 +1432,8 @@
             </div>
         `).join('');
         
-        // Show results
+        // Hide placeholder and show results
+        document.getElementById('sim-placeholder-container').style.display = 'none';
         document.getElementById('sim-results-container').classList.add('active');
     }
 
@@ -1356,11 +1465,8 @@
         });
     }
 
-    // On Load
-    window.onload = function() {
-        renderTimeline();
-        renderStatsTable();
-    };
+    // Trigger dynamic fetch on load
+    window.onload = loadModelData;
 </script>
 
 </body>
