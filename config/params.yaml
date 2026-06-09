@@ -1,0 +1,23 @@
+data:
+  raw_dir: "data/raw"
+  processed_dir: "data/processed"
+  results_csv: "data/raw/results.csv"
+  fifa_ranking_csv: "data/raw/fifa_ranking.csv"
+  features_parquet: "data/processed/features.parquet"
+  openfootball_url: "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
+
+models:
+  classifier_path: "models/classifier.joblib"
+  poisson_path: "models/poisson.joblib"
+  reports_dir: "reports"
+  metrics_path: "reports/metricas.txt"
+
+split:
+  train_end_date: "2021-12-31"
+  test_start_date: "2022-01-01"
+
+hyperparameters:
+  classifier:
+    n_estimators: 100
+    max_depth: 10
+    random_state: 42

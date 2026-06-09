@@ -1,0 +1,13 @@
+venv/
+__pycache__/
+*.pyc
+data/
+models/
+reports/
+.env
+*.parquet
+*.joblib
+*.csv
+.ipynb_checkpoints/
+get-pip.py
+

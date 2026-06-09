@@ -1,0 +1,1367 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Copa do Mundo 2026 - Painel de Previsões ML</title>
+    <!-- Google Fonts: Montserrat -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --color-dark-teal: #264653;
+            --color-teal: #2A9D8F;
+            --color-gold: #E9C46A;
+            --color-orange: #F4A261;
+            --color-coral: #E76F51;
+            
+            --color-bg: #101c24;
+            --color-card-bg: rgba(38, 70, 83, 0.25);
+            --color-card-border: rgba(42, 157, 143, 0.3);
+            --color-text: #f5f8fa;
+            --color-text-muted: #a0aec0;
+            --font-family: 'Montserrat', sans-serif;
+            --transition-speed: 0.3s;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-family);
+            background-color: var(--color-bg);
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(42, 157, 143, 0.15) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(231, 111, 81, 0.1) 0px, transparent 50%);
+            color: var(--color-text);
+            min-height: 100vh;
+            line-height: 1.6;
+            padding-bottom: 50px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header / Hero */
+        header {
+            text-align: center;
+            padding: 40px 20px;
+            margin-bottom: 30px;
+            background: linear-gradient(135deg, var(--color-dark-teal) 0%, rgba(16, 28, 36, 0.95) 100%);
+            border: 1px solid var(--color-card-border);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 80% 20%, rgba(42, 157, 143, 0.2) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        header h1 {
+            font-size: 2.8rem;
+            font-weight: 900;
+            letter-spacing: -1px;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            background: linear-gradient(to right, var(--color-gold) 0%, var(--color-orange) 50%, var(--color-coral) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        header p {
+            font-size: 1.1rem;
+            color: var(--color-text-muted);
+            font-weight: 500;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Navigation Tabs */
+        .tabs {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .tab-btn {
+            background-color: rgba(38, 70, 83, 0.4);
+            border: 1px solid var(--color-card-border);
+            color: var(--color-text);
+            padding: 12px 24px;
+            font-size: 1rem;
+            font-weight: 600;
+            font-family: var(--font-family);
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all var(--transition-speed) ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .tab-btn:hover {
+            background-color: rgba(42, 157, 143, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .tab-btn.active {
+            background-color: var(--color-teal);
+            border-color: var(--color-teal);
+            box-shadow: 0 4px 15px rgba(42, 157, 143, 0.4);
+        }
+
+        /* Content Sections */
+        .content-section {
+            display: none;
+            animation: fadeIn 0.4s ease;
+        }
+
+        .content-section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Timeline Section */
+        .timeline-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .search-box {
+            position: relative;
+            flex: 1;
+            max-width: 400px;
+        }
+
+        .search-box input {
+            width: 100%;
+            background-color: rgba(38, 70, 83, 0.2);
+            border: 1px solid var(--color-card-border);
+            color: var(--color-text);
+            padding: 12px 20px 12px 45px;
+            border-radius: 50px;
+            font-family: var(--font-family);
+            font-size: 0.95rem;
+            outline: none;
+            transition: all var(--transition-speed);
+        }
+
+        .search-box input:focus {
+            border-color: var(--color-teal);
+            box-shadow: 0 0 10px rgba(42, 157, 143, 0.3);
+            background-color: rgba(38, 70, 83, 0.3);
+        }
+
+        .search-box i {
+            position: absolute;
+            left: 18px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--color-text-muted);
+        }
+
+        .filter-groups {
+            display: flex;
+            gap: 10px;
+        }
+
+        .filter-btn {
+            background-color: rgba(38, 70, 83, 0.2);
+            border: 1px solid var(--color-card-border);
+            color: var(--color-text-muted);
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            font-family: var(--font-family);
+            transition: all var(--transition-speed);
+        }
+
+        .filter-btn:hover, .filter-btn.active {
+            background-color: var(--color-teal);
+            color: var(--color-text);
+            border-color: var(--color-teal);
+        }
+
+        /* Timeline grouping by Date */
+        .date-group {
+            margin-bottom: 40px;
+        }
+
+        .date-header {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--color-gold);
+            border-bottom: 2px solid rgba(233, 196, 106, 0.2);
+            padding-bottom: 8px;
+        }
+
+        .date-header i {
+            font-size: 1.1rem;
+        }
+
+        .matches-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+            gap: 20px;
+        }
+
+        /* Match Card Style */
+        .match-card {
+            background: var(--color-card-bg);
+            border: 1px solid var(--color-card-border);
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            transition: all var(--transition-speed);
+            backdrop-filter: blur(10px);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .match-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--color-teal);
+            box-shadow: 0 8px 25px rgba(42, 157, 143, 0.2);
+        }
+
+        .match-meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.75rem;
+            color: var(--color-text-muted);
+            margin-bottom: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .match-meta .group-tag {
+            background-color: var(--color-dark-teal);
+            padding: 2px 8px;
+            border-radius: 4px;
+            color: var(--color-gold);
+        }
+
+        .teams-container {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .team-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .team-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .team-flag {
+            font-size: 1.8rem;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .team-name {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--color-text);
+        }
+
+        .team-score-exp {
+            font-size: 0.85rem;
+            color: var(--color-text-muted);
+            font-weight: 500;
+            background-color: rgba(16, 28, 36, 0.6);
+            padding: 3px 8px;
+            border-radius: 6px;
+        }
+
+        .prob-bar-container {
+            margin-bottom: 15px;
+        }
+
+        .prob-labels {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.75rem;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        .prob-bar {
+            height: 8px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            display: flex;
+            overflow: hidden;
+        }
+
+        .prob-fill {
+            height: 100%;
+            transition: width 0.5s ease;
+        }
+
+        .prob-fill.home {
+            background-color: var(--color-teal);
+        }
+
+        .prob-fill.draw {
+            background-color: var(--color-gold);
+        }
+
+        .prob-fill.away {
+            background-color: var(--color-coral);
+        }
+
+        .top-scores {
+            background-color: rgba(16, 28, 36, 0.5);
+            border-radius: 10px;
+            padding: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .top-scores-title {
+            font-size: 0.7rem;
+            color: var(--color-text-muted);
+            text-transform: uppercase;
+            font-weight: 700;
+            margin-bottom: 6px;
+            letter-spacing: 0.5px;
+        }
+
+        .score-list {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.8rem;
+        }
+
+        .score-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            flex: 1;
+            border-right: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .score-item:last-child {
+            border-right: none;
+        }
+
+        .score-val {
+            font-weight: 800;
+            color: var(--color-gold);
+            font-size: 0.9rem;
+        }
+
+        .score-prob {
+            color: var(--color-text-muted);
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        /* Simulator Section */
+        .simulator-card {
+            background: linear-gradient(135deg, rgba(38, 70, 83, 0.3) 0%, rgba(16, 28, 36, 0.9) 100%);
+            border: 1px solid var(--color-card-border);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            margin-bottom: 40px;
+            backdrop-filter: blur(10px);
+        }
+
+        .simulator-title {
+            text-align: center;
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: var(--color-gold);
+            margin-bottom: 25px;
+            text-transform: uppercase;
+            letter-spacing: -0.5px;
+        }
+
+        .simulator-selects {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .sim-team-box {
+            flex: 1;
+            min-width: 250px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .sim-team-box label {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--color-text-muted);
+            text-transform: uppercase;
+        }
+
+        .select-wrapper {
+            position: relative;
+        }
+
+        .select-wrapper select {
+            width: 100%;
+            background-color: rgba(16, 28, 36, 0.8);
+            border: 1px solid var(--color-card-border);
+            color: var(--color-text);
+            padding: 14px 20px;
+            border-radius: 12px;
+            font-family: var(--font-family);
+            font-size: 1rem;
+            font-weight: 600;
+            appearance: none;
+            outline: none;
+            cursor: pointer;
+            transition: all var(--transition-speed);
+        }
+
+        .select-wrapper select:focus {
+            border-color: var(--color-teal);
+            box-shadow: 0 0 10px rgba(42, 157, 143, 0.3);
+        }
+
+        .select-wrapper::after {
+            content: '\f0d7';
+            font-family: 'Font Awesome 5 Free';
+            font-weight: 900;
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--color-teal);
+            pointer-events: none;
+        }
+
+        .vs-badge {
+            background-color: var(--color-coral);
+            color: var(--color-text);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+            font-size: 1.1rem;
+            box-shadow: 0 4px 15px rgba(231, 111, 81, 0.4);
+            border: 2px solid var(--color-bg);
+            margin-top: 25px;
+        }
+
+        .sim-btn-container {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .sim-btn {
+            background-color: var(--color-teal);
+            color: var(--color-text);
+            border: none;
+            padding: 16px 40px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            font-family: var(--font-family);
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all var(--transition-speed);
+            box-shadow: 0 6px 20px rgba(42, 157, 143, 0.4);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .sim-btn:hover {
+            background-color: #248b7e;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(42, 157, 143, 0.6);
+        }
+
+        .sim-btn:active {
+            transform: translateY(-1px);
+        }
+
+        /* Simulation Results */
+        .sim-results {
+            display: none;
+            animation: fadeIn 0.5s ease;
+            border-top: 1px dashed var(--color-card-border);
+            padding-top: 30px;
+        }
+
+        .sim-results.active {
+            display: block;
+        }
+
+        .sim-outcome-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .sim-team-result {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            flex: 1;
+        }
+
+        .sim-team-result.away {
+            justify-content: flex-end;
+        }
+
+        .sim-flag {
+            font-size: 3rem;
+        }
+
+        .sim-name-wrap {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .sim-team-name-big {
+            font-size: 1.5rem;
+            font-weight: 800;
+        }
+
+        .sim-team-elo {
+            font-size: 0.8rem;
+            color: var(--color-text-muted);
+            font-weight: 600;
+        }
+
+        .sim-score-center {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .sim-expected-goals {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--color-gold);
+            letter-spacing: 2px;
+            background-color: rgba(16, 28, 36, 0.6);
+            padding: 5px 20px;
+            border-radius: 12px;
+            border: 1px solid var(--color-card-border);
+        }
+
+        .sim-expected-label {
+            font-size: 0.7rem;
+            color: var(--color-text-muted);
+            text-transform: uppercase;
+            font-weight: 700;
+            margin-top: 5px;
+        }
+
+        .sim-metrics-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+
+        @media (max-width: 768px) {
+            .sim-metrics-grid {
+                grid-template-columns: 1fr;
+            }
+            .sim-team-result.away {
+                justify-content: flex-start;
+            }
+            .sim-outcome-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .sim-score-center {
+                align-self: center;
+                margin: 15px 0;
+            }
+        }
+
+        .prob-donut-container {
+            background-color: rgba(16, 28, 36, 0.5);
+            border-radius: 15px;
+            padding: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .prob-row-detail {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .prob-detail-item {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .prob-detail-info {
+            display: flex;
+            justify-content: space-between;
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+
+        .prob-detail-bar {
+            height: 12px;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .prob-detail-fill {
+            height: 100%;
+            border-radius: 10px;
+            transition: width 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .prob-detail-fill.home { background-color: var(--color-teal); }
+        .prob-detail-fill.draw { background-color: var(--color-gold); }
+        .prob-detail-fill.away { background-color: var(--color-coral); }
+
+        .sim-placares-card {
+            background-color: rgba(16, 28, 36, 0.5);
+            border-radius: 15px;
+            padding: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .sim-placares-title {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--color-gold);
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            padding-bottom: 8px;
+        }
+
+        .sim-placar-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+        }
+
+        .sim-placar-row:last-child {
+            border-bottom: none;
+        }
+
+        .sim-placar-badge {
+            background-color: var(--color-dark-teal);
+            color: var(--color-text);
+            font-weight: 800;
+            font-size: 1.1rem;
+            padding: 4px 15px;
+            border-radius: 6px;
+            border: 1px solid var(--color-teal);
+            letter-spacing: 1px;
+        }
+
+        .sim-placar-pct {
+            font-weight: 700;
+            color: var(--color-teal);
+            font-size: 1rem;
+        }
+
+        /* Teams Stats Section */
+        .stats-table-wrapper {
+            background-color: rgba(38, 70, 83, 0.15);
+            border: 1px solid var(--color-card-border);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .stats-table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+        }
+
+        .stats-table th, .stats-table td {
+            padding: 15px 20px;
+        }
+
+        .stats-table th {
+            background-color: var(--color-dark-teal);
+            color: var(--color-gold);
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 0.5px;
+        }
+
+        .stats-table tr {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            transition: background-color var(--transition-speed);
+        }
+
+        .stats-table tr:hover {
+            background-color: rgba(42, 157, 143, 0.1);
+        }
+
+        .stats-table tr:last-child {
+            border-bottom: none;
+        }
+
+        .stats-table td {
+            font-size: 0.95rem;
+        }
+
+        .rank-number {
+            font-weight: 800;
+            color: var(--color-orange);
+        }
+
+        .elo-number {
+            font-weight: 700;
+            color: var(--color-teal);
+        }
+
+        /* Footer */
+        footer {
+            margin-top: 50px;
+            text-align: center;
+            color: var(--color-text-muted);
+            font-size: 0.85rem;
+        }
+
+        footer a {
+            color: var(--color-teal);
+            text-decoration: none;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>Copa do Mundo 2026</h1>
+        <p>Painel Inteligente de Previsões com Machine Learning baseados em Rankings FIFA históricos, ELO Ratings e performance recente das seleções.</p>
+    </header>
+
+    <div class="tabs">
+        <button class="tab-btn active" onclick="switchTab('timeline')">
+            <i class="fa-solid fa-calendar-days"></i> Jogos por Data
+        </button>
+        <button class="tab-btn" onclick="switchTab('simulator')">
+            <i class="fa-solid fa-gamepad"></i> Simulador de Partidas
+        </button>
+        <button class="tab-btn" onclick="switchTab('stats')">
+            <i class="fa-solid fa-chart-line"></i> Força das Seleções
+        </button>
+    </div>
+
+    <!-- TIMELINE SECTION -->
+    <section id="timeline-sec" class="content-section active">
+        <div class="timeline-controls">
+            <div class="search-box">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" id="match-search" placeholder="Buscar seleção..." oninput="filterMatches()">
+            </div>
+            <div class="filter-groups">
+                <button class="filter-btn active" onclick="filterGroup('ALL')">Todos</button>
+                <button class="filter-btn" onclick="filterGroup('Group A')">Gr. A</button>
+                <button class="filter-btn" onclick="filterGroup('Group B')">Gr. B</button>
+                <button class="filter-btn" onclick="filterGroup('Group C')">Gr. C</button>
+                <button class="filter-btn" onclick="filterGroup('Group D')">Gr. D</button>
+                <button class="filter-btn" onclick="filterGroup('Group E')">Gr. E</button>
+                <button class="filter-btn" onclick="filterGroup('Group F')">Gr. F</button>
+                <button class="filter-btn" onclick="filterGroup('Group G')">Gr. G</button>
+                <button class="filter-btn" onclick="filterGroup('Group H')">Gr. H</button>
+                <button class="filter-btn" onclick="filterGroup('Group I')">Gr. I</button>
+                <button class="filter-btn" onclick="filterGroup('Group J')">Gr. J</button>
+                <button class="filter-btn" onclick="filterGroup('Group K')">Gr. K</button>
+                <button class="filter-btn" onclick="filterGroup('Group L')">Gr. L</button>
+            </div>
+        </div>
+
+        <div id="timeline-container">
+            <!-- Dynamic date groups will be injected here -->
+        </div>
+    </section>
+
+    <!-- SIMULATOR SECTION -->
+    <section id="simulator-sec" class="content-section">
+        <div class="simulator-card">
+            <h2 class="simulator-title">Simulador de Partidas Inteligente</h2>
+            
+            <div class="simulator-selects">
+                <div class="sim-team-box">
+                    <label for="sim-team1">Seleção 1 (Mandante)</label>
+                    <div class="select-wrapper">
+                        <select id="sim-team1" onchange="updateSimFlag(1)">
+                            <!-- Dynamic options -->
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="vs-badge">VS</div>
+                
+                <div class="sim-team-box">
+                    <label for="sim-team2">Seleção 2 (Visitante)</label>
+                    <div class="select-wrapper">
+                        <select id="sim-team2" onchange="updateSimFlag(2)">
+                            <!-- Dynamic options -->
+                        </select>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="sim-btn-container">
+                <button class="sim-btn" onclick="runSimulation()">
+                    <i class="fa-solid fa-bolt"></i> Simular Confronto
+                </button>
+            </div>
+
+            <!-- Results container -->
+            <div id="sim-results-container" class="sim-results">
+                <div class="sim-outcome-header">
+                    <div class="sim-team-result">
+                        <span id="sim-flag-1" class="sim-flag">🇧🇷</span>
+                        <div class="sim-name-wrap">
+                            <span id="sim-name-1" class="sim-team-name-big">Brasil</span>
+                            <span id="sim-elo-1" class="sim-team-elo">ELO: 1850</span>
+                        </div>
+                    </div>
+                    
+                    <div class="sim-score-center">
+                        <div id="sim-goals-display" class="sim-expected-goals">1.45 vs 1.10</div>
+                        <div class="sim-expected-label">Gols Esperados</div>
+                    </div>
+                    
+                    <div class="sim-team-result away">
+                        <div class="sim-name-wrap">
+                            <span id="sim-name-2" class="sim-team-name-big" style="text-align: right;">França</span>
+                            <span id="sim-elo-2" class="sim-team-elo" style="text-align: right;">ELO: 1845</span>
+                        </div>
+                        <span id="sim-flag-2" class="sim-flag">🇫🇷</span>
+                    </div>
+                </div>
+
+                <div class="sim-metrics-grid">
+                    <div class="prob-donut-container">
+                        <h3 class="sim-placares-title" style="margin-bottom: 20px;"><i class="fa-solid fa-chart-pie"></i> Probabilidades de Resultado</h3>
+                        <div class="prob-row-detail">
+                            <div class="prob-detail-item">
+                                <div class="prob-detail-info">
+                                    <span id="label-prob-1">Vitória Mandante</span>
+                                    <span id="pct-prob-1">45.0%</span>
+                                </div>
+                                <div class="prob-detail-bar">
+                                    <div id="bar-prob-1" class="prob-detail-fill home" style="width: 45%;"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="prob-detail-item">
+                                <div class="prob-detail-info">
+                                    <span>Empate</span>
+                                    <span id="pct-prob-draw">30.0%</span>
+                                </div>
+                                <div class="prob-detail-bar">
+                                    <div id="bar-prob-draw" class="prob-detail-fill draw" style="width: 30%;"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="prob-detail-item">
+                                <div class="prob-detail-info">
+                                    <span id="label-prob-2">Vitória Visitante</span>
+                                    <span id="pct-prob-2">25.0%</span>
+                                </div>
+                                <div class="prob-detail-bar">
+                                    <div id="bar-prob-2" class="prob-detail-fill away" style="width: 25%;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="sim-placares-card">
+                        <h3 class="sim-placares-title"><i class="fa-solid fa-list-ol"></i> Placares Mais Prováveis</h3>
+                        <div id="sim-scores-list">
+                            <!-- Placares do simulador -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TEAMS STATS SECTION -->
+    <section id="stats-sec" class="content-section">
+        <div class="stats-table-wrapper">
+            <table class="stats-table">
+                <thead>
+                    <tr>
+                        <th>Seleção</th>
+                        <th>Classificação FIFA</th>
+                        <th>Pontos FIFA</th>
+                        <th>ELO Rating</th>
+                        <th>Gols Recentes (Média 5j)</th>
+                        <th>Gols Sofridos (Média 5j)</th>
+                    </tr>
+                </thead>
+                <tbody id="stats-table-body">
+                    <!-- Dynamic team rows -->
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <footer>
+        <p>Copa do Mundo 2026 &copy; ML Predictive Engine. Desenvolvido com ❤️ usando Python &amp; JavaScript.</p>
+    </footer>
+</div>
+
+<script>
+    // Inline data placeholders replaced by prediction script
+    const PREDICTIONS = [{"round": "Matchday 1", "group": "Group A", "date": "2026-06-11", "time": "13:00 UTC-6", "ground": "Mexico City", "team1": "Mexico", "team2": "South Africa", "prob_team1": 0.7518868087896893, "prob_draw": 0.1556578472825193, "prob_team2": 0.09245534392779135, "expected_goals_team1": 1.8840992498056153, "expected_goals_team2": 0.6988731799766635, "top_scores": [[1, 0, 0.14419095827381226], [2, 0, 0.13583503815622125], [1, 1, 0.10077119353270161]]}, {"round": "Matchday 1", "group": "Group A", "date": "2026-06-11", "time": "20:00 UTC-6", "ground": "Guadalajara (Zapopan)", "team1": "South Korea", "team2": "Czech Republic", "prob_team1": 0.2508684556355742, "prob_draw": 0.5025888099839101, "prob_team2": 0.24654273438051574, "expected_goals_team1": 1.2693171782581851, "expected_goals_team2": 1.0373659607366188, "top_scores": [[1, 1, 0.13149105078493228], [1, 0, 0.12675473821366026], [0, 1, 0.10359195718549266]]}, {"round": "Matchday 8", "group": "Group A", "date": "2026-06-18", "time": "12:00 UTC-4", "ground": "Atlanta", "team1": "Czech Republic", "team2": "South Africa", "prob_team1": 0.6982707102850463, "prob_draw": 0.1725368240273839, "prob_team2": 0.12919246568756948, "expected_goals_team1": 1.4375062969220118, "expected_goals_team2": 0.9159935068964317, "top_scores": [[1, 0, 0.13716502783862608], [1, 1, 0.1256422748734498], [2, 0, 0.09858779561775402]]}, {"round": "Matchday 8", "group": "Group A", "date": "2026-06-18", "time": "19:00 UTC-6", "ground": "Guadalajara (Zapopan)", "team1": "Mexico", "team2": "South Korea", "prob_team1": 0.47633137996566227, "prob_draw": 0.3400323099530098, "prob_team2": 0.18363631008132764, "expected_goals_team1": 1.3596465160415094, "expected_goals_team2": 0.9684476211779566, "top_scores": [[1, 0, 0.1329763211558598], [1, 1, 0.1287806018963884], [0, 0, 0.09780212694032317]]}, {"round": "Matchday 14", "group": "Group A", "date": "2026-06-24", "time": "19:00 UTC-6", "ground": "Mexico City", "team1": "Czech Republic", "team2": "Mexico", "prob_team1": 0.3268874699600141, "prob_draw": 0.22852770660983698, "prob_team2": 0.44458482343014877, "expected_goals_team1": 1.0917679406010874, "expected_goals_team2": 1.8755056594408557, "top_scores": [[1, 1, 0.10676681165976958], [1, 2, 0.1001208797541769], [0, 1, 0.09779258731575109]]}, {"round": "Matchday 14", "group": "Group A", "date": "2026-06-24", "time": "19:00 UTC-6", "ground": "Monterrey (Guadalupe)", "team1": "South Africa", "team2": "South Korea", "prob_team1": 0.3355499598716406, "prob_draw": 0.3432860395623778, "prob_team2": 0.32116400056598154, "expected_goals_team1": 0.6640488521584506, "expected_goals_team2": 1.2751332054282423, "top_scores": [[0, 1, 0.18377676666892342], [0, 0, 0.14412358323552843], [1, 1, 0.12203675095989003]]}, {"round": "Matchday 2", "group": "Group B", "date": "2026-06-12", "time": "15:00 UTC-4", "ground": "Toronto", "team1": "Canada", "team2": "Bosnia & Herzegovina", "prob_team1": 0.7772290179088134, "prob_draw": 0.16396499733769396, "prob_team2": 0.05880598475349249, "expected_goals_team1": 1.9151833660238629, "expected_goals_team2": 0.48148959465348107, "top_scores": [[1, 0, 0.1767427672062006], [2, 0, 0.16924740390917165], [3, 0, 0.10804660423652253]]}, {"round": "Matchday 3", "group": "Group B", "date": "2026-06-13", "time": "12:00 UTC-7", "ground": "San Francisco Bay Area (Santa Clara)", "team1": "Qatar", "team2": "Switzerland", "prob_team1": 0.08971200544942792, "prob_draw": 0.2601133623192743, "prob_team2": 0.6501746322312978, "expected_goals_team1": 0.6246685259537436, "expected_goals_team2": 1.1906465847061583, "top_scores": [[0, 1, 0.1941107447095831], [0, 0, 0.1630296909283858], [1, 1, 0.1212548727695187]]}, {"round": "Matchday 8", "group": "Group B", "date": "2026-06-18", "time": "12:00 UTC-7", "ground": "Los Angeles (Inglewood)", "team1": "Switzerland", "team2": "Bosnia & Herzegovina", "prob_team1": 0.7750765489799634, "prob_draw": 0.12363659036113188, "prob_team2": 0.10128686065890488, "expected_goals_team1": 1.9441057208563468, "expected_goals_team2": 0.4743265002006842, "top_scores": [[1, 0, 0.17571681340515233], [2, 0, 0.17080603109580195], [3, 0, 0.11068832740337187]]}, {"round": "Matchday 8", "group": "Group B", "date": "2026-06-18", "time": "15:00 UTC-7", "ground": "Vancouver", "team1": "Canada", "team2": "Qatar", "prob_team1": 0.5991738565689749, "prob_draw": 0.2169956156878131, "prob_team2": 0.18383052774321204, "expected_goals_team1": 1.1729334003697693, "expected_goals_team2": 0.6341020272470572, "top_scores": [[1, 0, 0.1927934532616243], [0, 0, 0.16436862758008752], [1, 1, 0.12225071955315675]]}, {"round": "Matchday 14", "group": "Group B", "date": "2026-06-24", "time": "12:00 UTC-7", "ground": "Vancouver", "team1": "Switzerland", "team2": "Canada", "prob_team1": 0.5114492942173067, "prob_draw": 0.2621306895642705, "prob_team2": 0.22642001621842303, "expected_goals_team1": 0.9838559775721998, "expected_goals_team2": 0.9548001845344279, "top_scores": [[0, 0, 0.14404320295919731], [1, 0, 0.14171776626005184], [0, 1, 0.13753247676637165]]}, {"round": "Matchday 14", "group": "Group B", "date": "2026-06-24", "time": "12:00 UTC-7", "ground": "Seattle", "team1": "Bosnia & Herzegovina", "team2": "Qatar", "prob_team1": 0.21680903454882736, "prob_draw": 0.29625403226898483, "prob_team2": 0.4869369331821877, "expected_goals_team1": 0.5826909166729636, "expected_goals_team2": 1.2529896721465468, "top_scores": [[0, 1, 0.20023704739354853], [0, 0, 0.1598074204797829], [0, 2, 0.12544747618261748]]}, {"round": "Matchday 3", "group": "Group C", "date": "2026-06-13", "time": "18:00 UTC-4", "ground": "New York/New Jersey (East Rutherford)", "team1": "Brazil", "team2": "Morocco", "prob_team1": 0.3695138030824298, "prob_draw": 0.33348196188107443, "prob_team2": 0.2970042350364957, "expected_goals_team1": 1.0315872324794788, "expected_goals_team2": 1.0919565899836077, "top_scores": [[1, 1, 0.13495098361288113], [0, 1, 0.13081878038420341], [1, 0, 0.1235863997257501]]}, {"round": "Matchday 3", "group": "Group C", "date": "2026-06-13", "time": "21:00 UTC-4", "ground": "Boston (Foxborough)", "team1": "Haiti", "team2": "Scotland", "prob_team1": 0.26208122715085663, "prob_draw": 0.22967566352226737, "prob_team2": 0.5082431093268759, "expected_goals_team1": 0.6662203610125427, "expected_goals_team2": 1.7942399791886339, "top_scores": [[0, 1, 0.15481438222980778], [0, 2, 0.13888707697505573], [1, 1, 0.1031404936190763]]}, {"round": "Matchday 9", "group": "Group C", "date": "2026-06-19", "time": "18:00 UTC-4", "ground": "Boston (Foxborough)", "team1": "Scotland", "team2": "Morocco", "prob_team1": 0.2829182218447721, "prob_draw": 0.32684028893245737, "prob_team2": 0.3902414892227705, "expected_goals_team1": 0.9320263703828758, "expected_goals_team2": 1.1781664229845574, "top_scores": [[0, 1, 0.1430656717801794], [1, 1, 0.13334097879566842], [0, 0, 0.12143078345227513]]}, {"round": "Matchday 9", "group": "Group C", "date": "2026-06-19", "time": "20:30 UTC-4", "ground": "Philadelphia", "team1": "Brazil", "team2": "Haiti", "prob_team1": 0.8468010901062577, "prob_draw": 0.1274478542183946, "prob_team2": 0.025751055675347613, "expected_goals_team1": 1.985904168972049, "expected_goals_team2": 0.6174710969491273, "top_scores": [[1, 0, 0.14940943576406415], [2, 0, 0.14835641068380825], [3, 0, 0.0982072048235681]]}, {"round": "Matchday 14", "group": "Group C", "date": "2026-06-24", "time": "18:00 UTC-4", "ground": "Miami (Miami Gardens)", "team1": "Scotland", "team2": "Brazil", "prob_team1": 0.31527138699104656, "prob_draw": 0.17524625328174157, "prob_team2": 0.5094823597272117, "expected_goals_team1": 1.0500538279275466, "expected_goals_team2": 1.2539799380590912, "top_scores": [[1, 1, 0.131830682293463], [0, 1, 0.1255465946480596], [1, 0, 0.10512981770466792]]}, {"round": "Matchday 14", "group": "Group C", "date": "2026-06-24", "time": "18:00 UTC-4", "ground": "Atlanta", "team1": "Morocco", "team2": "Haiti", "prob_team1": 0.4381164094503427, "prob_draw": 0.48433397957433927, "prob_team2": 0.07754961097531776, "expected_goals_team1": 1.865839747619363, "expected_goals_team2": 0.5480665181152381, "top_scores": [[1, 0, 0.16899224203761384], [2, 0, 0.1576562211165459], [3, 0, 0.09805374793957285]]}, {"round": "Matchday 2", "group": "Group D", "date": "2026-06-12", "time": "18:00 UTC-7", "ground": "Los Angeles (Inglewood)", "team1": "USA", "team2": "Paraguay", "prob_team1": 0.3406276069462869, "prob_draw": 0.39771184066549836, "prob_team2": 0.26166055238821473, "expected_goals_team1": 0.9467941612839259, "expected_goals_team2": 1.2625333526108666, "top_scores": [[0, 1, 0.13892424260123512], [1, 1, 0.13153266175564104], [0, 0, 0.11003609711691618]]}, {"round": "Matchday 3", "group": "Group D", "date": "2026-06-13", "time": "21:00 UTC-7", "ground": "Vancouver", "team1": "Australia", "team2": "Turkey", "prob_team1": 0.33293461705780864, "prob_draw": 0.37176012447147344, "prob_team2": 0.295305258470718, "expected_goals_team1": 0.99329484825201, "expected_goals_team2": 1.1340524705541675, "top_scores": [[0, 1, 0.13535616448058738], [1, 1, 0.13444858085771916], [0, 0, 0.1193561744232558]]}, {"round": "Matchday 9", "group": "Group D", "date": "2026-06-19", "time": "12:00 UTC-7", "ground": "Seattle", "team1": "USA", "team2": "Australia", "prob_team1": 0.40650287791835743, "prob_draw": 0.3790223237437506, "prob_team2": 0.21447479833789235, "expected_goals_team1": 0.9549300498147473, "expected_goals_team2": 1.0708682735841648, "top_scores": [[0, 1, 0.14142074524280993], [1, 1, 0.13504691929955517], [0, 0, 0.13206175654964433]]}, {"round": "Matchday 9", "group": "Group D", "date": "2026-06-19", "time": "20:00 UTC-7", "ground": "San Francisco Bay Area (Santa Clara)", "team1": "Turkey", "team2": "Paraguay", "prob_team1": 0.3838957789307317, "prob_draw": 0.3422605543095419, "prob_team2": 0.2738436667597265, "expected_goals_team1": 1.1243904806625296, "expected_goals_team2": 1.1710757577095672, "top_scores": [[1, 1, 0.13293545230639517], [0, 1, 0.1182289023187612], [1, 0, 0.11351567260379054]]}, {"round": "Matchday 15", "group": "Group D", "date": "2026-06-25", "time": "19:00 UTC-7", "ground": "Los Angeles (Inglewood)", "team1": "Turkey", "team2": "USA", "prob_team1": 0.3684709968552112, "prob_draw": 0.3880061679218837, "prob_team2": 0.2435228352229051, "expected_goals_team1": 1.2529888017042663, "expected_goals_team2": 0.978650746106537, "top_scores": [[1, 0, 0.13483351278938194], [1, 1, 0.1319549178914939], [0, 0, 0.10760951143855929]]}, {"round": "Matchday 15", "group": "Group D", "date": "2026-06-25", "time": "19:00 UTC-7", "ground": "San Francisco Bay Area (Santa Clara)", "team1": "Paraguay", "team2": "Australia", "prob_team1": 0.3789569112170508, "prob_draw": 0.36913428902774065, "prob_team2": 0.2519087997552086, "expected_goals_team1": 1.142691032623707, "expected_goals_team2": 0.9609615754137771, "top_scores": [[1, 0, 0.13965101183325443], [1, 1, 0.1341992563394122], [0, 0, 0.12221239849288475]]}, {"round": "Matchday 4", "group": "Group E", "date": "2026-06-14", "time": "12:00 UTC-5", "ground": "Houston", "team1": "Germany", "team2": "Curaçao", "prob_team1": 0.6747087493040991, "prob_draw": 0.20859442951955756, "prob_team2": 0.11669682117634322, "expected_goals_team1": 1.8569874723450714, "expected_goals_team2": 0.7090766382179526, "top_scores": [[1, 0, 0.14442391398351312], [2, 0, 0.13409669948721303], [1, 1, 0.10240762340570823]]}, {"round": "Matchday 4", "group": "Group E", "date": "2026-06-14", "time": "19:00 UTC-4", "ground": "Philadelphia", "team1": "Ivory Coast", "team2": "Ecuador", "prob_team1": 0.4363813079856566, "prob_draw": 0.2627063196011505, "prob_team2": 0.300912372413193, "expected_goals_team1": 0.7616901517825205, "expected_goals_team2": 1.6129174156979, "top_scores": [[0, 1, 0.15105216390952547], [0, 2, 0.12181733292426374], [1, 1, 0.11505494565532463]]}, {"round": "Matchday 10", "group": "Group E", "date": "2026-06-20", "time": "16:00 UTC-4", "ground": "Toronto", "team1": "Germany", "team2": "Ivory Coast", "prob_team1": 0.5685662185474721, "prob_draw": 0.2941161587956593, "prob_team2": 0.13731762265686853, "expected_goals_team1": 1.4914712178562384, "expected_goals_team2": 0.905657033700665, "top_scores": [[1, 0, 0.13633175036709827], [1, 1, 0.12346980863668576], [2, 0, 0.10166744087624437]]}, {"round": "Matchday 10", "group": "Group E", "date": "2026-06-20", "time": "19:00 UTC-5", "ground": "Kansas City", "team1": "Ecuador", "team2": "Curaçao", "prob_team1": 0.6821386003271144, "prob_draw": 0.16847710868165616, "prob_team2": 0.14938429099122952, "expected_goals_team1": 2.0081966041445196, "expected_goals_team2": 0.5963589660235367, "top_scores": [[2, 0, 0.15164910498154338], [1, 0, 0.1510301378546002], [3, 0, 0.10151373921516375]]}, {"round": "Matchday 15", "group": "Group E", "date": "2026-06-25", "time": "16:00 UTC-4", "ground": "Philadelphia", "team1": "Curaçao", "team2": "Ivory Coast", "prob_team1": 0.23280956835258254, "prob_draw": 0.2795424775124566, "prob_team2": 0.48764795413496087, "expected_goals_team1": 0.909952522487538, "expected_goals_team2": 1.4470496004601492, "top_scores": [[0, 1, 0.13760733859775665], [1, 1, 0.12521614486982538], [0, 2, 0.09956232216913412]]}, {"round": "Matchday 15", "group": "Group E", "date": "2026-06-25", "time": "16:00 UTC-4", "ground": "New York/New Jersey (East Rutherford)", "team1": "Ecuador", "team2": "Germany", "prob_team1": 0.3978726171913776, "prob_draw": 0.20762280531701538, "prob_team2": 0.3945045774916069, "expected_goals_team1": 1.2568590454804944, "expected_goals_team2": 0.9774710343162902, "top_scores": [[1, 0, 0.13489000344703087], [1, 1, 0.13185107118829723], [0, 0, 0.1073230955627667]]}, {"round": "Matchday 4", "group": "Group F", "date": "2026-06-14", "time": "15:00 UTC-5", "ground": "Dallas (Arlington)", "team1": "Netherlands", "team2": "Japan", "prob_team1": 0.4540033992017385, "prob_draw": 0.3284224786064669, "prob_team2": 0.2175741221917945, "expected_goals_team1": 1.002602063325851, "expected_goals_team2": 1.0666907262078171, "top_scores": [[1, 1, 0.1352402174016926], [0, 1, 0.13488922709082715], [1, 0, 0.1267848440779868]]}, {"round": "Matchday 4", "group": "Group F", "date": "2026-06-14", "time": "20:00 UTC-6", "ground": "Monterrey (Guadalupe)", "team1": "Sweden", "team2": "Tunisia", "prob_team1": 0.4800422429371725, "prob_draw": 0.26545016900611956, "prob_team2": 0.2545075880567079, "expected_goals_team1": 2.009866832116598, "expected_goals_team2": 0.9811597485661798, "top_scores": [[2, 0, 0.10326766631328752], [1, 0, 0.10276070500107308], [2, 1, 0.10132207751496135]]}, {"round": "Matchday 10", "group": "Group F", "date": "2026-06-20", "time": "12:00 UTC-5", "ground": "Houston", "team1": "Netherlands", "team2": "Sweden", "prob_team1": 0.6741302287382392, "prob_draw": 0.25440015420666456, "prob_team2": 0.07146961705509636, "expected_goals_team1": 1.806900050486021, "expected_goals_team2": 0.787387887753619, "top_scores": [[1, 0, 0.1364371819832513], [2, 0, 0.1232641755068536], [1, 1, 0.10742898453284835]]}, {"round": "Matchday 10", "group": "Group F", "date": "2026-06-20", "time": "22:00 UTC-6", "ground": "Monterrey (Guadalupe)", "team1": "Tunisia", "team2": "Japan", "prob_team1": 0.36989973553889216, "prob_draw": 0.1461006327003154, "prob_team2": 0.4839996317607924, "expected_goals_team1": 0.5444201454862573, "expected_goals_team2": 2.7228083439890383, "top_scores": [[0, 2, 0.15006948415102508], [0, 3, 0.13620348120818063], [0, 1, 0.11023139728679286]]}, {"round": "Matchday 15", "group": "Group F", "date": "2026-06-25", "time": "18:00 UTC-5", "ground": "Dallas (Arlington)", "team1": "Japan", "team2": "Sweden", "prob_team1": 0.5784436730285554, "prob_draw": 0.3038277819347018, "prob_team2": 0.11772854503674277, "expected_goals_team1": 1.6583772400656054, "expected_goals_team2": 0.6792474290134111, "top_scores": [[1, 0, 0.16129061366551672], [2, 0, 0.1337403413695537], [1, 1, 0.10955623465629757]]}, {"round": "Matchday 15", "group": "Group F", "date": "2026-06-25", "time": "18:00 UTC-5", "ground": "Kansas City", "team1": "Tunisia", "team2": "Netherlands", "prob_team1": 0.18307599672578817, "prob_draw": 0.18680540204309817, "prob_team2": 0.6301186012311135, "expected_goals_team1": 0.6310952535036808, "expected_goals_team2": 2.9666606700553397, "top_scores": [[0, 2, 0.13107962592091088], [0, 3, 0.12962292362171096], [0, 4, 0.09613680736152928]]}, {"round": "Matchday 5", "group": "Group G", "date": "2026-06-15", "time": "12:00 UTC-7", "ground": "Seattle", "team1": "Belgium", "team2": "Egypt", "prob_team1": 0.42684189583899435, "prob_draw": 0.3789062483478174, "prob_team2": 0.19425185581318832, "expected_goals_team1": 1.599758348977385, "expected_goals_team2": 0.8008583806014732, "top_scores": [[1, 0, 0.1459451505717484], [1, 1, 0.1168813969435286], [2, 0, 0.116738486559958]]}, {"round": "Matchday 5", "group": "Group G", "date": "2026-06-15", "time": "18:00 UTC-7", "ground": "Los Angeles (Inglewood)", "team1": "Iran", "team2": "New Zealand", "prob_team1": 0.7694029644051339, "prob_draw": 0.12120795916933458, "prob_team2": 0.10938907642553175, "expected_goals_team1": 1.212317113180963, "expected_goals_team2": 0.6795905151769797, "top_scores": [[1, 0, 0.1831009717352299], [0, 0, 0.15103389182950383], [1, 1, 0.12443368371095048]]}, {"round": "Matchday 11", "group": "Group G", "date": "2026-06-21", "time": "12:00 UTC-7", "ground": "Los Angeles (Inglewood)", "team1": "Belgium", "team2": "Iran", "prob_team1": 0.5832678330089088, "prob_draw": 0.3640111734154343, "prob_team2": 0.05272099357565684, "expected_goals_team1": 1.387916693072788, "expected_goals_team2": 0.8628803561459834, "top_scores": [[1, 0, 0.14665923408974377], [1, 1, 0.12654937214345527], [0, 0, 0.10566861456579685]]}, {"round": "Matchday 11", "group": "Group G", "date": "2026-06-21", "time": "18:00 UTC-7", "ground": "Vancouver", "team1": "New Zealand", "team2": "Egypt", "prob_team1": 0.2622949434600786, "prob_draw": 0.26373040874469106, "prob_team2": 0.4739746477952302, "expected_goals_team1": 0.7833183403344217, "expected_goals_team2": 1.1251783785807976, "top_scores": [[0, 1, 0.16707636110008423], [0, 0, 0.14848877678472622], [1, 1, 0.1308739778860325]]}, {"round": "Matchday 16", "group": "Group G", "date": "2026-06-26", "time": "20:00 UTC-7", "ground": "Seattle", "team1": "Egypt", "team2": "Iran", "prob_team1": 0.1744113210348233, "prob_draw": 0.43887910405616526, "prob_team2": 0.38670957490901164, "expected_goals_team1": 0.9153656570021496, "expected_goals_team2": 1.1367905589227614, "top_scores": [[0, 1, 0.14625144446479252], [1, 1, 0.1338735495500282], [0, 0, 0.1286529372687458]]}, {"round": "Matchday 16", "group": "Group G", "date": "2026-06-26", "time": "20:00 UTC-7", "ground": "Vancouver", "team1": "New Zealand", "team2": "Belgium", "prob_team1": 0.07456456983025783, "prob_draw": 0.19369619894450898, "prob_team2": 0.7317392312252332, "expected_goals_team1": 0.5945774295697426, "expected_goals_team2": 1.7060437458745468, "top_scores": [[0, 1, 0.17234740481257418], [0, 2, 0.14701610604910045], [1, 1, 0.10247387694647625]]}, {"round": "Matchday 5", "group": "Group H", "date": "2026-06-15", "time": "12:00 UTC-4", "ground": "Atlanta", "team1": "Spain", "team2": "Cape Verde", "prob_team1": 0.9476990883285498, "prob_draw": 0.04751381128565632, "prob_team2": 0.0047871003857939635, "expected_goals_team1": 3.964351058622524, "expected_goals_team2": 0.36450430657015653, "top_scores": [[3, 0, 0.17312868145880358], [4, 0, 0.17158571790478247], [5, 0, 0.13604520448406612]]}, {"round": "Matchday 5", "group": "Group H", "date": "2026-06-15", "time": "18:00 UTC-4", "ground": "Miami (Miami Gardens)", "team1": "Saudi Arabia", "team2": "Uruguay", "prob_team1": 0.33330340983228235, "prob_draw": 0.19703196528113232, "prob_team2": 0.4696646248865853, "expected_goals_team1": 0.687510733697318, "expected_goals_team2": 1.1798645478786105, "top_scores": [[0, 1, 0.18258953988687862], [0, 0, 0.15475466248661637], [1, 1, 0.12553226853308364]]}, {"round": "Matchday 11", "group": "Group H", "date": "2026-06-21", "time": "12:00 UTC-4", "ground": "Atlanta", "team1": "Spain", "team2": "Saudi Arabia", "prob_team1": 0.5109935112100675, "prob_draw": 0.3602358387949151, "prob_team2": 0.12877064999501717, "expected_goals_team1": 2.161881796101139, "expected_goals_team2": 0.6090742040004186, "top_scores": [[2, 0, 0.14976447265085374], [1, 0, 0.1385501028973439], [3, 0, 0.10792436237552254]]}, {"round": "Matchday 11", "group": "Group H", "date": "2026-06-21", "time": "18:00 UTC-4", "ground": "Miami (Miami Gardens)", "team1": "Uruguay", "team2": "Cape Verde", "prob_team1": 0.8669726131131955, "prob_draw": 0.10383460098851158, "prob_team2": 0.029192785898292842, "expected_goals_team1": 2.16357678659825, "expected_goals_team2": 0.4114451434651601, "top_scores": [[2, 0, 0.1824738074238144], [1, 0, 0.16867791201505208], [3, 0, 0.13159869796812138]]}, {"round": "Matchday 16", "group": "Group H", "date": "2026-06-26", "time": "19:00 UTC-5", "ground": "Houston", "team1": "Cape Verde", "team2": "Saudi Arabia", "prob_team1": 0.18317767203836738, "prob_draw": 0.19462201975071305, "prob_team2": 0.6222003082109195, "expected_goals_team1": 0.632606439827455, "expected_goals_team2": 1.938390677757684, "top_scores": [[0, 1, 0.15038744563204118], [0, 2, 0.1457548113324696], [1, 1, 0.09513606657603049]]}, {"round": "Matchday 16", "group": "Group H", "date": "2026-06-26", "time": "18:00 UTC-6", "ground": "Guadalajara (Zapopan)", "team1": "Uruguay", "team2": "Spain", "prob_team1": 0.14701630621600664, "prob_draw": 0.30274534620214155, "prob_team2": 0.5502383475818517, "expected_goals_team1": 0.6798313798204546, "expected_goals_team2": 1.4060807948685494, "top_scores": [[0, 1, 0.17521266101606664], [0, 0, 0.1246106636656301], [0, 2, 0.12318157883625235]]}, {"round": "Matchday 6", "group": "Group I", "date": "2026-06-16", "time": "15:00 UTC-4", "ground": "New York/New Jersey (East Rutherford)", "team1": "France", "team2": "Senegal", "prob_team1": 0.5491375065452073, "prob_draw": 0.3271205618662261, "prob_team2": 0.12374193158856645, "expected_goals_team1": 1.921856525007142, "expected_goals_team2": 0.863728332037312, "top_scores": [[1, 0, 0.12027036143678657], [2, 0, 0.11557118944612782], [1, 1, 0.10388091867732033]]}, {"round": "Matchday 6", "group": "Group I", "date": "2026-06-16", "time": "18:00 UTC-4", "ground": "Boston (Foxborough)", "team1": "Iraq", "team2": "Norway", "prob_team1": 0.17842665484894485, "prob_draw": 0.36068051509864385, "prob_team2": 0.4608928300524113, "expected_goals_team1": 0.7762209486492615, "expected_goals_team2": 1.2102042215891053, "top_scores": [[0, 1, 0.16630815079157363], [0, 0, 0.1374215589606821], [1, 1, 0.12909187057553975]]}, {"round": "Matchday 12", "group": "Group I", "date": "2026-06-22", "time": "17:00 UTC-4", "ground": "Philadelphia", "team1": "France", "team2": "Iraq", "prob_team1": 0.8587958778491331, "prob_draw": 0.1264231307076485, "prob_team2": 0.01478099144321817, "expected_goals_team1": 1.9032605459376797, "expected_goals_team2": 0.6343438976253521, "top_scores": [[1, 0, 0.1525025956341389], [2, 0, 0.1451260867117722], [1, 1, 0.0967390909125427]]}, {"round": "Matchday 12", "group": "Group I", "date": "2026-06-22", "time": "20:00 UTC-4", "ground": "New York/New Jersey (East Rutherford)", "team1": "Norway", "team2": "Senegal", "prob_team1": 0.4692377844209767, "prob_draw": 0.3030611212869038, "prob_team2": 0.2277010942921196, "expected_goals_team1": 1.222028631243622, "expected_goals_team2": 1.0569093953280455, "top_scores": [[1, 1, 0.1325702149842554], [1, 0, 0.12543195809429628], [0, 1, 0.10848372255349095]]}, {"round": "Matchday 16", "group": "Group I", "date": "2026-06-26", "time": "15:00 UTC-4", "ground": "Boston (Foxborough)", "team1": "Norway", "team2": "France", "prob_team1": 0.15880191527907583, "prob_draw": 0.2520868226168282, "prob_team2": 0.5891112621040958, "expected_goals_team1": 0.7920660860115196, "expected_goals_team2": 1.5242689142091412, "top_scores": [[0, 1, 0.15109821603786872], [1, 1, 0.1196797725804377], [0, 2, 0.11515715684949024]]}, {"round": "Matchday 16", "group": "Group I", "date": "2026-06-26", "time": "15:00 UTC-4", "ground": "Toronto", "team1": "Senegal", "team2": "Iraq", "prob_team1": 0.5014917871554381, "prob_draw": 0.2898213693004118, "prob_team2": 0.2086868435441502, "expected_goals_team1": 1.3196975507451143, "expected_goals_team2": 0.9786890496174827, "top_scores": [[1, 0, 0.13291466258986487], [1, 1, 0.13008212481030323], [0, 0, 0.10071600308329731]]}, {"round": "Matchday 6", "group": "Group J", "date": "2026-06-16", "time": "20:00 UTC-5", "ground": "Kansas City", "team1": "Argentina", "team2": "Algeria", "prob_team1": 0.48028237510907573, "prob_draw": 0.3633811027033621, "prob_team2": 0.1563365221875621, "expected_goals_team1": 1.4964784503973199, "expected_goals_team2": 0.6064525094468313, "top_scores": [[1, 0, 0.18353334572879354], [2, 0, 0.13732684840623027], [0, 0, 0.12264349391737973]]}, {"round": "Matchday 6", "group": "Group J", "date": "2026-06-16", "time": "21:00 UTC-7", "ground": "San Francisco Bay Area (Santa Clara)", "team1": "Austria", "team2": "Jordan", "prob_team1": 0.6339196194169332, "prob_draw": 0.2032035574241332, "prob_team2": 0.1628768231589338, "expected_goals_team1": 1.3306168855214662, "expected_goals_team2": 0.6807672955390658, "top_scores": [[1, 0, 0.17850106080925665], [0, 0, 0.134149102383668], [1, 1, 0.12151768441797198]]}, {"round": "Matchday 12", "group": "Group J", "date": "2026-06-22", "time": "12:00 UTC-5", "ground": "Dallas (Arlington)", "team1": "Argentina", "team2": "Austria", "prob_team1": 0.5085809412498902, "prob_draw": 0.32437240995866445, "prob_team2": 0.16704664879144537, "expected_goals_team1": 1.509199515666043, "expected_goals_team2": 0.6013407121828033, "top_scores": [[1, 0, 0.18372344428437173], [2, 0, 0.13863766656523552], [0, 0, 0.1217356899318183]]}, {"round": "Matchday 12", "group": "Group J", "date": "2026-06-22", "time": "20:00 UTC-7", "ground": "San Francisco Bay Area (Santa Clara)", "team1": "Jordan", "team2": "Algeria", "prob_team1": 0.2731492062248568, "prob_draw": 0.28324966673543395, "prob_team2": 0.4436011270397092, "expected_goals_team1": 0.6750290978326197, "expected_goals_team2": 1.3419280168270253, "top_scores": [[0, 1, 0.1790363215436805], [0, 0, 0.13341723199654928], [1, 1, 0.12085472661090145]]}, {"round": "Matchday 17", "group": "Group J", "date": "2026-06-27", "time": "21:00 UTC-5", "ground": "Kansas City", "team1": "Algeria", "team2": "Austria", "prob_team1": 0.4601079371600188, "prob_draw": 0.2927198356967219, "prob_team2": 0.24717222714325915, "expected_goals_team1": 0.9280128346397495, "expected_goals_team2": 0.9124343002674687, "top_scores": [[0, 0, 0.15886910131790893], [1, 0, 0.1474325650507022], [0, 1, 0.14495761729512782]]}, {"round": "Matchday 17", "group": "Group J", "date": "2026-06-27", "time": "21:00 UTC-5", "ground": "Dallas (Arlington)", "team1": "Jordan", "team2": "Argentina", "prob_team1": 0.1536723264137502, "prob_draw": 0.11549918710826577, "prob_team2": 0.7308284864779842, "expected_goals_team1": 0.44487858283691395, "expected_goals_team2": 2.1823373960557646, "top_scores": [[0, 2, 0.17636677737341952], [0, 1, 0.16163108206107366], [0, 3, 0.1282972712279517]]}, {"round": "Matchday 7", "group": "Group K", "date": "2026-06-17", "time": "12:00 UTC-5", "ground": "Houston", "team1": "Portugal", "team2": "DR Congo", "prob_team1": 0.5396285135413343, "prob_draw": 0.4072055988763747, "prob_team2": 0.05316588758229075, "expected_goals_team1": 1.3834960184452576, "expected_goals_team2": 0.6446468881884218, "top_scores": [[1, 0, 0.18260232974814855], [0, 0, 0.13198616209488845], [2, 0, 0.12631479808269575]]}, {"round": "Matchday 7", "group": "Group K", "date": "2026-06-17", "time": "20:00 UTC-6", "ground": "Mexico City", "team1": "Uzbekistan", "team2": "Colombia", "prob_team1": 0.1548950162687025, "prob_draw": 0.26821320518633796, "prob_team2": 0.5768917785449595, "expected_goals_team1": 0.6655797781478167, "expected_goals_team2": 1.5634174459715557, "top_scores": [[0, 1, 0.16920906158697546], [0, 2, 0.13227219945077642], [1, 1, 0.11262212967165937]]}, {"round": "Matchday 13", "group": "Group K", "date": "2026-06-23", "time": "12:00 UTC-5", "ground": "Houston", "team1": "Portugal", "team2": "Uzbekistan", "prob_team1": 0.7953143682507195, "prob_draw": 0.16305026201756342, "prob_team2": 0.04163536973171707, "expected_goals_team1": 1.5878379184885016, "expected_goals_team2": 0.772269267141762, "top_scores": [[1, 0, 0.15080983084116356], [2, 0, 0.11973078394521808], [1, 1, 0.11646579754147848]]}, {"round": "Matchday 13", "group": "Group K", "date": "2026-06-23", "time": "20:00 UTC-6", "ground": "Guadalajara (Zapopan)", "team1": "Colombia", "team2": "DR Congo", "prob_team1": 0.568488174971299, "prob_draw": 0.3537925365037956, "prob_team2": 0.07771928852490538, "expected_goals_team1": 1.3622182632648625, "expected_goals_team2": 0.5555885117792325, "top_scores": [[1, 0, 0.20071696558530008], [0, 0, 0.14734567212763447], [2, 0, 0.13671015813370035]]}, {"round": "Matchday 17", "group": "Group K", "date": "2026-06-27", "time": "19:30 UTC-4", "ground": "Miami (Miami Gardens)", "team1": "Colombia", "team2": "Portugal", "prob_team1": 0.3688247639517332, "prob_draw": 0.32236818727350197, "prob_team2": 0.30880704877476495, "expected_goals_team1": 1.1443479753113057, "expected_goals_team2": 1.001660820815148, "top_scores": [[1, 1, 0.13429289909135084], [1, 0, 0.1340702324585919], [0, 1, 0.11735320198807371]]}, {"round": "Matchday 17", "group": "Group K", "date": "2026-06-27", "time": "19:30 UTC-4", "ground": "Atlanta", "team1": "DR Congo", "team2": "Uzbekistan", "prob_team1": 0.40982209772723005, "prob_draw": 0.3176755525912129, "prob_team2": 0.27250234968155707, "expected_goals_team1": 0.8807217850067673, "expected_goals_team2": 0.9193001801506187, "top_scores": [[0, 0, 0.1654094408768944], [0, 1, 0.15206092879674216], [1, 0, 0.14567969802606978]]}, {"round": "Matchday 7", "group": "Group L", "date": "2026-06-17", "time": "15:00 UTC-5", "ground": "Dallas (Arlington)", "team1": "England", "team2": "Croatia", "prob_team1": 0.3801991580989151, "prob_draw": 0.260384581204675, "prob_team2": 0.3594162606964099, "expected_goals_team1": 1.250719963536605, "expected_goals_team2": 0.8550805569637071, "top_scores": [[1, 0, 0.15259411869465847], [1, 1, 0.1304802640028146], [0, 0, 0.12200502362109489]]}, {"round": "Matchday 7", "group": "Group L", "date": "2026-06-17", "time": "19:00 UTC-4", "ground": "Toronto", "team1": "Ghana", "team2": "Panama", "prob_team1": 0.25660465315336317, "prob_draw": 0.3015644675239737, "prob_team2": 0.44183087932266324, "expected_goals_team1": 0.6640283462479165, "expected_goals_team2": 1.4146773616656938, "top_scores": [[0, 1, 0.17757460350368742], [0, 2, 0.12560538579171407], [0, 0, 0.12552304031684258]]}, {"round": "Matchday 13", "group": "Group L", "date": "2026-06-23", "time": "16:00 UTC-4", "ground": "Boston (Foxborough)", "team1": "England", "team2": "Ghana", "prob_team1": 0.6009691035952174, "prob_draw": 0.3307547197323595, "prob_team2": 0.06827617667242326, "expected_goals_team1": 1.9989040520877406, "expected_goals_team2": 0.4461776953127407, "top_scores": [[1, 0, 0.17625683293553027], [2, 0, 0.17616024878149172], [3, 0, 0.11737581170203609]]}, {"round": "Matchday 13", "group": "Group L", "date": "2026-06-23", "time": "19:00 UTC-4", "ground": "Toronto", "team1": "Panama", "team2": "Croatia", "prob_team1": 0.30557017260990393, "prob_draw": 0.26741790395001264, "prob_team2": 0.42701192344008326, "expected_goals_team1": 0.8851676579226387, "expected_goals_team2": 1.2725820544466473, "top_scores": [[0, 1, 0.14743371291529278], [1, 1, 0.1305035543600684], [0, 0, 0.11585399338308358]]}, {"round": "Matchday 17", "group": "Group L", "date": "2026-06-27", "time": "17:00 UTC-4", "ground": "New York/New Jersey (East Rutherford)", "team1": "Panama", "team2": "England", "prob_team1": 0.14306667766749556, "prob_draw": 0.25972610831749593, "prob_team2": 0.5972072140150084, "expected_goals_team1": 0.6512432698869514, "expected_goals_team2": 1.3694827176741875, "top_scores": [[0, 1, 0.18207237170682256], [0, 0, 0.13294974033410129], [0, 2, 0.1246724832092221]]}, {"round": "Matchday 17", "group": "Group L", "date": "2026-06-27", "time": "17:00 UTC-4", "ground": "Philadelphia", "team1": "Croatia", "team2": "Ghana", "prob_team1": 0.6164710863544729, "prob_draw": 0.31528212762129415, "prob_team2": 0.06824678602423288, "expected_goals_team1": 1.8574673432664162, "expected_goals_team2": 0.6064432199750133, "top_scores": [[1, 0, 0.1599919323338597], [2, 0, 0.14858989474811726], [1, 1, 0.09702602261457031]]}];
+    const MODEL_DATA = {"poisson_coefficients": [0.1905096763114643, 0.018168764982930338, -0.018966743041987873, 0.06933470358327709, 0.16417396862529693, -0.00019499335336168564, 0.07948741123574847, 0.02400564062914223, -0.07032648953860882, 0.22652298907686375], "poisson_intercept": -0.3440655641636153, "features_names": ["elo_diff", "rank_diff", "points_diff", "avg_gols_marcados_5j", "avg_gols_sofridos_5j_opp", "form_score", "form_score_opp", "win_rate_1ano", "win_rate_1ano_opp", "is_home"], "elos": {"Scotland": 1256.6560750027622, "England": 1442.3128693507676, "Wales": 1200.4270623038085, "Northern Ireland": 1062.5704639963642, "USA": 1310.7983494183072, "Canada": 1297.7835206601806, "Uruguay": 1349.3832462179344, "Argentina": 1528.7290263728835, "Austria": 1285.951181196604, "Hungary": 1228.8984007641982, "Czechoslovakia": 1185.4907781933314, "Belgium": 1329.9100108921891, "France": 1487.5175355642218, "Switzerland": 1314.4623783564791, "Guernsey": 1184.5972508641787, "Alderney": 664.7639956347773, "Jersey": 1240.544562992237, "Netherlands": 1404.093137379574, "Guyana": 984.2191534616472, "Trinidad and Tobago": 1032.9291367289645, "South Africa": 1145.7405169246601, "Germany": 1414.968430858828, "Sweden": 1208.7191798970875, "Norway": 1318.9568926487236, "Denmark": 1314.9467075315429, "Italy": 1367.2888925207117, "Chile": 1194.6901108626578, "Russia": 1270.4321280926179, "Finland": 1036.474668813644, "Luxembourg": 935.3033374711208, "Catalonia": 1105.0370252877758, "Philippines": 880.9424686733706, "China": 1053.4930122705832, "Brazil": 1421.3265233930258, "Basque Country": 1187.5414070004688, "Japan": 1391.6074137578562, "Paraguay": 1280.3141644549696, "Romania": 1152.3086677752547, "Greece": 1234.2262964221486, "Yugoslavia": 1262.3263722326303, "Spain": 1552.524432699638, "Egypt": 1244.7487091064907, "Estonia": 903.5128890691519, "Suriname": 1048.9070235112363, "Provence": 919.775264040526, "Costa Rica": 1199.3684523784245, "El Salvador": 989.2840142449953, "Guatemala": 1106.498390157752, "Poland": 1207.9461700201998, "Portugal": 1431.5527180357747, "Brittany": 1017.8842594410984, "New Zealand": 1157.1440668515986, "Australia": 1313.82086273072, "Latvia": 839.4243243769927, "Galicia": 1029.6729753696738, "Central Spain": 1000.3132142149293, "Mexico": 1375.9846533097927, "Andalusia": 1065.5465126253548, "Asturias": 1007.8201120703458, "Lithuania": 823.3270956045151, "Turkey": 1348.1921956085062, "Aruba": 747.9211607783639, "Curaçao": 1044.5912122085717, "Bulgaria": 1002.8162639023147, "Ireland": 1178.4425989646727, "Haiti": 1124.9356111220752, "Jamaica": 1131.9276193287021, "Kenya": 974.5260642867197, "Uganda": 1010.6046562078179, "Bolivia": 1129.7167227394161, "Peru": 1191.2496533229482, "Honduras": 1154.459746309481, "Belarus": 1005.1901221923325, "Ukraine": 1242.0536357769063, "Barbados": 723.2896387114064, "Nicaragua": 989.2774361344831, "Cuba": 921.930609043809, "Martinique": 965.7865823985038, "Dominica": 737.981816245503, "Silesia": 1005.8826655154289, "Guadeloupe": 1023.6098199796897, "Israel": 1110.8460349581405, "Indonesia": 996.0335596042862, "French Guiana": 899.0016694715989, "Saint Lucia": 826.6870420482036, "Colombia": 1406.2165821122994, "Panama": 1266.5034281941255, "Venezuela": 1227.316265207087, "Ecuador": 1372.9259841727671, "Saint Kitts and Nevis": 850.3010327727368, "Grenada": 842.0661456038322, "India": 800.3957555980293, "Slovakia": 1156.2767363161383, "Manchukuo": 975.3737752843208, "Croatia": 1364.5083739912805, "Lebanon": 948.4348507573081, "Puerto Rico": 904.8605811330826, "Afghanistan": 746.715665468491, "Iran": 1318.381026686681, "Mongolia": 636.3979974016784, "Tanzania": 928.3330961610077, "Zimbabwe": 954.0918567376766, "Zambia": 1040.5719156300906, "Iceland": 1051.859105184726, "Albania": 1105.1955898228393, "Montenegro": 1009.9805770257087, "Madagascar": 959.5377795686614, "Mauritius": 753.4215726329753, "Réunion": 1052.5734066766286, "Zanzibar": 1019.6435431917496, "Djibouti": 647.0472128384973, "Ethiopia": 903.289987035539, "DR Congo": 1183.2583027048436, "South Korea": 1312.3135408093904, "Vietnam": 1015.7758807122132, "Macau": 515.310319790428, "Dominican Republic": 982.1407893041227, "Cyprus": 887.9869213360195, "Sierra Leone": 953.2419384873567, "Nigeria": 1274.6266307907513, "Syria": 1057.2160109984184, "Serbia": 1229.78929366478, "Taiwan": 662.0144206693129, "Ghana": 1065.6004335731104, "Myanmar": 753.1744832981669, "New Caledonia": 1057.9622886682603, "Vanuatu": 982.5004194647166, "Fiji": 979.1641208391626, "Pakistan": 651.1920733550345, "Sri Lanka": 638.2924620108959, "German DR": 1159.2997840607895, "Tahiti": 1025.9738658634128, "Gambia": 996.9118015204209, "Hong Kong": 875.4750037847238, "Singapore": 883.1712956556136, "Malaysia": 1020.2771198338697, "Guinea-Bissau": 893.8690837066714, "Saarland": 971.6922850011739, "Burundi": 895.6635295411032, "Cameroon": 1184.5153625208425, "Kernow": 1056.6505832424893, "Cambodia": 667.9290921615471, "Thailand": 1046.8842654250932, "Vietnam Republic": 905.092126835449, "Kyrgyzstan": 960.8264240433414, "Moldova": 854.5774024668598, "North Vietnam": 974.8622073729322, "Togo": 962.3767827221216, "North Korea": 989.2735790398699, "Sudan": 956.4611280474267, "Malta": 842.3600557977226, "Tunisia": 1165.3888431246776, "Libya": 994.0767626203886, "Malawi": 921.2651918471901, "Morocco": 1400.4342597898722, "Benin": 1021.5341211613653, "Cape Verde": 1098.098580821766, "Ivory Coast": 1238.9138605822945, "Burkina Faso": 1113.8034931355314, "Gabon": 1017.9861556509878, "Congo": 868.6022750851884, "Mali": 1146.8885439286728, "Central African Republic": 865.8963479040501, "Iraq": 1214.9001232871447, "Saint Vincent and the Grenadines": 894.3900442013111, "Senegal": 1327.2203018785415, "Laos": 601.5737800543347, "Mauritania": 959.2511859066457, "Liberia": 905.09604262085, "Chad": 798.4253200707149, "Niger": 945.4753618326322, "Guinea": 1023.5238114667972, "Algeria": 1291.6190507782417, "Kuwait": 994.9422337494427, "Jordan": 1201.9535190634683, "Papua New Guinea": 992.3393291485309, "Solomon Islands": 940.3055076760864, "Somalia": 636.6436025614906, "Saudi Arabia": 1165.591664886477, "Bermuda": 883.7292311646524, "Palestine": 1038.305766851318, "Bahrain": 1054.7718635391843, "Yemen": 833.0428692962664, "Oman": 1089.3277584534544, "Wallis Islands and Futuna": 874.4448263490783, "Corsica": 1042.7747551263108, "Western Australia": 923.1391079530823, "Eswatini": 817.3443665209181, "Botswana": 917.0773964734201, "Qatar": 1123.283662390118, "Lesotho": 890.1620476424338, "Bahamas": 627.0546025012586, "Brunei": 578.4038967183009, "Cook Islands": 789.6275758015419, "Yemen DPR": 903.8681624879242, "United Arab Emirates": 1132.0701678914743, "Faroe Islands": 883.0854596474323, "Nepal": 673.8400727463585, "Antigua and Barbuda": 725.5250377703508, "Bangladesh": 725.2665579375582, "Seychelles": 597.3738406010348, "Equatorial Guinea": 969.4470330399458, "Mozambique": 1001.7866067058593, "Guam": 613.3585154063427, "Angola": 1051.687160761141, "São Tomé and Príncipe": 723.5554184272659, "Rwanda": 964.2604403497911, "Northern Cyprus": 1122.577799726111, "Armenia": 929.5317107582732, "Georgia": 1134.858114621348, "Azerbaijan": 900.0386848643775, "Kazakhstan": 979.9248838090638, "Comoros": 968.8972261894976, "Maldives": 620.166002429627, "Tonga": 741.4678384890757, "Kiribati": 889.733862829369, "Tuvalu": 842.7670189582801, "Samoa": 853.4099757999905, "Greenland": 960.0368806550571, "Liechtenstein": 563.4583215567717, "Bhutan": 504.6190858246753, "South Yemen": 979.3745334239918, "American Samoa": 667.836308282946, "Niue": 980.3270434767581, "Belize": 837.8728872828233, "Cayman Islands": 695.2779941885283, "Anguilla": 566.8634084695314, "British Virgin Islands": 632.8933979470709, "Palau": 979.8322695884391, "Sint Maarten": 860.4733274587333, "Namibia": 919.0856330017776, "Ynys Môn": 1134.3785356806547, "Shetland": 981.4436731104704, "Åland Islands": 994.6976188300505, "Saint Martin": 824.4914518257614, "San Marino": 500.57284746694876, "Montserrat": 806.1405736802584, "Slovenia": 1189.401218301798, "Isle of Wight": 1112.1027644542385, "Turkmenistan": 909.4962762551364, "Tajikistan": 960.7855975155057, "Uzbekistan": 1260.896085547666, "Eritrea": 781.2288167957453, "Isle of Man": 1133.8998634890172, "Gibraltar": 689.2569828212096, "North Macedonia": 1099.0414918499378, "Czech Republic": 1228.8207744722447, "Bosnia and Herzegovina": 1097.369948537279, "Canary Islands": 1009.3501704265998, "Andorra": 668.1271634090948, "Hitra": 904.2623845633827, "Frøya": 810.9205574679262, "United States Virgin Islands": 614.9206336110379, "Northern Mariana Islands": 706.9493457315958, "Turks and Caicos Islands": 694.8923964381625, "Micronesia": 939.2490751855504, "Saare County": 873.7607325381663, "Rhodes": 1065.695700001544, "Gotland": 951.76449732153, "Monaco": 980.4161471122358, "Western Sahara": 953.0361869929314, "Tibet": 849.8524089423659, "Orkney": 937.6522586544147, "Falkland Islands": 824.2426671832545, "Mayotte": 940.3018969216483, "Vatican City": 965.3917594803621, "Timor-Leste": 533.4774825625726, "Sark": 950.9720054394529, "Sealand": 982.170040947802, "Occitania": 1118.7795953206708, "Chechnya": 985.3330785464221, "Ambazonia": 884.895064058624, "Western Isles": 959.6330812491801, "Kosovo": 1168.0563092063135, "Republic of St. Pauli": 983.2891691787548, "Găgăuzia": 964.6428327757172, "Crimea": 1008.5277869031382, "Sápmi": 975.089610201451, "Romani people": 978.1595179665322, "Menorca": 1025.111771631277, "Iraqi Kurdistan": 1150.213363318944, "Padania": 1179.3823539259247, "Arameans Suryoye": 1034.3539393429883, "Gozo": 939.9736495269148, "Two Sicilies": 933.64218864138, "Saint Barthélemy": 962.0136592221932, "Saint Pierre and Miquelon": 916.3710740855937, "Bonaire": 758.3858978440107, "Chagos Islands": 924.4662159648868, "Raetia": 912.7442380339435, "Cilento": 992.7618346487111, "Kurdistan": 1037.799635251888, "Darfur": 875.0831510044721, "Tamil Eelam": 1031.6313151989339, "South Sudan": 798.5749608906609, "Abkhazia": 1090.5414104097995, "Artsakh": 1037.3255014127033, "Madrid": 993.7681129635009, "Quebec": 1006.9423085398995, "Saugeais": 998.45218555996, "South Ossetia": 985.9786235004275, "Ellan Vannin": 1049.2565324194059, "Somaliland": 991.9342589754738, "Franconia": 995.2674856911251, "County of Nice": 1062.3770613695287, "Seborga": 991.9421996914147, "Székely Land": 977.7555105541079, "Luhansk PR": 992.5586042054009, "Donetsk PR": 1003.002112098383, "Felvidék": 1008.6648380420336, "Panjab": 1028.9421166992306, "United Koreans in Japan": 998.2942077583862, "Western Armenia": 990.2146083046232, "Kárpátalja": 1056.4012356992368, "Délvidék": 997.5476726905304, "Barawa": 946.4660646306766, "Ryūkyū": 992.4546808821301, "Yorkshire": 1033.7370791482954, "Surrey": 1006.9145797814605, "Kabylia": 977.3681082835287, "Matabeleland": 1001.0810562996847, "Cascadia": 1019.8667842385514, "Parishes of Jersey": 1006.3378704730724, "Chameria": 1013.0810748329596, "Saint Helena": 917.705106905687, "West Papua": 990.2482111178053, "East Turkestan": 975.1754927242816, "Yoruba Nation": 987.1111205859842, "Biafra": 1013.4957840819915, "Mapuche": 1000.4495297093191, "Maule Sur": 1024.0860136495817, "Aymara": 975.4644566410991, "Elba Island": 1005.2036385191096, "Ticino": 974.3783533711633, "Hmong": 982.4106597700372, "Marshall Islands": 955.7591159561116}, "fifa": {"Afghanistan": {"rank": 145.0, "points": 187.6}, "Albania": {"rank": 58.0, "points": 537.79}, "Algeria": {"rank": 66.0, "points": 473.83}, "American Samoa": {"rank": 192.0, "points": 38.25}, "Andorra": {"rank": 130.0, "points": 228.81}, "Angola": {"rank": 137.0, "points": 209.08}, "Anguilla": {"rank": 206.0, "points": 0.0}, "Antigua and Barbuda": {"rank": 126.0, "points": 239.34}, "Argentina": {"rank": 5.0, "points": 1241.45}, "Armenia": {"rank": 100.0, "points": 338.21}, "Aruba": {"rank": 188.0, "points": 48.45}, "Australia": {"rank": 36.0, "points": 718.33}, "Austria": {"rank": 26.0, "points": 844.7}, "Azerbaijan": {"rank": 105.0, "points": 321.48}, "Bahamas": {"rank": 206.0, "points": 0.0}, "Bahrain": {"rank": 113.0, "points": 289.25}, "Bangladesh": {"rank": 194.0, "points": 34.76}, "Barbados": {"rank": 160.0, "points": 127.07}, "Belarus": {"rank": 78.0, "points": 417.42}, "Belgium": {"rank": 3.0, "points": 1298.32}, "Belize": {"rank": 163.0, "points": 115.31}, "Benin": {"rank": 88.0, "points": 378.77}, "Bermuda": {"rank": 178.0, "points": 81.64}, "Bhutan": {"rank": 183.0, "points": 68.0}, "Bolivia": {"rank": 59.0, "points": 536.08}, "Bosnia and Herzegovina": {"rank": 40.0, "points": 692.93}, "Botswana": {"rank": 139.0, "points": 204.52}, "Brazil": {"rank": 2.0, "points": 1430.57}, "British Virgin Islands": {"rank": 204.0, "points": 4.25}, "Brunei Darussalam": {"rank": 195.0, "points": 34.0}, "Bulgaria": {"rank": 49.0, "points": 614.39}, "Burkina Faso": {"rank": 52.0, "points": 604.15}, "Burundi": {"rank": 148.0, "points": 174.16}, "Cambodia": {"rank": 166.0, "points": 103.2}, "Cameroon": {"rank": 49.0, "points": 613.88}, "Canada": {"rank": 79.0, "points": 410.93}, "Cape Verde Islands": {"rank": 65.0, "points": 477.77}, "Cayman Islands": {"rank": 202.0, "points": 8.5}, "Central African Republic": {"rank": 108.0, "points": 303.08}, "Chad": {"rank": 175.0, "points": 87.98}, "Chile": {"rank": 9.0, "points": 1134.66}, "China PR": {"rank": 75.0, "points": 423.09}, "Chinese Taipei": {"rank": 123.0, "points": 246.74}, "Colombia": {"rank": 16.0, "points": 985.97}, "Comoros": {"rank": 149.0, "points": 171.66}, "Congo": {"rank": 83.0, "points": 393.04}, "Cook Islands": {"rank": 192.0, "points": 38.25}, "Costa Rica": {"rank": 23.0, "points": 884.04}, "Croatia": {"rank": 20.0, "points": 945.18}, "Cuba": {"rank": 181.0, "points": 74.88}, "Curaçao": {"rank": 81.0, "points": 408.27}, "Cyprus": {"rank": 87.0, "points": 383.53}, "Czech Republic": {"rank": 46.0, "points": 640.7}, "DR Congo": {"rank": 38.0, "points": 705.87}, "Denmark": {"rank": 12.0, "points": 1051.44}, "Djibouti": {"rank": 197.0, "points": 31.88}, "Dominica": {"rank": 177.0, "points": 86.07}, "Dominican Republic": {"rank": 152.0, "points": 162.4}, "Ecuador": {"rank": 60.0, "points": 523.85}, "Egypt": {"rank": 45.0, "points": 649.43}, "El Salvador": {"rank": 72.0, "points": 441.53}, "England": {"rank": 12.0, "points": 1050.84}, "Equatorial Guinea": {"rank": 143.0, "points": 189.97}, "Eritrea": {"rank": 206.0, "points": 0.0}, "Estonia": {"rank": 94.0, "points": 359.41}, "Ethiopia": {"rank": 151.0, "points": 165.84}, "FYR Macedonia": {"rank": 71.0, "points": 451.3}, "Faroe Islands": {"rank": 90.0, "points": 375.91}, "Fiji": {"rank": 165.0, "points": 103.65}, "Finland": {"rank": 63.0, "points": 486.43}, "France": {"rank": 7.0, "points": 1198.13}, "Gabon": {"rank": 85.0, "points": 389.96}, "Gambia": {"rank": 172.0, "points": 91.94}, "Georgia": {"rank": 96.0, "points": 351.51}, "Germany": {"rank": 1.0, "points": 1558.49}, "Ghana": {"rank": 47.0, "points": 623.69}, "Gibraltar": {"rank": 195.0, "points": 34.16}, "Greece": {"rank": 44.0, "points": 649.82}, "Grenada": {"rank": 168.0, "points": 101.53}, "Guam": {"rank": 190.0, "points": 44.96}, "Guatemala": {"rank": 146.0, "points": 179.79}, "Guinea": {"rank": 68.0, "points": 462.98}, "Guinea-Bissau": {"rank": 121.0, "points": 255.11}, "Guyana": {"rank": 182.0, "points": 73.41}, "Haiti": {"rank": 104.0, "points": 321.93}, "Honduras": {"rank": 62.0, "points": 503.3}, "Hong Kong": {"rank": 142.0, "points": 195.06}, "Hungary": {"rank": 51.0, "points": 611.82}, "IR Iran": {"rank": 37.0, "points": 708.35}, "Iceland": {"rank": 22.0, "points": 908.01}, "India": {"rank": 97.0, "points": 349.92}, "Indonesia": {"rank": 164.0, "points": 111.49}, "Iraq": {"rank": 89.0, "points": 376.7}, "Ireland": {"rank": 31.0, "points": 777.11}, "Israel": {"rank": 93.0, "points": 361.87}, "Italy": {"rank": 19.0, "points": 951.25}, "Ivory Coast": {"rank": 68.0, "points": 463.4}, "Jamaica": {"rank": 54.0, "points": 588.13}, "Japan": {"rank": 61.0, "points": 520.75}, "Jordan": {"rank": 110.0, "points": 296.18}, "Kazakhstan": {"rank": 117.0, "points": 272.85}, "Kenya": {"rank": 112.0, "points": 290.83}, "Kosovo": {"rank": 141.0, "points": 197.2}, "Kuwait": {"rank": 159.0, "points": 128.48}, "Kyrgyz Republic": {"rank": 92.0, "points": 362.71}, "Laos": {"rank": 178.0, "points": 81.58}, "Latvia": {"rank": 129.0, "points": 230.04}, "Lebanon": {"rank": 79.0, "points": 411.49}, "Lesotho": {"rank": 147.0, "points": 175.48}, "Liberia": {"rank": 158.0, "points": 129.08}, "Libya": {"rank": 101.0, "points": 335.87}, "Liechtenstein": {"rank": 180.0, "points": 79.76}, "Lithuania": {"rank": 126.0, "points": 239.38}, "Luxembourg": {"rank": 85.0, "points": 389.95}, "Macau": {"rank": 185.0, "points": 60.11}, "Madagascar": {"rank": 106.0, "points": 307.7}, "Malawi": {"rank": 123.0, "points": 247.19}, "Malaysia": {"rank": 171.0, "points": 93.04}, "Maldives": {"rank": 150.0, "points": 171.42}, "Mali": {"rank": 64.0, "points": 483.7}, "Malta": {"rank": 184.0, "points": 65.11}, "Mauritania": {"rank": 107.0, "points": 304.17}, "Mauritius": {"rank": 155.0, "points": 140.37}, "Mexico": {"rank": 15.0, "points": 989.44}, "Moldova": {"rank": 175.0, "points": 87.81}, "Mongolia": {"rank": 186.0, "points": 51.0}, "Montenegro": {"rank": 43.0, "points": 651.58}, "Montserrat": {"rank": 204.0, "points": 4.25}, "Morocco": {"rank": 41.0, "points": 685.86}, "Mozambique": {"rank": 114.0, "points": 281.55}, "Myanmar": {"rank": 138.0, "points": 205.52}, "Namibia": {"rank": 116.0, "points": 277.06}, "Nepal": {"rank": 161.0, "points": 118.47}, "Netherlands": {"rank": 17.0, "points": 980.98}, "Netherlands Antilles": {"rank": 151.0, "points": 0.0}, "New Caledonia": {"rank": 154.0, "points": 149.6}, "New Zealand": {"rank": 120.0, "points": 255.78}, "Nicaragua": {"rank": 132.0, "points": 227.69}, "Niger": {"rank": 103.0, "points": 323.36}, "Nigeria": {"rank": 48.0, "points": 617.79}, "North Korea": {"rank": 108.0, "points": 303.11}, "Northern Ireland": {"rank": 29.0, "points": 803.22}, "Norway": {"rank": 53.0, "points": 595.99}, "Oman": {"rank": 84.0, "points": 391.06}, "Pakistan": {"rank": 201.0, "points": 10.17}, "Palestine": {"rank": 99.0, "points": 347.07}, "Panama": {"rank": 55.0, "points": 571.17}, "Papua New Guinea": {"rank": 166.0, "points": 102.67}, "Paraguay": {"rank": 32.0, "points": 773.18}, "Peru": {"rank": 11.0, "points": 1125.39}, "Philippines": {"rank": 115.0, "points": 280.02}, "Poland": {"rank": 8.0, "points": 1182.61}, "Portugal": {"rank": 4.0, "points": 1273.69}, "Puerto Rico": {"rank": 173.0, "points": 88.59}, "Qatar": {"rank": 98.0, "points": 347.59}, "RCS": {"rank": 19.0, "points": 0.0}, "Romania": {"rank": 30.0, "points": 781.66}, "Russia": {"rank": 70.0, "points": 456.53}, "Rwanda": {"rank": 136.0, "points": 216.13}, "Samoa": {"rank": 197.0, "points": 31.88}, "San Marino": {"rank": 203.0, "points": 7.92}, "Saudi Arabia": {"rank": 67.0, "points": 465.28}, "Scotland": {"rank": 42.0, "points": 659.61}, "Senegal": {"rank": 27.0, "points": 837.98}, "Serbia": {"rank": 34.0, "points": 750.75}, "Serbia and Montenegro": {"rank": 36.0, "points": 0.0}, "Seychelles": {"rank": 188.0, "points": 48.47}, "Sierra Leone": {"rank": 111.0, "points": 292.16}, "Singapore": {"rank": 169.0, "points": 98.85}, "Slovakia": {"rank": 28.0, "points": 804.36}, "Slovenia": {"rank": 56.0, "points": 558.05}, "Solomon Islands": {"rank": 143.0, "points": 189.91}, "Somalia": {"rank": 206.0, "points": 0.0}, "South Africa": {"rank": 74.0, "points": 427.68}, "South Korea": {"rank": 57.0, "points": 543.67}, "South Sudan": {"rank": 156.0, "points": 131.82}, "Spain": {"rank": 10.0, "points": 1125.5}, "Sri Lanka": {"rank": 200.0, "points": 16.76}, "St Kitts and Nevis": {"rank": 135.0, "points": 218.06}, "St Lucia": {"rank": 170.0, "points": 94.94}, "St Vincent and the Grenadines": {"rank": 173.0, "points": 88.6}, "Sudan": {"rank": 128.0, "points": 232.17}, "Suriname": {"rank": 153.0, "points": 154.19}, "Swaziland": {"rank": 134.0, "points": 222.13}, "Sweden": {"rank": 24.0, "points": 879.9}, "Switzerland": {"rank": 6.0, "points": 1198.72}, "Syria": {"rank": 73.0, "points": 439.65}, "São Tomé e Príncipe": {"rank": 186.0, "points": 50.54}, "Tahiti": {"rank": 157.0, "points": 129.62}, "Tajikistan": {"rank": 119.0, "points": 263.65}, "Tanzania": {"rank": 140.0, "points": 200.32}, "Thailand": {"rank": 122.0, "points": 248.21}, "Timor-Leste": {"rank": 190.0, "points": 44.86}, "Togo": {"rank": 125.0, "points": 241.13}, "Tonga": {"rank": 206.0, "points": 0.0}, "Trinidad and Tobago": {"rank": 91.0, "points": 369.54}, "Tunisia": {"rank": 21.0, "points": 909.91}, "Turkey": {"rank": 38.0, "points": 706.39}, "Turkmenistan": {"rank": 130.0, "points": 229.36}, "Turks and Caicos Islands": {"rank": 206.0, "points": 0.0}, "US Virgin Islands": {"rank": 199.0, "points": 17.6}, "USA": {"rank": 25.0, "points": 872.68}, "Uganda": {"rank": 82.0, "points": 402.91}, "Ukraine": {"rank": 35.0, "points": 732.77}, "United Arab Emirates": {"rank": 77.0, "points": 417.66}, "Uruguay": {"rank": 14.0, "points": 1018.41}, "Uzbekistan": {"rank": 95.0, "points": 353.91}, "Vanuatu": {"rank": 162.0, "points": 116.83}, "Venezuela": {"rank": 33.0, "points": 754.55}, "Vietnam": {"rank": 102.0, "points": 334.37}, "Wales": {"rank": 18.0, "points": 953.46}, "Yemen": {"rank": 133.0, "points": 227.43}, "Yugoslavia": {"rank": 16.0, "points": 0.0}, "Zaire": {"rank": 59.0, "points": 0.0}, "Zambia": {"rank": 76.0, "points": 420.31}, "Zimbabwe": {"rank": 118.0, "points": 264.59}}, "features": {"Abkhazia": {"avg_gols_marcados_5j": 0.0, "avg_gols_sofridos_5j": 0.0, "form_score": 1.0, "win_rate_1ano": 0.0}, "Afghanistan": {"avg_gols_marcados_5j": 0.0, "avg_gols_sofridos_5j": 2.0, "form_score": 0.0, "win_rate_1ano": 0.0}, "Albania": {"avg_gols_marcados_5j": 0.0, "avg_gols_sofridos_5j": 1.0, "form_score": 0.0, "win_rate_1ano": 0.0}, "Alderney": {"avg_gols_marcados_5j": 0.0, "avg_gols_sofridos_5j": 2.0, "form_score": 0.0, "win_rate_1ano": 0.0}, "Algeria": {"avg_gols_marcados_5j": 1.0, "avg_gols_sofridos_5j": 0.0, "form_score": 3.0, "win_rate_1ano": 1.0}, "Ambazonia": {"avg_gols_marcados_5j": 1.0, "avg_gols_sofridos_5j": 3.0, "form_score": 0.0, "win_rate_1ano": 0.0}, "American Samoa": {"avg_gols_marcados_5j": 0.0, "avg_gols_sofridos_5j": 6.0, "form_score": 0.0, "win_rate_1ano": 0.0}, "Andalusia": {"avg_gols_marcados_5j": 2.0, "avg_gols_sofridos_5j": 1.0, "form_score": 3.0, "win_rate_1ano": 1.0}, "Andorra": {"avg_gols_marcados_5j": 0.0, "avg_gols_sofridos_5j": 3.0, "form_score": 0.0, "win_rate_1ano": 0.0}, "Angola": {"avg_gols_marcados_5j": 1.0, "avg_gols_sofridos_5j": 1.0, "form_score": 1.0, "win_rate_1ano": 0.0}, "Anguilla": {"avg_gols_marcados_5j": 0.0, "avg_gols_sofridos_5j": 4.0, "form_score": 0.0, "win_rate_1ano": 0.0}, "Antigua and Barbuda": {"avg_gols_marcados_5j": 1.0, "avg_gols_sofridos_5j": 4.0, "form_score": 0.0, "win_rate_1ano": 0.0}, "Arameans Suryoye": {"avg_gols_marcados_5j": 4.0, "avg_gols_sofridos_5j": 1.0, "form_score": 3.0, "win_rate_1ano": 1.0}, "Argentina": {"avg_gols_marcados_5j": 2.0, "avg_gols_sofridos_5j": 0.0, "form_score": 3.0, "win_rate_1ano": 1.0}, "Armenia": {"avg_gols_marcados_5j": 1.0, "avg_gols_sofridos_5j": 1.0, "form_score": 1.0, "win_rate_1ano": 0.0}, "Artsakh": {"avg_gols_marcados_5j": 2.0, "avg_gols_sofridos_5j": 0.0, "form_score": 3.0, "win_rate_1ano": 1.0}, "Aruba": {"avg_gols_marcados_5j": 0.0, "avg_gols_sofridos_5j": 4.0, "form_score": 0.0, "win_rate_1ano": 0.0}, "Asturias": {"avg_gols_marcados_5j": 3.0, "avg_gols_sofridos_5j": 1.0, "form_score": 3.0, "win_rate_1ano": 1.0}, "Australia": {"avg_gols_marcados_5j": 1.0, "avg_gols_sofridos_5j": 1.0, "form_score": 1.0, "win_rate_1ano": 0.0}, "Austria": {"avg_gols_marcados_5j": 1.0, "avg_gols_sofridos_5j": 0.0, "form_score": 3.0, "win_rate_1ano": 1.0}, "Aymara": {"avg_gols_marcados_5j": 0.0, "avg_gols_sofridos_5j": 1.0, "form_score": 0.0, "win_rate_1ano": 0.0}, "Azerbaijan": {"avg_gols_marcados_5j": 0.0, "avg_gols_sofridos_5j": 2.0, "form_score": 0.0, "win_rate_1ano": 0.0}, "Bahamas": {"avg_gols_marcados_5j": 0.0, "avg_gols_sofridos_5j": 1.0, "form_score": 0.0, "win_rate_1ano": 0.0}, "Bahrain": {"avg_gols_marcados_5j": 0.0, "avg_gols_sofridos_5j": 2.0, "form_score": 0.0, "win_rate_1ano": 0.0}, "Bangladesh": {"avg_gols_marcados_5j": 2.0, "avg_gols_sofridos_5j": 1.0, "form_score": 3.0, "win_rate_1ano": 1.0}, "Barawa": {"avg_gols_marcados_5j": 0.0, "avg_gols_sofridos_5j": 5.0, "form_score": 0.0, "win_rate_1ano": 0.0}, "Barbados": {"avg_gols_marcados_5j": 2.0, "avg_gols_sofridos_5j": 3.0, "form_score": 0.0, "win_rate_1ano": 0.0}, "Basque Country": {"avg_gols_marcados_5j": 3.0, "avg_gols_sofridos_5j": 0.0, "form_score": 3.0, "win_rate_1ano": 1.0}, "Belarus": {"avg_gols_marcados_5j": 4.0, "avg_gols_sofridos_5j": 1.0, "form_score": 3.0, "win_rate_1ano": 1.0}, "Belgium": {"avg_gols_marcados_5j": 5.0, "avg_gols_sofridos_5j": 0.0, "form_score": 3.0, "win_rate_1ano": 1.0}, "Belize": {"avg_gols_marcados_5j": 1.0, "avg_gols_sofridos_5j": 3.0, "form_score": 0.0, "win_rate_1ano": 0.0}, "Benin": {"avg_gols_marcados_5j": 1.0, "avg_gols_sofridos_5j": 1.0, "form_score": 1.0, "win_rate_1ano": 0.0}, "Bermuda": {"avg_gols_marcados_5j": 3.0, "avg_gols_sofridos_5j": 0.0, "form_score": 3.0, "win_rate_1ano": 1.0}, "Bhutan": {"avg_gols_marcados_5j": 0.0, "avg_gols_sofridos_5j": 4.0, "form_score": 0.0, "win_rate_1ano": 0.0}, "Biafra": {"avg_gols_marcados_5j": 1.0, "avg_gols_sofridos_5j": 0.0, "form_score": 3.0, "win_rate_1ano": 1.0}, "Bolivia": {"avg_gols_marcados_5j": 0.0, "avg_gols_sofridos_5j": 4.0, "form_score": 0.0, "win_rate_1ano": 0.0}, "Bonaire": {"avg_gols_marcados_5j": 0.0, "avg_gols_sofridos_5j": 2.0, "form_score": 0.0, "win_rate_1ano": 0.0}, "Bosnia and Herzegovina": {"avg_gols_marcados_5j": 1.0, "avg_gols_sofridos_5j": 1.0, "form_score": 1.0, "win_rate_1ano": 0.0}, "Botswana": {"avg_gols_marcados_5j": 1.0, "avg_gols_sofridos_5j": 0.0, "form_score": 3.0, "win_rate_1ano": 1.0}, "Brazil": {"avg_gols_marcados_5j": 2.0, "avg_gols_sofridos_5j": 1.0, "form_score": 3.0, "win_rate_1ano": 1.0}, "British Virgin Islands": {"avg_gols_marcados_5j": 2.0, "avg_gols_sofridos_5j": 0.0, "form_score": 3.0, "win_rate_1ano": 1.0}, "Brittany": {"avg_gols_marcados_5j": 1.0, "avg_gols_sofridos_5j": 0.0, "form_score": 3.0, "win_rate_1ano": 1.0}, "Brunei": {"avg_gols_marcados_5j": 0.0, "avg_gols_sofridos_5j": 3.0, "form_score": 0.0, "win_rate_1ano": 0.0}, "Bulgaria": {"avg_gols_marcados_5j": 2.0, "avg_gols_sofridos_5j": 2.0, "form_score": 1.0, "win_rate_1ano": 0.0}, "Burkina Faso": {"avg_gols_marcados_5j": 0.0, "avg_gols_sofridos_5j": 3.0, "form_score": 0.0, "win_rate_1ano": 0.0}, "Burundi": {"avg_gols_marcados_5j": 0.0, "avg_gols_sofridos_5j": 5.0, "form_score": 0.0, "win_rate_1ano": 0.0}, "Cambodia": {"avg_gols_marcados_5j": 4.0, "avg_gols_sofridos_5j": 0.0, "form_score": 3.0, "win_rate_1ano": 1.0}, "Cameroon": {"avg_gols_marcados_5j": 2.0, "avg_gols_sofridos_5j": 0.0, "form_score": 3.0, "win_rate_1ano": 1.0}, "Canada": {"avg_gols_marcados_5j": 1.0, "avg_gols_sofridos_5j": 1.0, "form_score": 1.0, "win_rate_1ano": 0.0}, "Canary Islands": {"avg_gols_marcados_5j": 2.0, "avg_gols_sofridos_5j": 0.0, "form_score": 3.0, "win_rate_1ano": 1.0}, "Cape Verde": {"avg_gols_marcados_5j": 0.0, "avg_gols_sofridos_5j": 3.0, "form_score": 0.0, "win_rate_1ano": 0.0}, "Cascadia": {"avg_gols_marcados_5j": 6.0, "avg_gols_sofridos_5j": 3.0, "form_score": 3.0, "win_rate_1ano": 1.0}, "Catalonia": {"avg_gols_marcados_5j": 2.0, "avg_gols_sofridos_5j": 1.0, "form_score": 3.0, "win_rate_1ano": 1.0}, "Cayman Islands": {"avg_gols_marcados_5j": 1.0, "avg_gols_sofridos_5j": 4.0, "form_score": 0.0, "win_rate_1ano": 0.0}, "Central African Republic": {"avg_gols_marcados_5j": 1.0, "avg_gols_sofridos_5j": 1.0, "form_score": 1.0, "win_rate_1ano": 0.0}, "Central Spain": {"avg_gols_marcados_5j": 1.0, "avg_gols_sofridos_5j": 0.0, "form_score": 3.0, "win_rate_1ano": 1.0}, "Chad": {"avg_gols_marcados_5j": 2.0, "avg_gols_sofridos_5j": 2.0, "form_score": 1.0, "win_rate_1ano": 0.0}, "Chagos Islands": {"avg_gols_marcados_5j": 0.0, "avg_gols_sofridos_5j": 6.0, "form_score": 0.0, "win_rate_1ano": 0.0}, "Chameria": {"avg_gols_marcados_5j": 3.0, "avg_gols_sofridos_5j": 1.0, "form_score": 3.0, "win_rate_1ano": 1.0}, "Chechnya": {"avg_gols_marcados_5j": 1.0, "avg_gols_sofridos_5j": 13.0, "form_score": 0.0, "win_rate_1ano": 0.0}, "Chile": {"avg_gols_marcados_5j": 1.0, "avg_gols_sofridos_5j": 2.0, "form_score": 0.0, "win_rate_1ano": 0.0}, "China": {"avg_gols_marcados_5j": 2.0, "avg_gols_sofridos_5j": 1.0, "form_score": 3.0, "win_rate_1ano": 1.0}, "Cilento": {"avg_gols_marcados_5j": 0.0, "avg_gols_sofridos_5j": 2.0, "form_score": 0.0, "win_rate_1ano": 0.0}, "Colombia": {"avg_gols_marcados_5j": 2.0, "avg_gols_sofridos_5j": 0.0, "form_score": 3.0, "win_rate_1ano": 1.0}, "Comoros": {"avg_gols_marcados_5j": 0.0, "avg_gols_sofridos_5j": 1.0, "form_score": 0.0, "win_rate_1ano": 0.0}, "Congo": {"avg_gols_marcados_5j": 0.0, "avg_gols_sofridos_5j": 1.0, "form_score": 0.0, "win_rate_1ano": 0.0}, "Cook Islands": {"avg_gols_marcados_5j": 1.0, "avg_gols_sofridos_5j": 3.0, "form_score": 0.0, "win_rate_1ano": 0.0}, "Corsica": {"avg_gols_marcados_5j": 1.0, "avg_gols_sofridos_5j": 1.0, "form_score": 1.0, "win_rate_1ano": 0.0}, "Costa Rica": {"avg_gols_marcados_5j": 1.0, "avg_gols_sofridos_5j": 3.0, "form_score": 0.0, "win_rate_1ano": 0.0}, "County of Nice": {"avg_gols_marcados_5j": 1.0, "avg_gols_sofridos_5j": 4.0, "form_score": 0.0, "win_rate_1ano": 0.0}, "Crimea": {"avg_gols_marcados_5j": 1.0, "avg_gols_sofridos_5j": 3.0, "form_score": 0.0, "win_rate_1ano": 0.0}, "Croatia": {"avg_gols_marcados_5j": 2.0, "avg_gols_sofridos_5j": 1.0, "form_score": 3.0, "win_rate_1ano": 1.0}, "Cuba": {"avg_gols_marcados_5j": 1.0, "avg_gols_sofridos_5j": 1.0, "form_score": 1.0, "win_rate_1ano": 0.0}, "Curaçao": {"avg_gols_marcados_5j": 4.0, "avg_gols_sofridos_5j": 0.0, "form_score": 3.0, "win_rate_1ano": 1.0}, "Cyprus": {"avg_gols_marcados_5j": 2.0, "avg_gols_sofridos_5j": 0.0, "form_score": 3.0, "win_rate_1ano": 1.0}, "Czech Republic": {"avg_gols_marcados_5j": 5.0, "avg_gols_sofridos_5j": 1.0, "form_score": 3.0, "win_rate_1ano": 1.0}, "Czechoslovakia": {"avg_gols_marcados_5j": 0.0, "avg_gols_sofridos_5j": 0.0, "form_score": 1.0, "win_rate_1ano": 0.0}, "DR Congo": {"avg_gols_marcados_5j": 0.0, "avg_gols_sofridos_5j": 0.0, "form_score": 1.0, "win_rate_1ano": 0.0}, "Darfur": {"avg_gols_marcados_5j": 0.0, "avg_gols_sofridos_5j": 10.0, "form_score": 0.0, "win_rate_1ano": 0.0}, "Denmark": {"avg_gols_marcados_5j": 2.0, "avg_gols_sofridos_5j": 1.0, "form_score": 3.0, "win_rate_1ano": 1.0}, "Djibouti": {"avg_gols_marcados_5j": 0.0, "avg_gols_sofridos_5j": 1.0, "form_score": 0.0, "win_rate_1ano": 0.0}, "Dominica": {"avg_gols_marcados_5j": 0.0, "avg_gols_sofridos_5j": 0.0, "form_score": 1.0, "win_rate_1ano": 0.0}, "Dominican Republic": {"avg_gols_marcados_5j": 2.0, "avg_gols_sofridos_5j": 4.0, "form_score": 0.0, "win_rate_1ano": 0.0}, "Donetsk PR": {"avg_gols_marcados_5j": 2.0, "avg_gols_sofridos_5j": 1.0, "form_score": 3.0, "win_rate_1ano": 1.0}, "Délvidék": {"avg_gols_marcados_5j": 1.0, "avg_gols_sofridos_5j": 2.0, "form_score": 0.0, "win_rate_1ano": 0.0}, "East Turkestan": {"avg_gols_marcados_5j": 0.0, "avg_gols_sofridos_5j": 5.0, "form_score": 0.0, "win_rate_1ano": 0.0}, "Ecuador": {"avg_gols_marcados_5j": 3.0, "avg_gols_sofridos_5j": 0.0, "form_score": 3.0, "win_rate_1ano": 1.0}, "Egypt": {"avg_gols_marcados_5j": 1.0, "avg_gols_sofridos_5j": 2.0, "form_score": 0.0, "win_rate_1ano": 0.0}, "El Salvador": {"avg_gols_marcados_5j": 0.0, "avg_gols_sofridos_5j": 0.0, "form_score": 1.0, "win_rate_1ano": 0.0}, "Elba Island": {"avg_gols_marcados_5j": 5.0, "avg_gols_sofridos_5j": 0.0, "form_score": 3.0, "win_rate_1ano": 1.0}, "Ellan Vannin": {"avg_gols_marcados_5j": 0.0, "avg_gols_sofridos_5j": 2.0, "form_score": 0.0, "win_rate_1ano": 0.0}, "England": {"avg_gols_marcados_5j": 1.0, "avg_gols_sofridos_5j": 0.0, "form_score": 3.0, "win_rate_1ano": 1.0}, "Equatorial Guinea": {"avg_gols_marcados_5j": 1.0, "avg_gols_sofridos_5j": 1.0, "form_score": 1.0, "win_rate_1ano": 0.0}, "Eritrea": {"avg_gols_marcados_5j": 0.0, "avg_gols_sofridos_5j": 2.0, "form_score": 0.0, "win_rate_1ano": 0.0}, "Estonia": {"avg_gols_marcados_5j": 1.0, "avg_gols_sofridos_5j": 0.0, "form_score": 3.0, "win_rate_1ano": 1.0}, "Eswatini": {"avg_gols_marcados_5j": 0.0, "avg_gols_sofridos_5j": 3.0, "form_score": 0.0, "win_rate_1ano": 0.0}, "Ethiopia": {"avg_gols_marcados_5j": 1.0, "avg_gols_sofridos_5j": 0.0, "form_score": 3.0, "win_rate_1ano": 1.0}, "Falkland Islands": {"avg_gols_marcados_5j": 1.0, "avg_gols_sofridos_5j": 1.0, "form_score": 1.0, "win_rate_1ano": 0.0}, "Faroe Islands": {"avg_gols_marcados_5j": 0.0, "avg_gols_sofridos_5j": 1.0, "form_score": 0.0, "win_rate_1ano": 0.0}, "Felvidék": {"avg_gols_marcados_5j": 2.0, "avg_gols_sofridos_5j": 0.0, "form_score": 3.0, "win_rate_1ano": 1.0}, "Fiji": {"avg_gols_marcados_5j": 1.0, "avg_gols_sofridos_5j": 2.0, "form_score": 0.0, "win_rate_1ano": 0.0}, "Finland": {"avg_gols_marcados_5j": 1.0, "avg_gols_sofridos_5j": 2.0, "form_score": 0.0, "win_rate_1ano": 0.0}, "France": {"avg_gols_marcados_5j": 3.0, "avg_gols_sofridos_5j": 1.0, "form_score": 3.0, "win_rate_1ano": 1.0}, "Franconia": {"avg_gols_marcados_5j": 4.0, "avg_gols_sofridos_5j": 3.0, "form_score": 3.0, "win_rate_1ano": 1.0}, "French Guiana": {"avg_gols_marcados_5j": 2.0, "avg_gols_sofridos_5j": 2.0, "form_score": 1.0, "win_rate_1ano": 0.0}, "Frøya": {"avg_gols_marcados_5j": 0.0, "avg_gols_sofridos_5j": 3.0, "form_score": 0.0, "win_rate_1ano": 0.0}, "Gabon": {"avg_gols_marcados_5j": 2.0, "avg_gols_sofridos_5j": 2.0, "form_score": 1.0, "win_rate_1ano": 0.0}, "Galicia": {"avg_gols_marcados_5j": 0.0, "avg_gols_sofridos_5j": 2.0, "form_score": 0.0, "win_rate_1ano": 0.0}, "Gambia": {"avg_gols_marcados_5j": 1.0, "avg_gols_sofridos_5j": 3.0, "form_score": 0.0, "win_rate_1ano": 0.0}, "Georgia": {"avg_gols_marcados_5j": 2.0, "avg_gols_sofridos_5j": 0.0, "form_score": 3.0, "win_rate_1ano": 1.0}, "German DR": {"avg_gols_marcados_5j": 2.0, "avg_gols_sofridos_5j": 0.0, "form_score": 3.0, "win_rate_1ano": 1.0}, "Germany": {"avg_gols_marcados_5j": 2.0, "avg_gols_sofridos_5j": 1.0, "form_score": 3.0, "win_rate_1ano": 1.0}, "Ghana": {"avg_gols_marcados_5j": 1.0, "avg_gols_sofridos_5j": 1.0, "form_score": 1.0, "win_rate_1ano": 0.0}, "Gibraltar": {"avg_gols_marcados_5j": 4.0, "avg_gols_sofridos_5j": 1.0, "form_score": 3.0, "win_rate_1ano": 1.0}, "Gotland": {"avg_gols_marcados_5j": 2.0, "avg_gols_sofridos_5j": 3.0, "form_score": 0.0, "win_rate_1ano": 0.0}, "Gozo": {"avg_gols_marcados_5j": 3.0, "avg_gols_sofridos_5j": 3.0, "form_score": 1.0, "win_rate_1ano": 0.0}, "Greece": {"avg_gols_marcados_5j": 0.0, "avg_gols_sofridos_5j": 1.0, "form_score": 0.0, "win_rate_1ano": 0.0}, "Greenland": {"avg_gols_marcados_5j": 0.0, "avg_gols_sofridos_5j": 5.0, "form_score": 0.0, "win_rate_1ano": 0.0}, "Grenada": {"avg_gols_marcados_5j": 0.0, "avg_gols_sofridos_5j": 5.0, "form_score": 0.0, "win_rate_1ano": 0.0}, "Guadeloupe": {"avg_gols_marcados_5j": 2.0, "avg_gols_sofridos_5j": 3.0, "form_score": 0.0, "win_rate_1ano": 0.0}, "Guam": {"avg_gols_marcados_5j": 1.0, "avg_gols_sofridos_5j": 6.0, "form_score": 0.0, "win_rate_1ano": 0.0}, "Guatemala": {"avg_gols_marcados_5j": 0.0, "avg_gols_sofridos_5j": 3.0, "form_score": 0.0, "win_rate_1ano": 0.0}, "Guernsey": {"avg_gols_marcados_5j": 1.0, "avg_gols_sofridos_5j": 0.0, "form_score": 3.0, "win_rate_1ano": 1.0}, "Guinea": {"avg_gols_marcados_5j": 0.0, "avg_gols_sofridos_5j": 1.0, "form_score": 0.0, "win_rate_1ano": 0.0}, "Guinea-Bissau": {"avg_gols_marcados_5j": 1.0, "avg_gols_sofridos_5j": 1.0, "form_score": 1.0, "win_rate_1ano": 0.0}, "Guyana": {"avg_gols_marcados_5j": 3.0, "avg_gols_sofridos_5j": 1.0, "form_score": 3.0, "win_rate_1ano": 1.0}, "Găgăuzia": {"avg_gols_marcados_5j": 1.0, "avg_gols_sofridos_5j": 1.0, "form_score": 1.0, "win_rate_1ano": 0.0}, "Haiti": {"avg_gols_marcados_5j": 1.0, "avg_gols_sofridos_5j": 2.0, "form_score": 0.0, "win_rate_1ano": 0.0}, "Hitra": {"avg_gols_marcados_5j": 3.0, "avg_gols_sofridos_5j": 0.0, "form_score": 3.0, "win_rate_1ano": 1.0}, "Hmong": {"avg_gols_marcados_5j": 1.0, "avg_gols_sofridos_5j": 3.0, "form_score": 0.0, "win_rate_1ano": 0.0}, "Honduras": {"avg_gols_marcados_5j": 0.0, "avg_gols_sofridos_5j": 2.0, "form_score": 0.0, "win_rate_1ano": 0.0}, "Hong Kong": {"avg_gols_marcados_5j": 2.0, "avg_gols_sofridos_5j": 0.0, "form_score": 3.0, "win_rate_1ano": 1.0}, "Hungary": {"avg_gols_marcados_5j": 2.0, "avg_gols_sofridos_5j": 1.0, "form_score": 3.0, "win_rate_1ano": 1.0}, "Iceland": {"avg_gols_marcados_5j": 0.0, "avg_gols_sofridos_5j": 1.0, "form_score": 0.0, "win_rate_1ano": 0.0}, "India": {"avg_gols_marcados_5j": 1.0, "avg_gols_sofridos_5j": 3.0, "form_score": 0.0, "win_rate_1ano": 0.0}, "Indonesia": {"avg_gols_marcados_5j": 3.0, "avg_gols_sofridos_5j": 0.0, "form_score": 3.0, "win_rate_1ano": 1.0}, "Iran": {"avg_gols_marcados_5j": 2.0, "avg_gols_sofridos_5j": 0.0, "form_score": 3.0, "win_rate_1ano": 1.0}, "Iraq": {"avg_gols_marcados_5j": 1.0, "avg_gols_sofridos_5j": 1.0, "form_score": 1.0, "win_rate_1ano": 0.0}, "Iraqi Kurdistan": {"avg_gols_marcados_5j": 1.0, "avg_gols_sofridos_5j": 1.0, "form_score": 1.0, "win_rate_1ano": 0.0}, "Ireland": {"avg_gols_marcados_5j": 1.0, "avg_gols_sofridos_5j": 1.0, "form_score": 1.0, "win_rate_1ano": 0.0}, "Isle of Man": {"avg_gols_marcados_5j": 3.0, "avg_gols_sofridos_5j": 2.0, "form_score": 3.0, "win_rate_1ano": 1.0}, "Isle of Wight": {"avg_gols_marcados_5j": 2.0, "avg_gols_sofridos_5j": 3.0, "form_score": 0.0, "win_rate_1ano": 0.0}, "Israel": {"avg_gols_marcados_5j": 1.0, "avg_gols_sofridos_5j": 0.0, "form_score": 3.0, "win_rate_1ano": 1.0}, "Italy": {"avg_gols_marcados_5j": 1.0, "avg_gols_sofridos_5j": 0.0, "form_score": 3.0, "win_rate_1ano": 1.0}, "Ivory Coast": {"avg_gols_marcados_5j": 2.0, "avg_gols_sofridos_5j": 1.0, "form_score": 3.0, "win_rate_1ano": 1.0}, "Jamaica": {"avg_gols_marcados_5j": 0.0, "avg_gols_sofridos_5j": 1.0, "form_score": 0.0, "win_rate_1ano": 0.0}, "Japan": {"avg_gols_marcados_5j": 1.0, "avg_gols_sofridos_5j": 0.0, "form_score": 3.0, "win_rate_1ano": 1.0}, "Jersey": {"avg_gols_marcados_5j": 2.0, "avg_gols_sofridos_5j": 3.0, "form_score": 0.0, "win_rate_1ano": 0.0}, "Jordan": {"avg_gols_marcados_5j": 0.0, "avg_gols_sofridos_5j": 2.0, "form_score": 0.0, "win_rate_1ano": 0.0}, "Kabylia": {"avg_gols_marcados_5j": 0.0, "avg_gols_sofridos_5j": 2.0, "form_score": 0.0, "win_rate_1ano": 0.0}, "Kazakhstan": {"avg_gols_marcados_5j": 1.0, "avg_gols_sofridos_5j": 1.0, "form_score": 1.0, "win_rate_1ano": 0.0}, "Kenya": {"avg_gols_marcados_5j": 1.0, "avg_gols_sofridos_5j": 1.0, "form_score": 1.0, "win_rate_1ano": 0.0}, "Kernow": {"avg_gols_marcados_5j": 2.0, "avg_gols_sofridos_5j": 1.0, "form_score": 3.0, "win_rate_1ano": 1.0}, "Kiribati": {"avg_gols_marcados_5j": 1.0, "avg_gols_sofridos_5j": 17.0, "form_score": 0.0, "win_rate_1ano": 0.0}, "Kosovo": {"avg_gols_marcados_5j": 3.0, "avg_gols_sofridos_5j": 0.0, "form_score": 3.0, "win_rate_1ano": 1.0}, "Kurdistan": {"avg_gols_marcados_5j": 1.0, "avg_gols_sofridos_5j": 0.0, "form_score": 3.0, "win_rate_1ano": 1.0}, "Kuwait": {"avg_gols_marcados_5j": 2.0, "avg_gols_sofridos_5j": 2.0, "form_score": 1.0, "win_rate_1ano": 0.0}, "Kyrgyzstan": {"avg_gols_marcados_5j": 0.0, "avg_gols_sofridos_5j": 0.0, "form_score": 1.0, "win_rate_1ano": 0.0}, "Kárpátalja": {"avg_gols_marcados_5j": 0.0, "avg_gols_sofridos_5j": 0.0, "form_score": 1.0, "win_rate_1ano": 0.0}, "Laos": {"avg_gols_marcados_5j": 0.0, "avg_gols_sofridos_5j": 2.0, "form_score": 0.0, "win_rate_1ano": 0.0}, "Latvia": {"avg_gols_marcados_5j": 1.0, "avg_gols_sofridos_5j": 1.0, "form_score": 1.0, "win_rate_1ano": 0.0}, "Lebanon": {"avg_gols_marcados_5j": 1.0, "avg_gols_sofridos_5j": 2.0, "form_score": 0.0, "win_rate_1ano": 0.0}, "Lesotho": {"avg_gols_marcados_5j": 1.0, "avg_gols_sofridos_5j": 1.0, "form_score": 1.0, "win_rate_1ano": 0.0}, "Liberia": {"avg_gols_marcados_5j": 0.0, "avg_gols_sofridos_5j": 1.0, "form_score": 0.0, "win_rate_1ano": 0.0}, "Libya": {"avg_gols_marcados_5j": 2.0, "avg_gols_sofridos_5j": 2.0, "form_score": 1.0, "win_rate_1ano": 0.0}, "Liechtenstein": {"avg_gols_marcados_5j": 0.0, "avg_gols_sofridos_5j": 2.0, "form_score": 0.0, "win_rate_1ano": 0.0}, "Lithuania": {"avg_gols_marcados_5j": 1.0, "avg_gols_sofridos_5j": 1.0, "form_score": 1.0, "win_rate_1ano": 0.0}, "Luhansk PR": {"avg_gols_marcados_5j": 4.0, "avg_gols_sofridos_5j": 3.0, "form_score": 3.0, "win_rate_1ano": 1.0}, "Luxembourg": {"avg_gols_marcados_5j": 1.0, "avg_gols_sofridos_5j": 0.0, "form_score": 3.0, "win_rate_1ano": 1.0}, "Macau": {"avg_gols_marcados_5j": 0.0, "avg_gols_sofridos_5j": 6.0, "form_score": 0.0, "win_rate_1ano": 0.0}, "Madagascar": {"avg_gols_marcados_5j": 0.0, "avg_gols_sofridos_5j": 4.0, "form_score": 0.0, "win_rate_1ano": 0.0}, "Madrid": {"avg_gols_marcados_5j": 1.0, "avg_gols_sofridos_5j": 2.0, "form_score": 0.0, "win_rate_1ano": 0.0}, "Malawi": {"avg_gols_marcados_5j": 0.0, "avg_gols_sofridos_5j": 1.0, "form_score": 0.0, "win_rate_1ano": 0.0}, "Malaysia": {"avg_gols_marcados_5j": 1.0, "avg_gols_sofridos_5j": 0.0, "form_score": 3.0, "win_rate_1ano": 1.0}, "Maldives": {"avg_gols_marcados_5j": 0.0, "avg_gols_sofridos_5j": 3.0, "form_score": 0.0, "win_rate_1ano": 0.0}, "Mali": {"avg_gols_marcados_5j": 0.0, "avg_gols_sofridos_5j": 2.0, "form_score": 0.0, "win_rate_1ano": 0.0}, "Malta": {"avg_gols_marcados_5j": 2.0, "avg_gols_sofridos_5j": 0.0, "form_score": 3.0, "win_rate_1ano": 1.0}, "Manchukuo": {"avg_gols_marcados_5j": 0.0, "avg_gols_sofridos_5j": 3.0, "form_score": 0.0, "win_rate_1ano": 0.0}, "Mapuche": {"avg_gols_marcados_5j": 3.0, "avg_gols_sofridos_5j": 1.0, "form_score": 3.0, "win_rate_1ano": 1.0}, "Marshall Islands": {"avg_gols_marcados_5j": 2.0, "avg_gols_sofridos_5j": 3.0, "form_score": 0.0, "win_rate_1ano": 0.0}, "Martinique": {"avg_gols_marcados_5j": 0.0, "avg_gols_sofridos_5j": 1.0, "form_score": 0.0, "win_rate_1ano": 0.0}, "Matabeleland": {"avg_gols_marcados_5j": 0.0, "avg_gols_sofridos_5j": 1.0, "form_score": 0.0, "win_rate_1ano": 0.0}, "Maule Sur": {"avg_gols_marcados_5j": 1.0, "avg_gols_sofridos_5j": 0.0, "form_score": 3.0, "win_rate_1ano": 1.0}, "Mauritania": {"avg_gols_marcados_5j": 1.0, "avg_gols_sofridos_5j": 0.0, "form_score": 3.0, "win_rate_1ano": 1.0}, "Mauritius": {"avg_gols_marcados_5j": 0.0, "avg_gols_sofridos_5j": 0.0, "form_score": 1.0, "win_rate_1ano": 0.0}, "Mayotte": {"avg_gols_marcados_5j": 0.0, "avg_gols_sofridos_5j": 0.0, "form_score": 1.0, "win_rate_1ano": 0.0}, "Menorca": {"avg_gols_marcados_5j": 1.0, "avg_gols_sofridos_5j": 2.0, "form_score": 0.0, "win_rate_1ano": 0.0}, "Mexico": {"avg_gols_marcados_5j": 5.0, "avg_gols_sofridos_5j": 1.0, "form_score": 3.0, "win_rate_1ano": 1.0}, "Micronesia": {"avg_gols_marcados_5j": 0.0, "avg_gols_sofridos_5j": 10.0, "form_score": 0.0, "win_rate_1ano": 0.0}, "Moldova": {"avg_gols_marcados_5j": 2.0, "avg_gols_sofridos_5j": 2.0, "form_score": 1.0, "win_rate_1ano": 0.0}, "Monaco": {"avg_gols_marcados_5j": 0.0, "avg_gols_sofridos_5j": 0.0, "form_score": 1.0, "win_rate_1ano": 0.0}, "Mongolia": {"avg_gols_marcados_5j": 0.0, "avg_gols_sofridos_5j": 2.0, "form_score": 0.0, "win_rate_1ano": 0.0}, "Montenegro": {"avg_gols_marcados_5j": 2.0, "avg_gols_sofridos_5j": 2.0, "form_score": 1.0, "win_rate_1ano": 0.0}, "Montserrat": {"avg_gols_marcados_5j": 0.0, "avg_gols_sofridos_5j": 3.0, "form_score": 0.0, "win_rate_1ano": 0.0}, "Morocco": {"avg_gols_marcados_5j": 1.0, "avg_gols_sofridos_5j": 1.0, "form_score": 1.0, "win_rate_1ano": 0.0}, "Mozambique": {"avg_gols_marcados_5j": 0.0, "avg_gols_sofridos_5j": 4.0, "form_score": 0.0, "win_rate_1ano": 0.0}, "Myanmar": {"avg_gols_marcados_5j": 6.0, "avg_gols_sofridos_5j": 1.0, "form_score": 3.0, "win_rate_1ano": 1.0}, "Namibia": {"avg_gols_marcados_5j": 0.0, "avg_gols_sofridos_5j": 0.0, "form_score": 1.0, "win_rate_1ano": 0.0}, "Nepal": {"avg_gols_marcados_5j": 0.0, "avg_gols_sofridos_5j": 1.0, "form_score": 0.0, "win_rate_1ano": 0.0}, "Netherlands": {"avg_gols_marcados_5j": 2.0, "avg_gols_sofridos_5j": 1.0, "form_score": 3.0, "win_rate_1ano": 1.0}, "New Caledonia": {"avg_gols_marcados_5j": 0.0, "avg_gols_sofridos_5j": 1.0, "form_score": 0.0, "win_rate_1ano": 0.0}, "New Zealand": {"avg_gols_marcados_5j": 0.0, "avg_gols_sofridos_5j": 1.0, "form_score": 0.0, "win_rate_1ano": 0.0}, "Nicaragua": {"avg_gols_marcados_5j": 0.0, "avg_gols_sofridos_5j": 4.0, "form_score": 0.0, "win_rate_1ano": 0.0}, "Niger": {"avg_gols_marcados_5j": 0.0, "avg_gols_sofridos_5j": 1.0, "form_score": 0.0, "win_rate_1ano": 0.0}, "Nigeria": {"avg_gols_marcados_5j": 2.0, "avg_gols_sofridos_5j": 2.0, "form_score": 1.0, "win_rate_1ano": 0.0}, "Niue": {"avg_gols_marcados_5j": 0.0, "avg_gols_sofridos_5j": 19.0, "form_score": 0.0, "win_rate_1ano": 0.0}, "North Korea": {"avg_gols_marcados_5j": 0.0, "avg_gols_sofridos_5j": 3.0, "form_score": 0.0, "win_rate_1ano": 0.0}, "North Macedonia": {"avg_gols_marcados_5j": 0.0, "avg_gols_sofridos_5j": 4.0, "form_score": 0.0, "win_rate_1ano": 0.0}, "North Vietnam": {"avg_gols_marcados_5j": 2.0, "avg_gols_sofridos_5j": 1.0, "form_score": 3.0, "win_rate_1ano": 1.0}, "Northern Cyprus": {"avg_gols_marcados_5j": 0.0, "avg_gols_sofridos_5j": 0.0, "form_score": 1.0, "win_rate_1ano": 0.0}, "Northern Ireland": {"avg_gols_marcados_5j": 1.0, "avg_gols_sofridos_5j": 3.0, "form_score": 0.0, "win_rate_1ano": 0.0}, "Northern Mariana Islands": {"avg_gols_marcados_5j": 2.0, "avg_gols_sofridos_5j": 1.0, "form_score": 3.0, "win_rate_1ano": 1.0}, "Norway": {"avg_gols_marcados_5j": 1.0, "avg_gols_sofridos_5j": 1.0, "form_score": 1.0, "win_rate_1ano": 0.0}, "Occitania": {"avg_gols_marcados_5j": 5.0, "avg_gols_sofridos_5j": 1.0, "form_score": 3.0, "win_rate_1ano": 1.0}, "Oman": {"avg_gols_marcados_5j": 0.0, "avg_gols_sofridos_5j": 3.0, "form_score": 0.0, "win_rate_1ano": 0.0}, "Orkney": {"avg_gols_marcados_5j": 3.0, "avg_gols_sofridos_5j": 2.0, "form_score": 3.0, "win_rate_1ano": 1.0}, "Padania": {"avg_gols_marcados_5j": 0.0, "avg_gols_sofridos_5j": 2.0, "form_score": 0.0, "win_rate_1ano": 0.0}, "Pakistan": {"avg_gols_marcados_5j": 2.0, "avg_gols_sofridos_5j": 0.0, "form_score": 3.0, "win_rate_1ano": 1.0}, "Palau": {"avg_gols_marcados_5j": 2.0, "avg_gols_sofridos_5j": 15.0, "form_score": 0.0, "win_rate_1ano": 0.0}, "Palestine": {"avg_gols_marcados_5j": 0.0, "avg_gols_sofridos_5j": 0.0, "form_score": 1.0, "win_rate_1ano": 0.0}, "Panama": {"avg_gols_marcados_5j": 1.0, "avg_gols_sofridos_5j": 1.0, "form_score": 1.0, "win_rate_1ano": 0.0}, "Panjab": {"avg_gols_marcados_5j": 6.0, "avg_gols_sofridos_5j": 0.0, "form_score": 3.0, "win_rate_1ano": 1.0}, "Papua New Guinea": {"avg_gols_marcados_5j": 2.0, "avg_gols_sofridos_5j": 2.0, "form_score": 1.0, "win_rate_1ano": 0.0}, "Paraguay": {"avg_gols_marcados_5j": 4.0, "avg_gols_sofridos_5j": 0.0, "form_score": 3.0, "win_rate_1ano": 1.0}, "Parishes of Jersey": {"avg_gols_marcados_5j": 9.0, "avg_gols_sofridos_5j": 2.0, "form_score": 3.0, "win_rate_1ano": 1.0}, "Peru": {"avg_gols_marcados_5j": 1.0, "avg_gols_sofridos_5j": 3.0, "form_score": 0.0, "win_rate_1ano": 0.0}, "Philippines": {"avg_gols_marcados_5j": 5.0, "avg_gols_sofridos_5j": 1.0, "form_score": 3.0, "win_rate_1ano": 1.0}, "Poland": {"avg_gols_marcados_5j": 2.0, "avg_gols_sofridos_5j": 2.0, "form_score": 1.0, "win_rate_1ano": 0.0}, "Portugal": {"avg_gols_marcados_5j": 2.0, "avg_gols_sofridos_5j": 1.0, "form_score": 3.0, "win_rate_1ano": 1.0}, "Provence": {"avg_gols_marcados_5j": 0.0, "avg_gols_sofridos_5j": 1.0, "form_score": 0.0, "win_rate_1ano": 0.0}, "Puerto Rico": {"avg_gols_marcados_5j": 0.0, "avg_gols_sofridos_5j": 3.0, "form_score": 0.0, "win_rate_1ano": 0.0}, "Qatar": {"avg_gols_marcados_5j": 0.0, "avg_gols_sofridos_5j": 0.0, "form_score": 1.0, "win_rate_1ano": 0.0}, "Quebec": {"avg_gols_marcados_5j": 0.0, "avg_gols_sofridos_5j": 1.0, "form_score": 0.0, "win_rate_1ano": 0.0}, "Raetia": {"avg_gols_marcados_5j": 5.0, "avg_gols_sofridos_5j": 1.0, "form_score": 3.0, "win_rate_1ano": 1.0}, "Republic of St. Pauli": {"avg_gols_marcados_5j": 1.0, "avg_gols_sofridos_5j": 2.0, "form_score": 0.0, "win_rate_1ano": 0.0}, "Rhodes": {"avg_gols_marcados_5j": 0.0, "avg_gols_sofridos_5j": 2.0, "form_score": 0.0, "win_rate_1ano": 0.0}, "Romani people": {"avg_gols_marcados_5j": 0.0, "avg_gols_sofridos_5j": 2.0, "form_score": 0.0, "win_rate_1ano": 0.0}, "Romania": {"avg_gols_marcados_5j": 2.0, "avg_gols_sofridos_5j": 1.0, "form_score": 3.0, "win_rate_1ano": 1.0}, "Russia": {"avg_gols_marcados_5j": 3.0, "avg_gols_sofridos_5j": 0.0, "form_score": 3.0, "win_rate_1ano": 1.0}, "Rwanda": {"avg_gols_marcados_5j": 2.0, "avg_gols_sofridos_5j": 0.0, "form_score": 3.0, "win_rate_1ano": 1.0}, "Ryūkyū": {"avg_gols_marcados_5j": 0.0, "avg_gols_sofridos_5j": 9.0, "form_score": 0.0, "win_rate_1ano": 0.0}, "Réunion": {"avg_gols_marcados_5j": 0.0, "avg_gols_sofridos_5j": 1.0, "form_score": 0.0, "win_rate_1ano": 0.0}, "Saare County": {"avg_gols_marcados_5j": 4.0, "avg_gols_sofridos_5j": 2.0, "form_score": 3.0, "win_rate_1ano": 1.0}, "Saarland": {"avg_gols_marcados_5j": 2.0, "avg_gols_sofridos_5j": 3.0, "form_score": 0.0, "win_rate_1ano": 0.0}, "Saint Barthélemy": {"avg_gols_marcados_5j": 2.0, "avg_gols_sofridos_5j": 3.0, "form_score": 0.0, "win_rate_1ano": 0.0}, "Saint Helena": {"avg_gols_marcados_5j": 2.0, "avg_gols_sofridos_5j": 4.0, "form_score": 0.0, "win_rate_1ano": 0.0}, "Saint Kitts and Nevis": {"avg_gols_marcados_5j": 4.0, "avg_gols_sofridos_5j": 2.0, "form_score": 3.0, "win_rate_1ano": 1.0}, "Saint Lucia": {"avg_gols_marcados_5j": 1.0, "avg_gols_sofridos_5j": 6.0, "form_score": 0.0, "win_rate_1ano": 0.0}, "Saint Martin": {"avg_gols_marcados_5j": 3.0, "avg_gols_sofridos_5j": 0.0, "form_score": 3.0, "win_rate_1ano": 1.0}, "Saint Pierre and Miquelon": {"avg_gols_marcados_5j": 1.0, "avg_gols_sofridos_5j": 16.0, "form_score": 0.0, "win_rate_1ano": 0.0}, "Saint Vincent and the Grenadines": {"avg_gols_marcados_5j": 3.0, "avg_gols_sofridos_5j": 2.0, "form_score": 3.0, "win_rate_1ano": 1.0}, "Samoa": {"avg_gols_marcados_5j": 0.0, "avg_gols_sofridos_5j": 8.0, "form_score": 0.0, "win_rate_1ano": 0.0}, "San Marino": {"avg_gols_marcados_5j": 1.0, "avg_gols_sofridos_5j": 2.0, "form_score": 0.0, "win_rate_1ano": 0.0}, "Sark": {"avg_gols_marcados_5j": 0.0, "avg_gols_sofridos_5j": 15.0, "form_score": 0.0, "win_rate_1ano": 0.0}, "Saudi Arabia": {"avg_gols_marcados_5j": 3.0, "avg_gols_sofridos_5j": 0.0, "form_score": 3.0, "win_rate_1ano": 1.0}, "Saugeais": {"avg_gols_marcados_5j": 1.0, "avg_gols_sofridos_5j": 1.0, "form_score": 1.0, "win_rate_1ano": 0.0}, "Scotland": {"avg_gols_marcados_5j": 4.0, "avg_gols_sofridos_5j": 0.0, "form_score": 3.0, "win_rate_1ano": 1.0}, "Sealand": {"avg_gols_marcados_5j": 3.0, "avg_gols_sofridos_5j": 2.0, "form_score": 3.0, "win_rate_1ano": 1.0}, "Seborga": {"avg_gols_marcados_5j": 2.0, "avg_gols_sofridos_5j": 3.0, "form_score": 0.0, "win_rate_1ano": 0.0}, "Senegal": {"avg_gols_marcados_5j": 2.0, "avg_gols_sofridos_5j": 3.0, "form_score": 0.0, "win_rate_1ano": 0.0}, "Serbia": {"avg_gols_marcados_5j": 1.0, "avg_gols_sofridos_5j": 5.0, "form_score": 0.0, "win_rate_1ano": 0.0}, "Seychelles": {"avg_gols_marcados_5j": 0.0, "avg_gols_sofridos_5j": 7.0, "form_score": 0.0, "win_rate_1ano": 0.0}, "Shetland": {"avg_gols_marcados_5j": 2.0, "avg_gols_sofridos_5j": 3.0, "form_score": 0.0, "win_rate_1ano": 0.0}, "Sierra Leone": {"avg_gols_marcados_5j": 1.0, "avg_gols_sofridos_5j": 0.0, "form_score": 3.0, "win_rate_1ano": 1.0}, "Silesia": {"avg_gols_marcados_5j": 1.0, "avg_gols_sofridos_5j": 1.0, "form_score": 1.0, "win_rate_1ano": 0.0}, "Singapore": {"avg_gols_marcados_5j": 1.0, "avg_gols_sofridos_5j": 2.0, "form_score": 0.0, "win_rate_1ano": 0.0}, "Sint Maarten": {"avg_gols_marcados_5j": 0.0, "avg_gols_sofridos_5j": 0.0, "form_score": 1.0, "win_rate_1ano": 0.0}, "Slovakia": {"avg_gols_marcados_5j": 2.0, "avg_gols_sofridos_5j": 2.0, "form_score": 1.0, "win_rate_1ano": 0.0}, "Slovenia": {"avg_gols_marcados_5j": 1.0, "avg_gols_sofridos_5j": 2.0, "form_score": 0.0, "win_rate_1ano": 0.0}, "Solomon Islands": {"avg_gols_marcados_5j": 2.0, "avg_gols_sofridos_5j": 4.0, "form_score": 0.0, "win_rate_1ano": 0.0}, "Somalia": {"avg_gols_marcados_5j": 0.0, "avg_gols_sofridos_5j": 0.0, "form_score": 1.0, "win_rate_1ano": 0.0}, "Somaliland": {"avg_gols_marcados_5j": 2.0, "avg_gols_sofridos_5j": 6.0, "form_score": 0.0, "win_rate_1ano": 0.0}, "South Africa": {"avg_gols_marcados_5j": 1.0, "avg_gols_sofridos_5j": 0.0, "form_score": 3.0, "win_rate_1ano": 1.0}, "South Korea": {"avg_gols_marcados_5j": 1.0, "avg_gols_sofridos_5j": 0.0, "form_score": 3.0, "win_rate_1ano": 1.0}, "South Ossetia": {"avg_gols_marcados_5j": 3.0, "avg_gols_sofridos_5j": 4.0, "form_score": 0.0, "win_rate_1ano": 0.0}, "South Sudan": {"avg_gols_marcados_5j": 0.0, "avg_gols_sofridos_5j": 2.0, "form_score": 0.0, "win_rate_1ano": 0.0}, "South Yemen": {"avg_gols_marcados_5j": 0.0, "avg_gols_sofridos_5j": 2.0, "form_score": 0.0, "win_rate_1ano": 0.0}, "Spain": {"avg_gols_marcados_5j": 3.0, "avg_gols_sofridos_5j": 1.0, "form_score": 3.0, "win_rate_1ano": 1.0}, "Sri Lanka": {"avg_gols_marcados_5j": 0.0, "avg_gols_sofridos_5j": 4.0, "form_score": 0.0, "win_rate_1ano": 0.0}, "Sudan": {"avg_gols_marcados_5j": 1.0, "avg_gols_sofridos_5j": 3.0, "form_score": 0.0, "win_rate_1ano": 0.0}, "Suriname": {"avg_gols_marcados_5j": 1.0, "avg_gols_sofridos_5j": 2.0, "form_score": 0.0, "win_rate_1ano": 0.0}, "Surrey": {"avg_gols_marcados_5j": 3.0, "avg_gols_sofridos_5j": 1.0, "form_score": 3.0, "win_rate_1ano": 1.0}, "Sweden": {"avg_gols_marcados_5j": 2.0, "avg_gols_sofridos_5j": 2.0, "form_score": 1.0, "win_rate_1ano": 0.0}, "Switzerland": {"avg_gols_marcados_5j": 1.0, "avg_gols_sofridos_5j": 1.0, "form_score": 1.0, "win_rate_1ano": 0.0}, "Syria": {"avg_gols_marcados_5j": 1.0, "avg_gols_sofridos_5j": 4.0, "form_score": 0.0, "win_rate_1ano": 0.0}, "Székely Land": {"avg_gols_marcados_5j": 7.0, "avg_gols_sofridos_5j": 0.0, "form_score": 3.0, "win_rate_1ano": 1.0}, "Sápmi": {"avg_gols_marcados_5j": 1.0, "avg_gols_sofridos_5j": 2.0, "form_score": 0.0, "win_rate_1ano": 0.0}, "São Tomé and Príncipe": {"avg_gols_marcados_5j": 1.0, "avg_gols_sofridos_5j": 0.0, "form_score": 3.0, "win_rate_1ano": 1.0}, "Tahiti": {"avg_gols_marcados_5j": 0.0, "avg_gols_sofridos_5j": 3.0, "form_score": 0.0, "win_rate_1ano": 0.0}, "Taiwan": {"avg_gols_marcados_5j": 1.0, "avg_gols_sofridos_5j": 3.0, "form_score": 0.0, "win_rate_1ano": 0.0}, "Tajikistan": {"avg_gols_marcados_5j": 3.0, "avg_gols_sofridos_5j": 1.0, "form_score": 3.0, "win_rate_1ano": 1.0}, "Tamil Eelam": {"avg_gols_marcados_5j": 5.0, "avg_gols_sofridos_5j": 0.0, "form_score": 3.0, "win_rate_1ano": 1.0}, "Tanzania": {"avg_gols_marcados_5j": 6.0, "avg_gols_sofridos_5j": 0.0, "form_score": 3.0, "win_rate_1ano": 1.0}, "Thailand": {"avg_gols_marcados_5j": 2.0, "avg_gols_sofridos_5j": 2.0, "form_score": 1.0, "win_rate_1ano": 0.0}, "Tibet": {"avg_gols_marcados_5j": 4.0, "avg_gols_sofridos_5j": 6.0, "form_score": 0.0, "win_rate_1ano": 0.0}, "Ticino": {"avg_gols_marcados_5j": 1.0, "avg_gols_sofridos_5j": 5.0, "form_score": 0.0, "win_rate_1ano": 0.0}, "Timor-Leste": {"avg_gols_marcados_5j": 0.0, "avg_gols_sofridos_5j": 5.0, "form_score": 0.0, "win_rate_1ano": 0.0}, "Togo": {"avg_gols_marcados_5j": 1.0, "avg_gols_sofridos_5j": 1.0, "form_score": 1.0, "win_rate_1ano": 0.0}, "Tonga": {"avg_gols_marcados_5j": 1.0, "avg_gols_sofridos_5j": 2.0, "form_score": 0.0, "win_rate_1ano": 0.0}, "Trinidad and Tobago": {"avg_gols_marcados_5j": 0.0, "avg_gols_sofridos_5j": 5.0, "form_score": 0.0, "win_rate_1ano": 0.0}, "Tunisia": {"avg_gols_marcados_5j": 0.0, "avg_gols_sofridos_5j": 5.0, "form_score": 0.0, "win_rate_1ano": 0.0}, "Turkey": {"avg_gols_marcados_5j": 2.0, "avg_gols_sofridos_5j": 1.0, "form_score": 3.0, "win_rate_1ano": 1.0}, "Turkmenistan": {"avg_gols_marcados_5j": 3.0, "avg_gols_sofridos_5j": 1.0, "form_score": 3.0, "win_rate_1ano": 1.0}, "Turks and Caicos Islands": {"avg_gols_marcados_5j": 3.0, "avg_gols_sofridos_5j": 2.0, "form_score": 3.0, "win_rate_1ano": 1.0}, "Tuvalu": {"avg_gols_marcados_5j": 4.0, "avg_gols_sofridos_5j": 1.0, "form_score": 3.0, "win_rate_1ano": 1.0}, "Two Sicilies": {"avg_gols_marcados_5j": 0.0, "avg_gols_sofridos_5j": 7.0, "form_score": 0.0, "win_rate_1ano": 0.0}, "USA": {"avg_gols_marcados_5j": 1.0, "avg_gols_sofridos_5j": 2.0, "form_score": 0.0, "win_rate_1ano": 0.0}, "Uganda": {"avg_gols_marcados_5j": 1.0, "avg_gols_sofridos_5j": 3.0, "form_score": 0.0, "win_rate_1ano": 0.0}, "Ukraine": {"avg_gols_marcados_5j": 1.0, "avg_gols_sofridos_5j": 2.0, "form_score": 0.0, "win_rate_1ano": 0.0}, "United Arab Emirates": {"avg_gols_marcados_5j": 0.0, "avg_gols_sofridos_5j": 3.0, "form_score": 0.0, "win_rate_1ano": 0.0}, "United Koreans in Japan": {"avg_gols_marcados_5j": 1.0, "avg_gols_sofridos_5j": 1.0, "form_score": 1.0, "win_rate_1ano": 0.0}, "United States Virgin Islands": {"avg_gols_marcados_5j": 0.0, "avg_gols_sofridos_5j": 2.0, "form_score": 0.0, "win_rate_1ano": 0.0}, "Uruguay": {"avg_gols_marcados_5j": 0.0, "avg_gols_sofridos_5j": 0.0, "form_score": 1.0, "win_rate_1ano": 0.0}, "Uzbekistan": {"avg_gols_marcados_5j": 1.0, "avg_gols_sofridos_5j": 2.0, "form_score": 0.0, "win_rate_1ano": 0.0}, "Vanuatu": {"avg_gols_marcados_5j": 2.0, "avg_gols_sofridos_5j": 1.0, "form_score": 3.0, "win_rate_1ano": 1.0}, "Vatican City": {"avg_gols_marcados_5j": 2.0, "avg_gols_sofridos_5j": 2.0, "form_score": 1.0, "win_rate_1ano": 0.0}, "Venezuela": {"avg_gols_marcados_5j": 1.0, "avg_gols_sofridos_5j": 2.0, "form_score": 0.0, "win_rate_1ano": 0.0}, "Vietnam": {"avg_gols_marcados_5j": 3.0, "avg_gols_sofridos_5j": 0.0, "form_score": 3.0, "win_rate_1ano": 1.0}, "Vietnam Republic": {"avg_gols_marcados_5j": 0.0, "avg_gols_sofridos_5j": 3.0, "form_score": 0.0, "win_rate_1ano": 0.0}, "Wales": {"avg_gols_marcados_5j": 1.0, "avg_gols_sofridos_5j": 2.0, "form_score": 0.0, "win_rate_1ano": 0.0}, "Wallis Islands and Futuna": {"avg_gols_marcados_5j": 0.0, "avg_gols_sofridos_5j": 10.0, "form_score": 0.0, "win_rate_1ano": 0.0}, "West Papua": {"avg_gols_marcados_5j": 1.0, "avg_gols_sofridos_5j": 1.0, "form_score": 1.0, "win_rate_1ano": 0.0}, "Western Armenia": {"avg_gols_marcados_5j": 0.0, "avg_gols_sofridos_5j": 1.0, "form_score": 0.0, "win_rate_1ano": 0.0}, "Western Australia": {"avg_gols_marcados_5j": 1.0, "avg_gols_sofridos_5j": 1.0, "form_score": 1.0, "win_rate_1ano": 0.0}, "Western Isles": {"avg_gols_marcados_5j": 3.0, "avg_gols_sofridos_5j": 3.0, "form_score": 1.0, "win_rate_1ano": 0.0}, "Western Sahara": {"avg_gols_marcados_5j": 2.0, "avg_gols_sofridos_5j": 12.0, "form_score": 0.0, "win_rate_1ano": 0.0}, "Yemen": {"avg_gols_marcados_5j": 4.0, "avg_gols_sofridos_5j": 4.0, "form_score": 1.0, "win_rate_1ano": 0.0}, "Yemen DPR": {"avg_gols_marcados_5j": 1.0, "avg_gols_sofridos_5j": 0.0, "form_score": 3.0, "win_rate_1ano": 1.0}, "Ynys Môn": {"avg_gols_marcados_5j": 1.0, "avg_gols_sofridos_5j": 0.0, "form_score": 3.0, "win_rate_1ano": 1.0}, "Yorkshire": {"avg_gols_marcados_5j": 1.0, "avg_gols_sofridos_5j": 0.0, "form_score": 3.0, "win_rate_1ano": 1.0}, "Yoruba Nation": {"avg_gols_marcados_5j": 0.0, "avg_gols_sofridos_5j": 1.0, "form_score": 0.0, "win_rate_1ano": 0.0}, "Yugoslavia": {"avg_gols_marcados_5j": 0.0, "avg_gols_sofridos_5j": 2.0, "form_score": 0.0, "win_rate_1ano": 0.0}, "Zambia": {"avg_gols_marcados_5j": 0.0, "avg_gols_sofridos_5j": 5.0, "form_score": 0.0, "win_rate_1ano": 0.0}, "Zanzibar": {"avg_gols_marcados_5j": 2.0, "avg_gols_sofridos_5j": 1.0, "form_score": 3.0, "win_rate_1ano": 1.0}, "Zimbabwe": {"avg_gols_marcados_5j": 1.0, "avg_gols_sofridos_5j": 0.0, "form_score": 3.0, "win_rate_1ano": 1.0}, "Åland Islands": {"avg_gols_marcados_5j": 1.0, "avg_gols_sofridos_5j": 1.0, "form_score": 1.0, "win_rate_1ano": 0.0}}};
+
+    const flagEmojis = {
+        "Argentina": "🇦🇷", "France": "🇫🇷", "Brazil": "🇧🇷", "Portugal": "🇵🇹", "England": "🏴󠁧󠁢󠁥󠁮󠁧󠁿", "Spain": "🇪🇸",
+        "Germany": "🇩🇪", "Italy": "🇮🇹", "Uruguay": "🇺🇾", "Belgium": "🇧🇪", "Croatia": "🇭🇷", "Netherlands": "🇳🇱",
+        "Morocco": "🇲🇦", "Senegal": "🇸🇳", "Japan": "🇯🇵", "USA": "🇺🇸", "Mexico": "🇲🇽", "Canada": "🇨🇦",
+        "South Korea": "🇰🇷", "Iran": "🇮🇷", "Saudi Arabia": "🇸🇦", "Australia": "🇦🇺", "Ecuador": "🇪🇨",
+        "Switzerland": "🇨🇭", "Sweden": "🇸🇪", "Norway": "🇳🇴", "Denmark": "🇩🇰", "Poland": "🇵🇱", "Ukraine": "🇺🇦",
+        "Turkey": "🇹🇷", "Egypt": "🇪🇬", "Nigeria": "🇳🇬", "Cameroon": "🇨🇲", "Algeria": "🇩🇿", "Tunisia": "🇹🇳",
+        "Ghana": "🇬🇭", "Ivory Coast": "🇨🇮", "South Africa": "🇿🇦", "Costa Rica": "🇨🇷", "Panama": "🇵🇦",
+        "Jamaica": "🇯🇲", "Honduras": "🇭🇳", "Peru": "🇵🇪", "Chile": "🇨🇱", "Colombia": "🇨🇴", "Paraguay": "🇵🇾",
+        "Venezuela": "🇻🇪", "Bolivia": "🇧🇴", "Qatar": "🇶🇦", "Uzbekistan": "🇺🇿", "Iraq": "🇮🇶", "Jordan": "🇯🇴",
+        "New Zealand": "🇳🇿", "Czech Republic": "🇨🇿", "Scotland": "🏴󠁧󠁢󠁳󠁣󠁴󠁿", "Haiti": "🇭🇹", "Curaçao": "🇨🇼",
+        "Cape Verde": "🇨🇻", "DR Congo": "🇨🇩", "Bosnia & Herzegovina": "🇧🇦", "Austria": "🇦🇹"
+    };
+
+    let activeFilterGroup = 'ALL';
+
+    function getFlag(team) {
+        return flagEmojis[team] || "🏳️";
+    }
+
+    // Tab switcher
+    function switchTab(tabId) {
+        document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+        document.querySelectorAll('.content-section').forEach(sec => sec.classList.remove('active'));
+        
+        const index = tabId === 'timeline' ? 0 : (tabId === 'simulator' ? 1 : 2);
+        document.querySelectorAll('.tab-btn')[index].classList.add('active');
+        document.getElementById(tabId + '-sec').classList.add('active');
+        
+        if (tabId === 'simulator') {
+            initSimulatorDropdowns();
+        }
+    }
+
+    // Formatting date
+    function formatDate(dateStr) {
+        const parts = dateStr.split('-');
+        if(parts.length !== 3) return dateStr;
+        const date = new Date(parts[0], parts[1]-1, parts[2]);
+        return date.toLocaleDateString('pt-BR', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
+    }
+
+    // Populate timeline
+    function renderTimeline() {
+        const container = document.getElementById('timeline-container');
+        container.innerHTML = '';
+        
+        const searchVal = document.getElementById('match-search').value.toLowerCase();
+        
+        // Filter predictions
+        let filtered = PREDICTIONS.filter(match => {
+            const matchesSearch = match.team1.toLowerCase().includes(searchVal) || match.team2.toLowerCase().includes(searchVal);
+            const matchesGroup = activeFilterGroup === 'ALL' || match.group === activeFilterGroup;
+            return matchesSearch && matchesGroup;
+        });
+
+        if (filtered.length === 0) {
+            container.innerHTML = '<div style="text-align:center; padding:40px; color:var(--color-text-muted);">Nenhum jogo encontrado.</div>';
+            return;
+        }
+
+        // Group by Date
+        const grouped = {};
+        filtered.forEach(match => {
+            if (!grouped[match.date]) {
+                grouped[match.date] = [];
+            }
+            grouped[match.date].push(match);
+        });
+
+        // Sort dates
+        const sortedDates = Object.keys(grouped).sort();
+
+        sortedDates.forEach(date => {
+            const dateGroupDiv = document.createElement('div');
+            dateGroupDiv.className = 'date-group';
+            
+            const formattedDate = formatDate(date);
+            
+            dateGroupDiv.innerHTML = `
+                <h3 class="date-header">
+                    <i class="fa-solid fa-calendar-day"></i> ${formattedDate.charAt(0).toUpperCase() + formattedDate.slice(1)}
+                </h3>
+                <div class="matches-grid">
+                    ${grouped[date].map(match => renderMatchCard(match)).join('')}
+                </div>
+            `;
+            container.appendChild(dateGroupDiv);
+        });
+    }
+
+    function renderMatchCard(match) {
+        const p1 = (match.prob_team1 * 100).toFixed(1);
+        const pd = (match.prob_draw * 100).toFixed(1);
+        const p2 = (match.prob_team2 * 100).toFixed(1);
+        
+        return `
+            <div class="match-card">
+                <div>
+                    <div class="match-meta">
+                        <span><i class="fa-solid fa-map-marker-alt"></i> ${match.ground}</span>
+                        <span class="group-tag">${match.group}</span>
+                    </div>
+                    <div class="teams-container">
+                        <div class="team-row">
+                            <div class="team-info">
+                                <span class="team-flag">${getFlag(match.team1)}</span>
+                                <span class="team-name">${match.team1}</span>
+                            </div>
+                            <span class="team-score-exp">${match.expected_goals_team1.toFixed(2)} exp</span>
+                        </div>
+                        <div class="team-row">
+                            <div class="team-info">
+                                <span class="team-flag">${getFlag(match.team2)}</span>
+                                <span class="team-name">${match.team2}</span>
+                            </div>
+                            <span class="team-score-exp">${match.expected_goals_team2.toFixed(2)} exp</span>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="prob-bar-container">
+                        <div class="prob-labels">
+                            <span style="color: var(--color-teal);">${p1}%</span>
+                            <span style="color: var(--color-gold);">${pd}%</span>
+                            <span style="color: var(--color-coral);">${p2}%</span>
+                        </div>
+                        <div class="prob-bar">
+                            <div class="prob-fill home" style="width: ${p1}%"></div>
+                            <div class="prob-fill draw" style="width: ${pd}%"></div>
+                            <div class="prob-fill away" style="width: ${p2}%"></div>
+                        </div>
+                    </div>
+                    <div class="top-scores">
+                        <div class="top-scores-title">Placares prováveis</div>
+                        <div class="score-list">
+                            ${match.top_scores.map(s => `
+                                <div class="score-item">
+                                    <span class="score-val">${s[0]}-${s[1]}</span>
+                                    <span class="score-prob">${(s[2]*100).toFixed(1)}%</span>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+
+    function filterMatches() {
+        renderTimeline();
+    }
+
+    function filterGroup(group) {
+        activeFilterGroup = group;
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.classList.remove('active');
+            if (btn.innerText === (group === 'ALL' ? 'Todos' : group.replace('Group ', 'Gr. '))) {
+                btn.classList.add('active');
+            }
+        });
+        renderTimeline();
+    }
+
+    // Simulator logic
+    let simDropdownsInitialized = false;
+    function initSimulatorDropdowns() {
+        if (simDropdownsInitialized) return;
+        
+        const teams = Object.keys(MODEL_DATA.elos).sort();
+        const sel1 = document.getElementById('sim-team1');
+        const sel2 = document.getElementById('sim-team2');
+        
+        sel1.innerHTML = '';
+        sel2.innerHTML = '';
+        
+        teams.forEach(team => {
+            const opt1 = document.createElement('option');
+            opt1.value = team;
+            opt1.innerText = `${getFlag(team)} ${team}`;
+            sel1.appendChild(opt1);
+            
+            const opt2 = document.createElement('option');
+            opt2.value = team;
+            opt2.innerText = `${getFlag(team)} ${team}`;
+            sel2.appendChild(opt2);
+        });
+        
+        // Select defaults
+        if (teams.includes("Brazil")) sel1.value = "Brazil";
+        if (teams.includes("France")) sel2.value = "France";
+        
+        updateSimFlag(1);
+        updateSimFlag(2);
+        simDropdownsInitialized = true;
+    }
+
+    function updateSimFlag(num) {
+        const sel = document.getElementById(`sim-team${num}`);
+        const flag = document.getElementById(`sim-flag-${num}`);
+        flag.innerText = getFlag(sel.value);
+    }
+
+    // Factorial helper
+    function factorial(n) {
+        if (n === 0 || n === 1) return 1;
+        let r = 1;
+        for (let i = 2; i <= n; i++) r *= i;
+        return r;
+    }
+
+    // Poisson probability density function
+    function poissonPdf(k, mu) {
+        return (Math.pow(mu, k) * Math.exp(-mu)) / factorial(k);
+    }
+
+    function runSimulation() {
+        const team1 = document.getElementById('sim-team1').value;
+        const team2 = document.getElementById('sim-team2').value;
+        
+        if (team1 === team2) {
+            alert("Por favor, selecione duas equipes diferentes.");
+            return;
+        }
+
+        const t1Stats = MODEL_DATA.features[team1] || { avg_gols_marcados_5j: 1, avg_gols_sofridos_5j: 1, form_score: 1, win_rate_1ano: 0.4 };
+        const t2Stats = MODEL_DATA.features[team2] || { avg_gols_marcados_5j: 1, avg_gols_sofridos_5j: 1, form_score: 1, win_rate_1ano: 0.4 };
+        
+        const t1Elo = MODEL_DATA.elos[team1] || 1000;
+        const t2Elo = MODEL_DATA.elos[team2] || 1000;
+        
+        const t1Fifa = MODEL_DATA.fifa[team1] || { rank: 200, points: 0 };
+        const t2Fifa = MODEL_DATA.fifa[team2] || { rank: 200, points: 0 };
+        
+        // Calculate mu1 and mu2 using coefficients
+        // Features: ["elo_diff", "rank_diff", "points_diff", "avg_gols_marcados_5j", "avg_gols_sofridos_5j_opp", "form_score", "form_score_opp", "win_rate_1ano", "win_rate_1ano_opp", "is_home"]
+        const x1 = {
+            elo_diff: (t1Elo - t2Elo) / 100.0,
+            rank_diff: (t2Fifa.rank - t1Fifa.rank) / 10.0,
+            points_diff: (t1Fifa.points - t2Fifa.points) / 100.0,
+            avg_gols_marcados_5j: t1Stats.avg_gols_marcados_5j,
+            avg_gols_sofridos_5j_opp: t2Stats.avg_gols_sofridos_5j,
+            form_score: t1Stats.form_score,
+            form_score_opp: t2Stats.form_score,
+            win_rate_1ano: t1Stats.win_rate_1ano,
+            win_rate_1ano_opp: t2Stats.win_rate_1ano,
+            is_home: 0
+        };
+        
+        const x2 = {
+            elo_diff: (t2Elo - t1Elo) / 100.0,
+            rank_diff: (t1Fifa.rank - t2Fifa.rank) / 10.0,
+            points_diff: (t2Fifa.points - t1Fifa.points) / 100.0,
+            avg_gols_marcados_5j: t2Stats.avg_gols_marcados_5j,
+            avg_gols_sofridos_5j_opp: t1Stats.avg_gols_sofridos_5j,
+            form_score: t2Stats.form_score,
+            form_score_opp: t1Stats.form_score,
+            win_rate_1ano: t2Stats.win_rate_1ano,
+            win_rate_1ano_opp: t1Stats.win_rate_1ano,
+            is_home: 0
+        };
+        
+        const coef = MODEL_DATA.poisson_coefficients;
+        const intercept = MODEL_DATA.poisson_intercept;
+        const featuresNames = MODEL_DATA.features_names;
+        
+        let sum1 = intercept;
+        let sum2 = intercept;
+        for (let i = 0; i < featuresNames.length; i++) {
+            const featName = featuresNames[i];
+            sum1 += coef[i] * x1[featName];
+            sum2 += coef[i] * x2[featName];
+        }
+        
+        const mu1 = Math.exp(sum1);
+        const mu2 = Math.exp(sum2);
+        
+        // Calculate score matrix
+        let scoreMatrix = [];
+        let totalP = 0;
+        let pHome = 0;
+        let pDraw = 0;
+        let pAway = 0;
+        
+        for (let x = 0; x < 6; x++) {
+            scoreMatrix[x] = [];
+            for (let y = 0; y < 6; y++) {
+                const px = poissonPdf(x, mu1);
+                const py = poissonPdf(y, mu2);
+                const p = px * py;
+                scoreMatrix[x][y] = p;
+                totalP += p;
+            }
+        }
+        
+        // Normalize and sum classes
+        let placaresList = [];
+        for (let x = 0; x < 6; x++) {
+            for (let y = 0; y < 6; y++) {
+                scoreMatrix[x][y] /= totalP;
+                const p = scoreMatrix[x][y];
+                
+                if (x > y) pHome += p;
+                else if (x === y) pDraw += p;
+                else pAway += p;
+                
+                placaresList.push({ score: `${x}-${y}`, prob: p, x, y });
+            }
+        }
+        
+        // Sort placares to find top 3
+        placaresList.sort((a, b) => b.prob - a.prob);
+        const topPlacares = placaresList.slice(0, 3);
+        
+        // Update elements
+        document.getElementById('sim-name-1').innerText = team1;
+        document.getElementById('sim-name-2').innerText = team2;
+        document.getElementById('sim-elo-1').innerText = `ELO: ${Math.round(t1Elo)}`;
+        document.getElementById('sim-elo-2').innerText = `ELO: ${Math.round(t2Elo)}`;
+        document.getElementById('sim-goals-display').innerText = `${mu1.toFixed(2)} vs ${mu2.toFixed(2)}`;
+        
+        document.getElementById('label-prob-1').innerText = `Vitória ${team1}`;
+        document.getElementById('label-prob-2').innerText = `Vitória ${team2}`;
+        
+        const pHomePct = (pHome * 100).toFixed(1) + '%';
+        const pDrawPct = (pDraw * 100).toFixed(1) + '%';
+        const pAwayPct = (pAway * 100).toFixed(1) + '%';
+        
+        document.getElementById('pct-prob-1').innerText = pHomePct;
+        document.getElementById('pct-prob-draw').innerText = pDrawPct;
+        document.getElementById('pct-prob-2').innerText = pAwayPct;
+        
+        document.getElementById('bar-prob-1').style.width = pHomePct;
+        document.getElementById('bar-prob-draw').style.width = pDrawPct;
+        document.getElementById('bar-prob-2').style.width = pAwayPct;
+        
+        const scoresListDiv = document.getElementById('sim-scores-list');
+        scoresListDiv.innerHTML = topPlacares.map(item => `
+            <div class="sim-placar-row">
+                <span class="sim-placar-badge">${item.score}</span>
+                <span class="sim-placar-pct">${(item.prob * 100).toFixed(1)}%</span>
+            </div>
+        `).join('');
+        
+        // Show results
+        document.getElementById('sim-results-container').classList.add('active');
+    }
+
+    // Populate team statistics table
+    function renderStatsTable() {
+        const tbody = document.getElementById('stats-table-body');
+        tbody.innerHTML = '';
+        
+        const teams = Object.keys(MODEL_DATA.elos).sort((a, b) => {
+            return (MODEL_DATA.fifa[a]?.rank || 200) - (MODEL_DATA.fifa[b]?.rank || 200);
+        });
+        
+        teams.forEach(team => {
+            const elo = Math.round(MODEL_DATA.elos[team] || 1000);
+            const rank = MODEL_DATA.fifa[team]?.rank || '-';
+            const pts = Math.round(MODEL_DATA.fifa[team]?.points || 0);
+            const feats = MODEL_DATA.features[team] || { avg_gols_marcados_5j: 1, avg_gols_sofridos_5j: 1 };
+            
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+                <td><span style="font-size:1.2rem; margin-right:10px;">${getFlag(team)}</span> <strong>${team}</strong></td>
+                <td class="rank-number"># ${rank}</td>
+                <td>${pts} pts</td>
+                <td class="elo-number">${elo}</td>
+                <td style="color: var(--color-teal); font-weight:600;">${feats.avg_gols_marcados_5j.toFixed(2)}</td>
+                <td style="color: var(--color-coral); font-weight:600;">${feats.avg_gols_sofridos_5j.toFixed(2)}</td>
+            `;
+            tbody.appendChild(tr);
+        });
+    }
+
+    // On Load
+    window.onload = function() {
+        renderTimeline();
+        renderStatsTable();
+    };
+</script>
+
+</body>
+</html>

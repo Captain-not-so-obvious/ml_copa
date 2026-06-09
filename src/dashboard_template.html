@@ -1,0 +1,1367 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Copa do Mundo 2026 - Painel de Previsões ML</title>
+    <!-- Google Fonts: Montserrat -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --color-dark-teal: #264653;
+            --color-teal: #2A9D8F;
+            --color-gold: #E9C46A;
+            --color-orange: #F4A261;
+            --color-coral: #E76F51;
+            
+            --color-bg: #101c24;
+            --color-card-bg: rgba(38, 70, 83, 0.25);
+            --color-card-border: rgba(42, 157, 143, 0.3);
+            --color-text: #f5f8fa;
+            --color-text-muted: #a0aec0;
+            --font-family: 'Montserrat', sans-serif;
+            --transition-speed: 0.3s;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-family);
+            background-color: var(--color-bg);
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(42, 157, 143, 0.15) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(231, 111, 81, 0.1) 0px, transparent 50%);
+            color: var(--color-text);
+            min-height: 100vh;
+            line-height: 1.6;
+            padding-bottom: 50px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header / Hero */
+        header {
+            text-align: center;
+            padding: 40px 20px;
+            margin-bottom: 30px;
+            background: linear-gradient(135deg, var(--color-dark-teal) 0%, rgba(16, 28, 36, 0.95) 100%);
+            border: 1px solid var(--color-card-border);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 80% 20%, rgba(42, 157, 143, 0.2) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        header h1 {
+            font-size: 2.8rem;
+            font-weight: 900;
+            letter-spacing: -1px;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            background: linear-gradient(to right, var(--color-gold) 0%, var(--color-orange) 50%, var(--color-coral) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        header p {
+            font-size: 1.1rem;
+            color: var(--color-text-muted);
+            font-weight: 500;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Navigation Tabs */
+        .tabs {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .tab-btn {
+            background-color: rgba(38, 70, 83, 0.4);
+            border: 1px solid var(--color-card-border);
+            color: var(--color-text);
+            padding: 12px 24px;
+            font-size: 1rem;
+            font-weight: 600;
+            font-family: var(--font-family);
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all var(--transition-speed) ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .tab-btn:hover {
+            background-color: rgba(42, 157, 143, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .tab-btn.active {
+            background-color: var(--color-teal);
+            border-color: var(--color-teal);
+            box-shadow: 0 4px 15px rgba(42, 157, 143, 0.4);
+        }
+
+        /* Content Sections */
+        .content-section {
+            display: none;
+            animation: fadeIn 0.4s ease;
+        }
+
+        .content-section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Timeline Section */
+        .timeline-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .search-box {
+            position: relative;
+            flex: 1;
+            max-width: 400px;
+        }
+
+        .search-box input {
+            width: 100%;
+            background-color: rgba(38, 70, 83, 0.2);
+            border: 1px solid var(--color-card-border);
+            color: var(--color-text);
+            padding: 12px 20px 12px 45px;
+            border-radius: 50px;
+            font-family: var(--font-family);
+            font-size: 0.95rem;
+            outline: none;
+            transition: all var(--transition-speed);
+        }
+
+        .search-box input:focus {
+            border-color: var(--color-teal);
+            box-shadow: 0 0 10px rgba(42, 157, 143, 0.3);
+            background-color: rgba(38, 70, 83, 0.3);
+        }
+
+        .search-box i {
+            position: absolute;
+            left: 18px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--color-text-muted);
+        }
+
+        .filter-groups {
+            display: flex;
+            gap: 10px;
+        }
+
+        .filter-btn {
+            background-color: rgba(38, 70, 83, 0.2);
+            border: 1px solid var(--color-card-border);
+            color: var(--color-text-muted);
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            font-family: var(--font-family);
+            transition: all var(--transition-speed);
+        }
+
+        .filter-btn:hover, .filter-btn.active {
+            background-color: var(--color-teal);
+            color: var(--color-text);
+            border-color: var(--color-teal);
+        }
+
+        /* Timeline grouping by Date */
+        .date-group {
+            margin-bottom: 40px;
+        }
+
+        .date-header {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--color-gold);
+            border-bottom: 2px solid rgba(233, 196, 106, 0.2);
+            padding-bottom: 8px;
+        }
+
+        .date-header i {
+            font-size: 1.1rem;
+        }
+
+        .matches-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+            gap: 20px;
+        }
+
+        /* Match Card Style */
+        .match-card {
+            background: var(--color-card-bg);
+            border: 1px solid var(--color-card-border);
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            transition: all var(--transition-speed);
+            backdrop-filter: blur(10px);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .match-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--color-teal);
+            box-shadow: 0 8px 25px rgba(42, 157, 143, 0.2);
+        }
+
+        .match-meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.75rem;
+            color: var(--color-text-muted);
+            margin-bottom: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .match-meta .group-tag {
+            background-color: var(--color-dark-teal);
+            padding: 2px 8px;
+            border-radius: 4px;
+            color: var(--color-gold);
+        }
+
+        .teams-container {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .team-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .team-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .team-flag {
+            font-size: 1.8rem;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .team-name {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--color-text);
+        }
+
+        .team-score-exp {
+            font-size: 0.85rem;
+            color: var(--color-text-muted);
+            font-weight: 500;
+            background-color: rgba(16, 28, 36, 0.6);
+            padding: 3px 8px;
+            border-radius: 6px;
+        }
+
+        .prob-bar-container {
+            margin-bottom: 15px;
+        }
+
+        .prob-labels {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.75rem;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        .prob-bar {
+            height: 8px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            display: flex;
+            overflow: hidden;
+        }
+
+        .prob-fill {
+            height: 100%;
+            transition: width 0.5s ease;
+        }
+
+        .prob-fill.home {
+            background-color: var(--color-teal);
+        }
+
+        .prob-fill.draw {
+            background-color: var(--color-gold);
+        }
+
+        .prob-fill.away {
+            background-color: var(--color-coral);
+        }
+
+        .top-scores {
+            background-color: rgba(16, 28, 36, 0.5);
+            border-radius: 10px;
+            padding: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .top-scores-title {
+            font-size: 0.7rem;
+            color: var(--color-text-muted);
+            text-transform: uppercase;
+            font-weight: 700;
+            margin-bottom: 6px;
+            letter-spacing: 0.5px;
+        }
+
+        .score-list {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.8rem;
+        }
+
+        .score-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            flex: 1;
+            border-right: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .score-item:last-child {
+            border-right: none;
+        }
+
+        .score-val {
+            font-weight: 800;
+            color: var(--color-gold);
+            font-size: 0.9rem;
+        }
+
+        .score-prob {
+            color: var(--color-text-muted);
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        /* Simulator Section */
+        .simulator-card {
+            background: linear-gradient(135deg, rgba(38, 70, 83, 0.3) 0%, rgba(16, 28, 36, 0.9) 100%);
+            border: 1px solid var(--color-card-border);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            margin-bottom: 40px;
+            backdrop-filter: blur(10px);
+        }
+
+        .simulator-title {
+            text-align: center;
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: var(--color-gold);
+            margin-bottom: 25px;
+            text-transform: uppercase;
+            letter-spacing: -0.5px;
+        }
+
+        .simulator-selects {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .sim-team-box {
+            flex: 1;
+            min-width: 250px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .sim-team-box label {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--color-text-muted);
+            text-transform: uppercase;
+        }
+
+        .select-wrapper {
+            position: relative;
+        }
+
+        .select-wrapper select {
+            width: 100%;
+            background-color: rgba(16, 28, 36, 0.8);
+            border: 1px solid var(--color-card-border);
+            color: var(--color-text);
+            padding: 14px 20px;
+            border-radius: 12px;
+            font-family: var(--font-family);
+            font-size: 1rem;
+            font-weight: 600;
+            appearance: none;
+            outline: none;
+            cursor: pointer;
+            transition: all var(--transition-speed);
+        }
+
+        .select-wrapper select:focus {
+            border-color: var(--color-teal);
+            box-shadow: 0 0 10px rgba(42, 157, 143, 0.3);
+        }
+
+        .select-wrapper::after {
+            content: '\f0d7';
+            font-family: 'Font Awesome 5 Free';
+            font-weight: 900;
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--color-teal);
+            pointer-events: none;
+        }
+
+        .vs-badge {
+            background-color: var(--color-coral);
+            color: var(--color-text);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+            font-size: 1.1rem;
+            box-shadow: 0 4px 15px rgba(231, 111, 81, 0.4);
+            border: 2px solid var(--color-bg);
+            margin-top: 25px;
+        }
+
+        .sim-btn-container {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .sim-btn {
+            background-color: var(--color-teal);
+            color: var(--color-text);
+            border: none;
+            padding: 16px 40px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            font-family: var(--font-family);
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all var(--transition-speed);
+            box-shadow: 0 6px 20px rgba(42, 157, 143, 0.4);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .sim-btn:hover {
+            background-color: #248b7e;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(42, 157, 143, 0.6);
+        }
+
+        .sim-btn:active {
+            transform: translateY(-1px);
+        }
+
+        /* Simulation Results */
+        .sim-results {
+            display: none;
+            animation: fadeIn 0.5s ease;
+            border-top: 1px dashed var(--color-card-border);
+            padding-top: 30px;
+        }
+
+        .sim-results.active {
+            display: block;
+        }
+
+        .sim-outcome-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .sim-team-result {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            flex: 1;
+        }
+
+        .sim-team-result.away {
+            justify-content: flex-end;
+        }
+
+        .sim-flag {
+            font-size: 3rem;
+        }
+
+        .sim-name-wrap {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .sim-team-name-big {
+            font-size: 1.5rem;
+            font-weight: 800;
+        }
+
+        .sim-team-elo {
+            font-size: 0.8rem;
+            color: var(--color-text-muted);
+            font-weight: 600;
+        }
+
+        .sim-score-center {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .sim-expected-goals {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--color-gold);
+            letter-spacing: 2px;
+            background-color: rgba(16, 28, 36, 0.6);
+            padding: 5px 20px;
+            border-radius: 12px;
+            border: 1px solid var(--color-card-border);
+        }
+
+        .sim-expected-label {
+            font-size: 0.7rem;
+            color: var(--color-text-muted);
+            text-transform: uppercase;
+            font-weight: 700;
+            margin-top: 5px;
+        }
+
+        .sim-metrics-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+
+        @media (max-width: 768px) {
+            .sim-metrics-grid {
+                grid-template-columns: 1fr;
+            }
+            .sim-team-result.away {
+                justify-content: flex-start;
+            }
+            .sim-outcome-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .sim-score-center {
+                align-self: center;
+                margin: 15px 0;
+            }
+        }
+
+        .prob-donut-container {
+            background-color: rgba(16, 28, 36, 0.5);
+            border-radius: 15px;
+            padding: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .prob-row-detail {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .prob-detail-item {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .prob-detail-info {
+            display: flex;
+            justify-content: space-between;
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+
+        .prob-detail-bar {
+            height: 12px;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .prob-detail-fill {
+            height: 100%;
+            border-radius: 10px;
+            transition: width 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .prob-detail-fill.home { background-color: var(--color-teal); }
+        .prob-detail-fill.draw { background-color: var(--color-gold); }
+        .prob-detail-fill.away { background-color: var(--color-coral); }
+
+        .sim-placares-card {
+            background-color: rgba(16, 28, 36, 0.5);
+            border-radius: 15px;
+            padding: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .sim-placares-title {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--color-gold);
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            padding-bottom: 8px;
+        }
+
+        .sim-placar-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+        }
+
+        .sim-placar-row:last-child {
+            border-bottom: none;
+        }
+
+        .sim-placar-badge {
+            background-color: var(--color-dark-teal);
+            color: var(--color-text);
+            font-weight: 800;
+            font-size: 1.1rem;
+            padding: 4px 15px;
+            border-radius: 6px;
+            border: 1px solid var(--color-teal);
+            letter-spacing: 1px;
+        }
+
+        .sim-placar-pct {
+            font-weight: 700;
+            color: var(--color-teal);
+            font-size: 1rem;
+        }
+
+        /* Teams Stats Section */
+        .stats-table-wrapper {
+            background-color: rgba(38, 70, 83, 0.15);
+            border: 1px solid var(--color-card-border);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .stats-table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+        }
+
+        .stats-table th, .stats-table td {
+            padding: 15px 20px;
+        }
+
+        .stats-table th {
+            background-color: var(--color-dark-teal);
+            color: var(--color-gold);
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 0.5px;
+        }
+
+        .stats-table tr {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            transition: background-color var(--transition-speed);
+        }
+
+        .stats-table tr:hover {
+            background-color: rgba(42, 157, 143, 0.1);
+        }
+
+        .stats-table tr:last-child {
+            border-bottom: none;
+        }
+
+        .stats-table td {
+            font-size: 0.95rem;
+        }
+
+        .rank-number {
+            font-weight: 800;
+            color: var(--color-orange);
+        }
+
+        .elo-number {
+            font-weight: 700;
+            color: var(--color-teal);
+        }
+
+        /* Footer */
+        footer {
+            margin-top: 50px;
+            text-align: center;
+            color: var(--color-text-muted);
+            font-size: 0.85rem;
+        }
+
+        footer a {
+            color: var(--color-teal);
+            text-decoration: none;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>Copa do Mundo 2026</h1>
+        <p>Painel Inteligente de Previsões com Machine Learning baseados em Rankings FIFA históricos, ELO Ratings e performance recente das seleções.</p>
+    </header>
+
+    <div class="tabs">
+        <button class="tab-btn active" onclick="switchTab('timeline')">
+            <i class="fa-solid fa-calendar-days"></i> Jogos por Data
+        </button>
+        <button class="tab-btn" onclick="switchTab('simulator')">
+            <i class="fa-solid fa-gamepad"></i> Simulador de Partidas
+        </button>
+        <button class="tab-btn" onclick="switchTab('stats')">
+            <i class="fa-solid fa-chart-line"></i> Força das Seleções
+        </button>
+    </div>
+
+    <!-- TIMELINE SECTION -->
+    <section id="timeline-sec" class="content-section active">
+        <div class="timeline-controls">
+            <div class="search-box">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" id="match-search" placeholder="Buscar seleção..." oninput="filterMatches()">
+            </div>
+            <div class="filter-groups">
+                <button class="filter-btn active" onclick="filterGroup('ALL')">Todos</button>
+                <button class="filter-btn" onclick="filterGroup('Group A')">Gr. A</button>
+                <button class="filter-btn" onclick="filterGroup('Group B')">Gr. B</button>
+                <button class="filter-btn" onclick="filterGroup('Group C')">Gr. C</button>
+                <button class="filter-btn" onclick="filterGroup('Group D')">Gr. D</button>
+                <button class="filter-btn" onclick="filterGroup('Group E')">Gr. E</button>
+                <button class="filter-btn" onclick="filterGroup('Group F')">Gr. F</button>
+                <button class="filter-btn" onclick="filterGroup('Group G')">Gr. G</button>
+                <button class="filter-btn" onclick="filterGroup('Group H')">Gr. H</button>
+                <button class="filter-btn" onclick="filterGroup('Group I')">Gr. I</button>
+                <button class="filter-btn" onclick="filterGroup('Group J')">Gr. J</button>
+                <button class="filter-btn" onclick="filterGroup('Group K')">Gr. K</button>
+                <button class="filter-btn" onclick="filterGroup('Group L')">Gr. L</button>
+            </div>
+        </div>
+
+        <div id="timeline-container">
+            <!-- Dynamic date groups will be injected here -->
+        </div>
+    </section>
+
+    <!-- SIMULATOR SECTION -->
+    <section id="simulator-sec" class="content-section">
+        <div class="simulator-card">
+            <h2 class="simulator-title">Simulador de Partidas Inteligente</h2>
+            
+            <div class="simulator-selects">
+                <div class="sim-team-box">
+                    <label for="sim-team1">Seleção 1 (Mandante)</label>
+                    <div class="select-wrapper">
+                        <select id="sim-team1" onchange="updateSimFlag(1)">
+                            <!-- Dynamic options -->
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="vs-badge">VS</div>
+                
+                <div class="sim-team-box">
+                    <label for="sim-team2">Seleção 2 (Visitante)</label>
+                    <div class="select-wrapper">
+                        <select id="sim-team2" onchange="updateSimFlag(2)">
+                            <!-- Dynamic options -->
+                        </select>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="sim-btn-container">
+                <button class="sim-btn" onclick="runSimulation()">
+                    <i class="fa-solid fa-bolt"></i> Simular Confronto
+                </button>
+            </div>
+
+            <!-- Results container -->
+            <div id="sim-results-container" class="sim-results">
+                <div class="sim-outcome-header">
+                    <div class="sim-team-result">
+                        <span id="sim-flag-1" class="sim-flag">🇧🇷</span>
+                        <div class="sim-name-wrap">
+                            <span id="sim-name-1" class="sim-team-name-big">Brasil</span>
+                            <span id="sim-elo-1" class="sim-team-elo">ELO: 1850</span>
+                        </div>
+                    </div>
+                    
+                    <div class="sim-score-center">
+                        <div id="sim-goals-display" class="sim-expected-goals">1.45 vs 1.10</div>
+                        <div class="sim-expected-label">Gols Esperados</div>
+                    </div>
+                    
+                    <div class="sim-team-result away">
+                        <div class="sim-name-wrap">
+                            <span id="sim-name-2" class="sim-team-name-big" style="text-align: right;">França</span>
+                            <span id="sim-elo-2" class="sim-team-elo" style="text-align: right;">ELO: 1845</span>
+                        </div>
+                        <span id="sim-flag-2" class="sim-flag">🇫🇷</span>
+                    </div>
+                </div>
+
+                <div class="sim-metrics-grid">
+                    <div class="prob-donut-container">
+                        <h3 class="sim-placares-title" style="margin-bottom: 20px;"><i class="fa-solid fa-chart-pie"></i> Probabilidades de Resultado</h3>
+                        <div class="prob-row-detail">
+                            <div class="prob-detail-item">
+                                <div class="prob-detail-info">
+                                    <span id="label-prob-1">Vitória Mandante</span>
+                                    <span id="pct-prob-1">45.0%</span>
+                                </div>
+                                <div class="prob-detail-bar">
+                                    <div id="bar-prob-1" class="prob-detail-fill home" style="width: 45%;"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="prob-detail-item">
+                                <div class="prob-detail-info">
+                                    <span>Empate</span>
+                                    <span id="pct-prob-draw">30.0%</span>
+                                </div>
+                                <div class="prob-detail-bar">
+                                    <div id="bar-prob-draw" class="prob-detail-fill draw" style="width: 30%;"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="prob-detail-item">
+                                <div class="prob-detail-info">
+                                    <span id="label-prob-2">Vitória Visitante</span>
+                                    <span id="pct-prob-2">25.0%</span>
+                                </div>
+                                <div class="prob-detail-bar">
+                                    <div id="bar-prob-2" class="prob-detail-fill away" style="width: 25%;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="sim-placares-card">
+                        <h3 class="sim-placares-title"><i class="fa-solid fa-list-ol"></i> Placares Mais Prováveis</h3>
+                        <div id="sim-scores-list">
+                            <!-- Placares do simulador -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TEAMS STATS SECTION -->
+    <section id="stats-sec" class="content-section">
+        <div class="stats-table-wrapper">
+            <table class="stats-table">
+                <thead>
+                    <tr>
+                        <th>Seleção</th>
+                        <th>Classificação FIFA</th>
+                        <th>Pontos FIFA</th>
+                        <th>ELO Rating</th>
+                        <th>Gols Recentes (Média 5j)</th>
+                        <th>Gols Sofridos (Média 5j)</th>
+                    </tr>
+                </thead>
+                <tbody id="stats-table-body">
+                    <!-- Dynamic team rows -->
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <footer>
+        <p>Copa do Mundo 2026 &copy; ML Predictive Engine. Desenvolvido com ❤️ usando Python &amp; JavaScript.</p>
+    </footer>
+</div>
+
+<script>
+    // Inline data placeholders replaced by prediction script
+    const PREDICTIONS = // PREDICTIONS_JSON_PLACEHOLDER //;
+    const MODEL_DATA = // MODEL_EXPORT_JSON_PLACEHOLDER //;
+
+    const flagEmojis = {
+        "Argentina": "🇦🇷", "France": "🇫🇷", "Brazil": "🇧🇷", "Portugal": "🇵🇹", "England": "🏴󠁧󠁢󠁥󠁮󠁧󠁿", "Spain": "🇪🇸",
+        "Germany": "🇩🇪", "Italy": "🇮🇹", "Uruguay": "🇺🇾", "Belgium": "🇧🇪", "Croatia": "🇭🇷", "Netherlands": "🇳🇱",
+        "Morocco": "🇲🇦", "Senegal": "🇸🇳", "Japan": "🇯🇵", "USA": "🇺🇸", "Mexico": "🇲🇽", "Canada": "🇨🇦",
+        "South Korea": "🇰🇷", "Iran": "🇮🇷", "Saudi Arabia": "🇸🇦", "Australia": "🇦🇺", "Ecuador": "🇪🇨",
+        "Switzerland": "🇨🇭", "Sweden": "🇸🇪", "Norway": "🇳🇴", "Denmark": "🇩🇰", "Poland": "🇵🇱", "Ukraine": "🇺🇦",
+        "Turkey": "🇹🇷", "Egypt": "🇪🇬", "Nigeria": "🇳🇬", "Cameroon": "🇨🇲", "Algeria": "🇩🇿", "Tunisia": "🇹🇳",
+        "Ghana": "🇬🇭", "Ivory Coast": "🇨🇮", "South Africa": "🇿🇦", "Costa Rica": "🇨🇷", "Panama": "🇵🇦",
+        "Jamaica": "🇯🇲", "Honduras": "🇭🇳", "Peru": "🇵🇪", "Chile": "🇨🇱", "Colombia": "🇨🇴", "Paraguay": "🇵🇾",
+        "Venezuela": "🇻🇪", "Bolivia": "🇧🇴", "Qatar": "🇶🇦", "Uzbekistan": "🇺🇿", "Iraq": "🇮🇶", "Jordan": "🇯🇴",
+        "New Zealand": "🇳🇿", "Czech Republic": "🇨🇿", "Scotland": "🏴󠁧󠁢󠁳󠁣󠁴󠁿", "Haiti": "🇭🇹", "Curaçao": "🇨🇼",
+        "Cape Verde": "🇨🇻", "DR Congo": "🇨🇩", "Bosnia & Herzegovina": "🇧🇦", "Austria": "🇦🇹"
+    };
+
+    let activeFilterGroup = 'ALL';
+
+    function getFlag(team) {
+        return flagEmojis[team] || "🏳️";
+    }
+
+    // Tab switcher
+    function switchTab(tabId) {
+        document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+        document.querySelectorAll('.content-section').forEach(sec => sec.classList.remove('active'));
+        
+        const index = tabId === 'timeline' ? 0 : (tabId === 'simulator' ? 1 : 2);
+        document.querySelectorAll('.tab-btn')[index].classList.add('active');
+        document.getElementById(tabId + '-sec').classList.add('active');
+        
+        if (tabId === 'simulator') {
+            initSimulatorDropdowns();
+        }
+    }
+
+    // Formatting date
+    function formatDate(dateStr) {
+        const parts = dateStr.split('-');
+        if(parts.length !== 3) return dateStr;
+        const date = new Date(parts[0], parts[1]-1, parts[2]);
+        return date.toLocaleDateString('pt-BR', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
+    }
+
+    // Populate timeline
+    function renderTimeline() {
+        const container = document.getElementById('timeline-container');
+        container.innerHTML = '';
+        
+        const searchVal = document.getElementById('match-search').value.toLowerCase();
+        
+        // Filter predictions
+        let filtered = PREDICTIONS.filter(match => {
+            const matchesSearch = match.team1.toLowerCase().includes(searchVal) || match.team2.toLowerCase().includes(searchVal);
+            const matchesGroup = activeFilterGroup === 'ALL' || match.group === activeFilterGroup;
+            return matchesSearch && matchesGroup;
+        });
+
+        if (filtered.length === 0) {
+            container.innerHTML = '<div style="text-align:center; padding:40px; color:var(--color-text-muted);">Nenhum jogo encontrado.</div>';
+            return;
+        }
+
+        // Group by Date
+        const grouped = {};
+        filtered.forEach(match => {
+            if (!grouped[match.date]) {
+                grouped[match.date] = [];
+            }
+            grouped[match.date].push(match);
+        });
+
+        // Sort dates
+        const sortedDates = Object.keys(grouped).sort();
+
+        sortedDates.forEach(date => {
+            const dateGroupDiv = document.createElement('div');
+            dateGroupDiv.className = 'date-group';
+            
+            const formattedDate = formatDate(date);
+            
+            dateGroupDiv.innerHTML = `
+                <h3 class="date-header">
+                    <i class="fa-solid fa-calendar-day"></i> ${formattedDate.charAt(0).toUpperCase() + formattedDate.slice(1)}
+                </h3>
+                <div class="matches-grid">
+                    ${grouped[date].map(match => renderMatchCard(match)).join('')}
+                </div>
+            `;
+            container.appendChild(dateGroupDiv);
+        });
+    }
+
+    function renderMatchCard(match) {
+        const p1 = (match.prob_team1 * 100).toFixed(1);
+        const pd = (match.prob_draw * 100).toFixed(1);
+        const p2 = (match.prob_team2 * 100).toFixed(1);
+        
+        return `
+            <div class="match-card">
+                <div>
+                    <div class="match-meta">
+                        <span><i class="fa-solid fa-map-marker-alt"></i> ${match.ground}</span>
+                        <span class="group-tag">${match.group}</span>
+                    </div>
+                    <div class="teams-container">
+                        <div class="team-row">
+                            <div class="team-info">
+                                <span class="team-flag">${getFlag(match.team1)}</span>
+                                <span class="team-name">${match.team1}</span>
+                            </div>
+                            <span class="team-score-exp">${match.expected_goals_team1.toFixed(2)} exp</span>
+                        </div>
+                        <div class="team-row">
+                            <div class="team-info">
+                                <span class="team-flag">${getFlag(match.team2)}</span>
+                                <span class="team-name">${match.team2}</span>
+                            </div>
+                            <span class="team-score-exp">${match.expected_goals_team2.toFixed(2)} exp</span>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="prob-bar-container">
+                        <div class="prob-labels">
+                            <span style="color: var(--color-teal);">${p1}%</span>
+                            <span style="color: var(--color-gold);">${pd}%</span>
+                            <span style="color: var(--color-coral);">${p2}%</span>
+                        </div>
+                        <div class="prob-bar">
+                            <div class="prob-fill home" style="width: ${p1}%"></div>
+                            <div class="prob-fill draw" style="width: ${pd}%"></div>
+                            <div class="prob-fill away" style="width: ${p2}%"></div>
+                        </div>
+                    </div>
+                    <div class="top-scores">
+                        <div class="top-scores-title">Placares prováveis</div>
+                        <div class="score-list">
+                            ${match.top_scores.map(s => `
+                                <div class="score-item">
+                                    <span class="score-val">${s[0]}-${s[1]}</span>
+                                    <span class="score-prob">${(s[2]*100).toFixed(1)}%</span>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+
+    function filterMatches() {
+        renderTimeline();
+    }
+
+    function filterGroup(group) {
+        activeFilterGroup = group;
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.classList.remove('active');
+            if (btn.innerText === (group === 'ALL' ? 'Todos' : group.replace('Group ', 'Gr. '))) {
+                btn.classList.add('active');
+            }
+        });
+        renderTimeline();
+    }
+
+    // Simulator logic
+    let simDropdownsInitialized = false;
+    function initSimulatorDropdowns() {
+        if (simDropdownsInitialized) return;
+        
+        const teams = Object.keys(MODEL_DATA.elos).sort();
+        const sel1 = document.getElementById('sim-team1');
+        const sel2 = document.getElementById('sim-team2');
+        
+        sel1.innerHTML = '';
+        sel2.innerHTML = '';
+        
+        teams.forEach(team => {
+            const opt1 = document.createElement('option');
+            opt1.value = team;
+            opt1.innerText = `${getFlag(team)} ${team}`;
+            sel1.appendChild(opt1);
+            
+            const opt2 = document.createElement('option');
+            opt2.value = team;
+            opt2.innerText = `${getFlag(team)} ${team}`;
+            sel2.appendChild(opt2);
+        });
+        
+        // Select defaults
+        if (teams.includes("Brazil")) sel1.value = "Brazil";
+        if (teams.includes("France")) sel2.value = "France";
+        
+        updateSimFlag(1);
+        updateSimFlag(2);
+        simDropdownsInitialized = true;
+    }
+
+    function updateSimFlag(num) {
+        const sel = document.getElementById(`sim-team${num}`);
+        const flag = document.getElementById(`sim-flag-${num}`);
+        flag.innerText = getFlag(sel.value);
+    }
+
+    // Factorial helper
+    function factorial(n) {
+        if (n === 0 || n === 1) return 1;
+        let r = 1;
+        for (let i = 2; i <= n; i++) r *= i;
+        return r;
+    }
+
+    // Poisson probability density function
+    function poissonPdf(k, mu) {
+        return (Math.pow(mu, k) * Math.exp(-mu)) / factorial(k);
+    }
+
+    function runSimulation() {
+        const team1 = document.getElementById('sim-team1').value;
+        const team2 = document.getElementById('sim-team2').value;
+        
+        if (team1 === team2) {
+            alert("Por favor, selecione duas equipes diferentes.");
+            return;
+        }
+
+        const t1Stats = MODEL_DATA.features[team1] || { avg_gols_marcados_5j: 1, avg_gols_sofridos_5j: 1, form_score: 1, win_rate_1ano: 0.4 };
+        const t2Stats = MODEL_DATA.features[team2] || { avg_gols_marcados_5j: 1, avg_gols_sofridos_5j: 1, form_score: 1, win_rate_1ano: 0.4 };
+        
+        const t1Elo = MODEL_DATA.elos[team1] || 1000;
+        const t2Elo = MODEL_DATA.elos[team2] || 1000;
+        
+        const t1Fifa = MODEL_DATA.fifa[team1] || { rank: 200, points: 0 };
+        const t2Fifa = MODEL_DATA.fifa[team2] || { rank: 200, points: 0 };
+        
+        // Calculate mu1 and mu2 using coefficients
+        // Features: ["elo_diff", "rank_diff", "points_diff", "avg_gols_marcados_5j", "avg_gols_sofridos_5j_opp", "form_score", "form_score_opp", "win_rate_1ano", "win_rate_1ano_opp", "is_home"]
+        const x1 = {
+            elo_diff: (t1Elo - t2Elo) / 100.0,
+            rank_diff: (t2Fifa.rank - t1Fifa.rank) / 10.0,
+            points_diff: (t1Fifa.points - t2Fifa.points) / 100.0,
+            avg_gols_marcados_5j: t1Stats.avg_gols_marcados_5j,
+            avg_gols_sofridos_5j_opp: t2Stats.avg_gols_sofridos_5j,
+            form_score: t1Stats.form_score,
+            form_score_opp: t2Stats.form_score,
+            win_rate_1ano: t1Stats.win_rate_1ano,
+            win_rate_1ano_opp: t2Stats.win_rate_1ano,
+            is_home: 0
+        };
+        
+        const x2 = {
+            elo_diff: (t2Elo - t1Elo) / 100.0,
+            rank_diff: (t1Fifa.rank - t2Fifa.rank) / 10.0,
+            points_diff: (t2Fifa.points - t1Fifa.points) / 100.0,
+            avg_gols_marcados_5j: t2Stats.avg_gols_marcados_5j,
+            avg_gols_sofridos_5j_opp: t1Stats.avg_gols_sofridos_5j,
+            form_score: t2Stats.form_score,
+            form_score_opp: t1Stats.form_score,
+            win_rate_1ano: t2Stats.win_rate_1ano,
+            win_rate_1ano_opp: t1Stats.win_rate_1ano,
+            is_home: 0
+        };
+        
+        const coef = MODEL_DATA.poisson_coefficients;
+        const intercept = MODEL_DATA.poisson_intercept;
+        const featuresNames = MODEL_DATA.features_names;
+        
+        let sum1 = intercept;
+        let sum2 = intercept;
+        for (let i = 0; i < featuresNames.length; i++) {
+            const featName = featuresNames[i];
+            sum1 += coef[i] * x1[featName];
+            sum2 += coef[i] * x2[featName];
+        }
+        
+        const mu1 = Math.exp(sum1);
+        const mu2 = Math.exp(sum2);
+        
+        // Calculate score matrix
+        let scoreMatrix = [];
+        let totalP = 0;
+        let pHome = 0;
+        let pDraw = 0;
+        let pAway = 0;
+        
+        for (let x = 0; x < 6; x++) {
+            scoreMatrix[x] = [];
+            for (let y = 0; y < 6; y++) {
+                const px = poissonPdf(x, mu1);
+                const py = poissonPdf(y, mu2);
+                const p = px * py;
+                scoreMatrix[x][y] = p;
+                totalP += p;
+            }
+        }
+        
+        // Normalize and sum classes
+        let placaresList = [];
+        for (let x = 0; x < 6; x++) {
+            for (let y = 0; y < 6; y++) {
+                scoreMatrix[x][y] /= totalP;
+                const p = scoreMatrix[x][y];
+                
+                if (x > y) pHome += p;
+                else if (x === y) pDraw += p;
+                else pAway += p;
+                
+                placaresList.push({ score: `${x}-${y}`, prob: p, x, y });
+            }
+        }
+        
+        // Sort placares to find top 3
+        placaresList.sort((a, b) => b.prob - a.prob);
+        const topPlacares = placaresList.slice(0, 3);
+        
+        // Update elements
+        document.getElementById('sim-name-1').innerText = team1;
+        document.getElementById('sim-name-2').innerText = team2;
+        document.getElementById('sim-elo-1').innerText = `ELO: ${Math.round(t1Elo)}`;
+        document.getElementById('sim-elo-2').innerText = `ELO: ${Math.round(t2Elo)}`;
+        document.getElementById('sim-goals-display').innerText = `${mu1.toFixed(2)} vs ${mu2.toFixed(2)}`;
+        
+        document.getElementById('label-prob-1').innerText = `Vitória ${team1}`;
+        document.getElementById('label-prob-2').innerText = `Vitória ${team2}`;
+        
+        const pHomePct = (pHome * 100).toFixed(1) + '%';
+        const pDrawPct = (pDraw * 100).toFixed(1) + '%';
+        const pAwayPct = (pAway * 100).toFixed(1) + '%';
+        
+        document.getElementById('pct-prob-1').innerText = pHomePct;
+        document.getElementById('pct-prob-draw').innerText = pDrawPct;
+        document.getElementById('pct-prob-2').innerText = pAwayPct;
+        
+        document.getElementById('bar-prob-1').style.width = pHomePct;
+        document.getElementById('bar-prob-draw').style.width = pDrawPct;
+        document.getElementById('bar-prob-2').style.width = pAwayPct;
+        
+        const scoresListDiv = document.getElementById('sim-scores-list');
+        scoresListDiv.innerHTML = topPlacares.map(item => `
+            <div class="sim-placar-row">
+                <span class="sim-placar-badge">${item.score}</span>
+                <span class="sim-placar-pct">${(item.prob * 100).toFixed(1)}%</span>
+            </div>
+        `).join('');
+        
+        // Show results
+        document.getElementById('sim-results-container').classList.add('active');
+    }
+
+    // Populate team statistics table
+    function renderStatsTable() {
+        const tbody = document.getElementById('stats-table-body');
+        tbody.innerHTML = '';
+        
+        const teams = Object.keys(MODEL_DATA.elos).sort((a, b) => {
+            return (MODEL_DATA.fifa[a]?.rank || 200) - (MODEL_DATA.fifa[b]?.rank || 200);
+        });
+        
+        teams.forEach(team => {
+            const elo = Math.round(MODEL_DATA.elos[team] || 1000);
+            const rank = MODEL_DATA.fifa[team]?.rank || '-';
+            const pts = Math.round(MODEL_DATA.fifa[team]?.points || 0);
+            const feats = MODEL_DATA.features[team] || { avg_gols_marcados_5j: 1, avg_gols_sofridos_5j: 1 };
+            
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+                <td><span style="font-size:1.2rem; margin-right:10px;">${getFlag(team)}</span> <strong>${team}</strong></td>
+                <td class="rank-number"># ${rank}</td>
+                <td>${pts} pts</td>
+                <td class="elo-number">${elo}</td>
+                <td style="color: var(--color-teal); font-weight:600;">${feats.avg_gols_marcados_5j.toFixed(2)}</td>
+                <td style="color: var(--color-coral); font-weight:600;">${feats.avg_gols_sofridos_5j.toFixed(2)}</td>
+            `;
+            tbody.appendChild(tr);
+        });
+    }
+
+    // On Load
+    window.onload = function() {
+        renderTimeline();
+        renderStatsTable();
+    };
+</script>
+
+</body>
+</html>
