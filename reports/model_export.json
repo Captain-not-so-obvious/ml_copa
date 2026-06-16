@@ -1,17 +1,17 @@
 {
     "poisson_coefficients": [
-        0.19054897153377492,
-        0.018160494435793678,
-        -0.01896406099232928,
-        0.06940704187863565,
-        0.16417277175384046,
-        -0.00029080420283224425,
-        0.07959837524273966,
-        0.023784042665729352,
-        -0.07020482798185479,
-        0.22639579214568287
+        0.19054670363122164,
+        0.01816417753371312,
+        -0.018971892685958357,
+        0.06939076961508209,
+        0.16417963006922226,
+        -0.0003027360657626094,
+        0.07958651520731258,
+        0.023934532048343348,
+        -0.07037528619239733,
+        0.22635453244799292
     ],
-    "poisson_intercept": -0.34402622540879135,
+    "poisson_intercept": -0.3439740990770569,
     "features_names": [
         "elo_diff",
         "rank_diff",
@@ -31,12 +31,12 @@
         "Northern Ireland": 1062.5662832510393,
         "USA": 1338.1735049308468,
         "Canada": 1282.1716532784424,
-        "Uruguay": 1349.3825508941131,
+        "Uruguay": 1335.0618674613495,
         "Argentina": 1529.6327014815447,
         "Austria": 1285.9478425750938,
         "Hungary": 1231.7829422913262,
         "Czechoslovakia": 1185.467149553432,
-        "Belgium": 1329.9066637335175,
+        "Belgium": 1322.6986680580035,
         "France": 1487.5147041977514,
         "Switzerland": 1299.4398037388885,
         "Guernsey": 1184.5604420563427,
@@ -65,8 +65,8 @@
         "Romania": 1152.303948405587,
         "Greece": 1234.222208819753,
         "Yugoslavia": 1262.3056896136673,
-        "Spain": 1552.5217390453768,
-        "Egypt": 1244.765160775681,
+        "Spain": 1526.609522272416,
+        "Egypt": 1251.9731564511949,
         "Estonia": 913.1754674697974,
         "Suriname": 1048.9036260901316,
         "Provence": 919.7755415684626,
@@ -76,7 +76,7 @@
         "Portugal": 1435.8757272917662,
         "Poland": 1207.94283771933,
         "Brittany": 1017.8844970218744,
-        "New Zealand": 1157.1362418465956,
+        "New Zealand": 1170.1401914169262,
         "Australia": 1346.7945765091397,
         "Latvia": 828.4823437995292,
         "Galicia": 1029.6722390647717,
@@ -122,8 +122,8 @@
         "Croatia": 1364.5059445535007,
         "Lebanon": 948.4526459592372,
         "Puerto Rico": 904.8487156458848,
-        "Afghanistan": 731.2498344706161,
-        "Iran": 1318.400374994236,
+        "Afghanistan": 730.8724401375127,
+        "Iran": 1305.3964254239054,
         "Mongolia": 636.3127515329442,
         "Tanzania": 928.3367873775144,
         "Zimbabwe": 954.1092710482271,
@@ -153,7 +153,7 @@
         "New Caledonia": 1057.9500815035442,
         "Vanuatu": 982.4790479676785,
         "Fiji": 978.8150982451156,
-        "Pakistan": 666.7800387583378,
+        "Pakistan": 667.0408252675919,
         "Sri Lanka": 638.2204285600513,
         "German DR": 1159.2803034514454,
         "Tahiti": 1025.9724509565629,
@@ -181,7 +181,7 @@
         "Malawi": 920.8948428162823,
         "Morocco": 1402.2484953699868,
         "Benin": 1012.7862467440507,
-        "Cape Verde": 1098.1141974830186,
+        "Cape Verde": 1124.0264142559795,
         "Ivory Coast": 1279.9578888487151,
         "Burkina Faso": 1111.5483475211981,
         "Gabon": 1018.0034847468206,
@@ -203,7 +203,7 @@
         "Papua New Guinea": 992.3314274434608,
         "Solomon Islands": 940.4445330950986,
         "Somalia": 636.6449924079619,
-        "Saudi Arabia": 1168.870822889454,
+        "Saudi Arabia": 1183.1915063222177,
         "Bermuda": 883.7260914227703,
         "Palestine": 1036.6929620069639,
         "Yemen": 833.0836431791639,
@@ -238,7 +238,7 @@
         "Azerbaijan": 901.4026720129804,
         "Kazakhstan": 977.0338433448657,
         "Comoros": 976.4291652239132,
-        "Maldives": 620.0569830231244,
+        "Maldives": 620.1735908469736,
         "Tonga": 741.474918672888,
         "Tuvalu": 842.7574559233561,
         "Kiribati": 889.7327207671235,
@@ -287,8 +287,8 @@
         "Monaco": 980.4194724172213,
         "Western Sahara": 953.0362482801944,
         "Tibet": 849.8555845094551,
-        "Orkney": 937.6544056858362,
         "Falkland Islands": 824.2465342721981,
+        "Orkney": 937.6544056858362,
         "Mayotte": 940.3324563509588,
         "Vatican City": 958.636501026407,
         "Timor-Leste": 533.4942391965245,
@@ -1404,10 +1404,10 @@
             "win_rate_1ano": 0.0
         },
         "Belgium": {
-            "avg_gols_marcados_5j": 5.0,
-            "avg_gols_sofridos_5j": 0.0,
-            "form_score": 3.0,
-            "win_rate_1ano": 1.0
+            "avg_gols_marcados_5j": 1.0,
+            "avg_gols_sofridos_5j": 1.0,
+            "form_score": 1.0,
+            "win_rate_1ano": 0.0
         },
         "Belize": {
             "avg_gols_marcados_5j": 1.0,
@@ -1531,8 +1531,8 @@
         },
         "Cape Verde": {
             "avg_gols_marcados_5j": 0.0,
-            "avg_gols_sofridos_5j": 3.0,
-            "form_score": 0.0,
+            "avg_gols_sofridos_5j": 0.0,
+            "form_score": 1.0,
             "win_rate_1ano": 0.0
         },
         "Cascadia": {
@@ -1753,8 +1753,8 @@
         },
         "Egypt": {
             "avg_gols_marcados_5j": 1.0,
-            "avg_gols_sofridos_5j": 2.0,
-            "form_score": 0.0,
+            "avg_gols_sofridos_5j": 1.0,
+            "form_score": 1.0,
             "win_rate_1ano": 0.0
         },
         "El Salvador": {
@@ -2047,9 +2047,9 @@
         },
         "Iran": {
             "avg_gols_marcados_5j": 2.0,
-            "avg_gols_sofridos_5j": 0.0,
-            "form_score": 3.0,
-            "win_rate_1ano": 1.0
+            "avg_gols_sofridos_5j": 2.0,
+            "form_score": 1.0,
+            "win_rate_1ano": 0.0
         },
         "Iraq": {
             "avg_gols_marcados_5j": 0.0,
@@ -2436,9 +2436,9 @@
             "win_rate_1ano": 0.0
         },
         "New Zealand": {
-            "avg_gols_marcados_5j": 0.0,
-            "avg_gols_sofridos_5j": 1.0,
-            "form_score": 0.0,
+            "avg_gols_marcados_5j": 2.0,
+            "avg_gols_sofridos_5j": 2.0,
+            "form_score": 1.0,
             "win_rate_1ano": 0.0
         },
         "Nicaragua": {
@@ -2754,8 +2754,8 @@
             "win_rate_1ano": 0.0
         },
         "Saudi Arabia": {
-            "avg_gols_marcados_5j": 0.0,
-            "avg_gols_sofridos_5j": 0.0,
+            "avg_gols_marcados_5j": 1.0,
+            "avg_gols_sofridos_5j": 1.0,
             "form_score": 1.0,
             "win_rate_1ano": 0.0
         },
@@ -2892,10 +2892,10 @@
             "win_rate_1ano": 0.0
         },
         "Spain": {
-            "avg_gols_marcados_5j": 3.0,
-            "avg_gols_sofridos_5j": 1.0,
-            "form_score": 3.0,
-            "win_rate_1ano": 1.0
+            "avg_gols_marcados_5j": 0.0,
+            "avg_gols_sofridos_5j": 0.0,
+            "form_score": 1.0,
+            "win_rate_1ano": 0.0
         },
         "Sri Lanka": {
             "avg_gols_marcados_5j": 0.0,
@@ -3102,8 +3102,8 @@
             "win_rate_1ano": 0.0
         },
         "Uruguay": {
-            "avg_gols_marcados_5j": 0.0,
-            "avg_gols_sofridos_5j": 0.0,
+            "avg_gols_marcados_5j": 1.0,
+            "avg_gols_sofridos_5j": 1.0,
             "form_score": 1.0,
             "win_rate_1ano": 0.0
         },
