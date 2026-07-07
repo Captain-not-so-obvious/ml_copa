@@ -1,17 +1,17 @@
 {
     "poisson_coefficients": [
-        0.19046225598010472,
-        0.01818567592534323,
-        -0.018984110937957578,
-        0.06937520533387567,
-        0.16410874386253346,
-        -0.0003613649428286142,
-        0.07953513186913709,
-        0.02452705325298663,
-        -0.07100989127550465,
-        0.22636218050720486
+        0.19046097832787512,
+        0.01818739825176812,
+        -0.018984971978938,
+        0.06937638122025935,
+        0.16410756197086435,
+        -0.0003659477349389411,
+        0.0795414701632873,
+        0.02454610530519479,
+        -0.07103068861193626,
+        0.2263642351240801
     ],
-    "poisson_intercept": -0.34364322777065326,
+    "poisson_intercept": -0.3436494623827252,
     "features_names": [
         "elo_diff",
         "rank_diff",
@@ -29,14 +29,14 @@
         "England": 1497.4931085303085,
         "Wales": 1200.423587764856,
         "Northern Ireland": 1062.5664533042539,
-        "USA": 1345.7005959907226,
+        "USA": 1317.2988522455037,
         "Canada": 1275.304058850141,
         "Uruguay": 1305.3096105836644,
         "Argentina": 1565.0053497327685,
         "Austria": 1285.6395728735017,
         "Hungary": 1231.7831091153832,
         "Czechoslovakia": 1185.461765055374,
-        "Belgium": 1364.2278408377845,
+        "Belgium": 1392.6295845830034,
         "France": 1551.9670415151302,
         "Switzerland": 1370.0962373234504,
         "Guernsey": 1184.5404598764385,
@@ -65,7 +65,7 @@
         "Romania": 1152.3039712599766,
         "Greece": 1234.221889982208,
         "Yugoslavia": 1262.3007374029341,
-        "Spain": 1558.879388269467,
+        "Spain": 1580.4260452598655,
         "Egypt": 1280.8639993584707,
         "Estonia": 913.1750446763457,
         "Suriname": 1048.903958682351,
@@ -74,7 +74,7 @@
         "El Salvador": 989.2812492942926,
         "Guatemala": 1106.4958554171171,
         "Poland": 1207.9431192585625,
-        "Portugal": 1458.2577066982421,
+        "Portugal": 1436.7110497078436,
         "Brittany": 1017.8832025225238,
         "New Zealand": 1130.9766696896834,
         "Australia": 1310.5707630604218,
@@ -1404,8 +1404,8 @@
             "win_rate_1ano": 0.0
         },
         "Belgium": {
-            "avg_gols_marcados_5j": 3.0,
-            "avg_gols_sofridos_5j": 2.0,
+            "avg_gols_marcados_5j": 4.0,
+            "avg_gols_sofridos_5j": 1.0,
             "form_score": 3.0,
             "win_rate_1ano": 1.0
         },
@@ -2598,10 +2598,10 @@
             "win_rate_1ano": 0.0
         },
         "Portugal": {
-            "avg_gols_marcados_5j": 2.0,
+            "avg_gols_marcados_5j": 0.0,
             "avg_gols_sofridos_5j": 1.0,
-            "form_score": 3.0,
-            "win_rate_1ano": 1.0
+            "form_score": 0.0,
+            "win_rate_1ano": 0.0
         },
         "Provence": {
             "avg_gols_marcados_5j": 0.0,
@@ -2892,7 +2892,7 @@
             "win_rate_1ano": 0.0
         },
         "Spain": {
-            "avg_gols_marcados_5j": 3.0,
+            "avg_gols_marcados_5j": 1.0,
             "avg_gols_sofridos_5j": 0.0,
             "form_score": 3.0,
             "win_rate_1ano": 1.0
@@ -3066,10 +3066,10 @@
             "win_rate_1ano": 0.0
         },
         "USA": {
-            "avg_gols_marcados_5j": 2.0,
-            "avg_gols_sofridos_5j": 0.0,
-            "form_score": 3.0,
-            "win_rate_1ano": 1.0
+            "avg_gols_marcados_5j": 1.0,
+            "avg_gols_sofridos_5j": 4.0,
+            "form_score": 0.0,
+            "win_rate_1ano": 0.0
         },
         "Uganda": {
             "avg_gols_marcados_5j": 1.0,
